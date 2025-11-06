@@ -15,10 +15,6 @@ const TarotReader = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [lastTapEffect, setLastTapEffect] = useState(0);
   const [selectedCard, setSelectedCard] = useState(null);
-  const [aiInterpretation, setAiInterpretation] = useState(null);
-  const [isLoadingAI, setIsLoadingAI] = useState(false);
-  const [aiError, setAiError] = useState(null);
-  const [lastAiInterpretation, setLastAiInterpretation] = useState(null);
 
   const mouseEntropyRef = useRef([]);
   const ritualTimerRef = useRef(null);
@@ -676,7 +672,8 @@ const TarotReader = () => {
 
     setDrawnCards(newCards);
     setUsedCards(currentUsedCards);
-    setRevealedCards([]);
+    // Автоматично розкриваємо всі карти після ритуалу
+    setRevealedCards(newCards.map((_, index) => index));
   };
 
   const drawCards = () => {
@@ -696,10 +693,6 @@ const TarotReader = () => {
     setShowRitual(false);
     setAccumulatedEntropy(0);
     setSelectedCard(null);
-    setAiInterpretation(null);
-    setIsLoadingAI(false);
-    setAiError(null);
-    setLastAiInterpretation(null);
     tapTimesRef.current = [];
     tapCoordinatesRef.current = [];
     mouseEntropyRef.current = [];
@@ -724,26 +717,17 @@ const TarotReader = () => {
     setSelectedCard(null);
   };
 
-  // AI тлумачення карт
-  const getAIInterpretation = async (cards, spreadName, isFullSpread = true) => {
-    setIsLoadingAI(true);
-    setAiError(null);
+  // AI тлумачення карт - відкриває Claude.ai з промптом
+  const getAIInterpretation = (cards, spreadName, isFullSpread = true) => {
+    let prompt;
 
-    try {
-      // Перевіряємо доступність API
-      if (typeof fetch === 'undefined') {
-        throw new Error('API недоступний в цьому середовищі');
-      }
+    if (isFullSpread) {
+      // Тлумачення всього розкладу
+      const cardsText = cards.map(card =>
+        `${card.position}: ${card.name}${card.reversed ? ' (Перевернута)' : ''}`
+      ).join('\n');
 
-      let prompt;
-
-      if (isFullSpread) {
-        // Тлумачення всього розкладу
-        const cardsText = cards.map(card =>
-          `${card.position}: ${card.name}${card.reversed ? ' (Перевернута)' : ''}`
-        ).join('\n');
-
-        prompt = `Уяви, що ти досвідчений таролог з багаторічним досвідом, який сидить навпроти клієнта і розглядає його карти. Говори природно, по-людськи, як справжній майстер Таро.
+      prompt = `Уяви, що ти досвідчений таролог з багаторічним досвідом, який сидить навпроти клієнта і розглядає його карти. Говори природно, по-людськи, як справжній майстер Таро.
 
 Розклад "${spreadName}":
 ${cardsText}
@@ -758,10 +742,10 @@ ${cardsText}
 - Поділися своїми інтуїтивними відчуттями
 
 Пиши українською, як жива людина - з емоціями, паузами, вигуками. Можеш використати "..." для пауз і емодзі для настрою. Будь мудрим другом, а не роботом.`;
-      } else {
-        // Тлумачення однієї карти
-        const card = cards[0];
-        prompt = `Ти досвідчений таролог, який щойно подивився на одну карту в розкладі клієнта. Говори природно, як жива людина.
+    } else {
+      // Тлумачення однієї карти
+      const card = cards[0];
+      prompt = `Ти досвідчений таролог, який щойно подивився на одну карту в розкладі клієнта. Говори природно, як жива людина.
 
 Карта: "${card.name}"${card.reversed ? ' (Перевернута)' : ''}
 Позиція: "${card.position}"
@@ -776,69 +760,20 @@ ${cardsText}
 - Можливо, поділися коротенькою історією чи асоціацією
 
 Говори тепло, по-дружньому, українською мовою. Використовуй емодзі та "..." для природності. Будь живим наставником, а не штучним інтелектом.`;
-      }
-
-      const response = await fetch("https://api.anthropic.com/v1/messages", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          model: "claude-sonnet-4-20250514",
-          max_tokens: 1500,
-          messages: [
-            { role: "user", content: prompt }
-          ]
-        })
-      });
-
-      if (!response.ok) {
-        if (response.status === 401 || response.status === 403) {
-          throw new Error('API_NOT_AVAILABLE');
-        }
-        throw new Error(`API помилка: ${response.status}`);
-      }
-
-      const data = await response.json();
-      const interpretation = data.content[0].text;
-
-      setAiInterpretation({
-        text: interpretation,
-        type: isFullSpread ? 'full' : 'single',
-        cards: cards,
-        spreadName: spreadName
-      });
-
-      // Зберігаємо останнє тлумачення
-      setLastAiInterpretation({
-        text: interpretation,
-        type: isFullSpread ? 'full' : 'single',
-        cards: cards,
-        spreadName: spreadName
-      });
-
-    } catch (error) {
-      console.error("Помилка AI тлумачення:", error);
-
-      if (error.message === 'API_NOT_AVAILABLE') {
-        setAiError("🤖 AI тлумачення доступне тільки в Claude.ai\n\nЩоб скористатися цією функцією:\n• Відкрийте цей артефакт в Claude.ai\n• Або скопіюйте код і запустіть локально з власним API ключем");
-      } else {
-        setAiError("Не вдалося отримати тлумачення. Спробуйте ще раз або перезавантажте сторінку.");
-      }
-    } finally {
-      setIsLoadingAI(false);
     }
-  };
 
-  const closeAIInterpretation = () => {
-    setAiInterpretation(null);
-    setAiError(null);
-  };
+    // Копіюємо промпт в буфер обміну
+    navigator.clipboard.writeText(prompt).then(() => {
+      // Відкриваємо Claude.ai в новій вкладці
+      window.open('https://claude.ai/new', '_blank');
 
-  const showLastAIInterpretation = () => {
-    if (lastAiInterpretation) {
-      setAiInterpretation(lastAiInterpretation);
-    }
+      // Показуємо повідомлення користувачу
+      alert('✨ Промпт для AI-тлумачення скопійовано в буфер обміну!\n\n📋 Відкривається нова вкладка з Claude.ai\n\n💡 Просто вставте промпт (Ctrl+V / Cmd+V) в чат і отримайте тлумачення від AI-таролога!');
+    }).catch(() => {
+      // Якщо копіювання не вдалося - показуємо промпт в alert
+      alert('📋 Скопіюйте цей промпт і вставте його в Claude.ai:\n\n' + prompt);
+      window.open('https://claude.ai/new', '_blank');
+    });
   };
 
   const copySpread = () => {
@@ -1095,28 +1030,16 @@ ${cardsText}
                   <span className="sm:hidden">{copied ? 'OK' : 'Copy'}</span>
                 </button>
 
-                {/* AI тлумачення - завжди видиме */}
+                {/* AI тлумачення - відкриває Claude.ai з промптом */}
                 <button
                   onClick={() => getAIInterpretation(drawnCards, spreads[selectedSpread]?.name, true)}
-                  disabled={isLoadingAI}
-                  className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:from-purple-700 hover:to-pink-700 font-medium disabled:opacity-50 text-sm"
-                  title="AI тлумачення доступне в Claude.ai"
+                  className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:from-purple-700 hover:to-pink-700 font-medium text-sm"
+                  title="Відкриває Claude.ai і копіює промпт для AI-тлумачення"
                 >
                   <span className="text-base">🤖</span>
-                  <span className="hidden sm:inline">{isLoadingAI ? 'AI думає...' : 'AI Тлумачення'}</span>
-                  <span className="sm:hidden">{isLoadingAI ? 'AI...' : 'AI'}</span>
+                  <span className="hidden sm:inline">AI Тлумачення</span>
+                  <span className="sm:hidden">AI</span>
                 </button>
-
-                {lastAiInterpretation && !aiInterpretation && !isLoadingAI && (
-                  <button
-                    onClick={showLastAIInterpretation}
-                    className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg hover:from-indigo-700 hover:to-purple-700 font-medium text-sm"
-                  >
-                    <span className="text-base">👁️</span>
-                    <span className="hidden sm:inline">Подивитися AI-тлумачення ще раз</span>
-                    <span className="sm:hidden">Повтор AI</span>
-                  </button>
-                )}
               </>
             )}
 
@@ -1132,8 +1055,8 @@ ${cardsText}
 
           {/* Інфо про AI */}
           <div className="text-xs text-gray-400 mt-2 text-center px-4">
-            <span className="hidden sm:inline">💡 AI тлумачення працює тільки в Claude.ai. При передачі іншим користувачам функція може бути недоступна.</span>
-            <span className="sm:hidden">💡 AI працює тільки в Claude.ai</span>
+            <span className="hidden sm:inline">💡 Кнопка AI відкриває Claude.ai в новій вкладці і копіює промпт для тлумачення. Вставте його в чат (Ctrl+V / Cmd+V).</span>
+            <span className="sm:hidden">💡 AI відкриває Claude.ai з промптом</span>
           </div>
 
           {drawnCards.length > 0 && (
@@ -1414,169 +1337,6 @@ ${cardsText}
                 Закрити
               </button>
             </div>
-          </div>
-        </div>
-      )}
-
-      {/* Модальне вікно AI тлумачення */}
-      {(aiInterpretation || isLoadingAI || aiError) && (
-        <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4">
-          {/* Backdrop - закриває при кліку */}
-          <div
-            className="absolute inset-0"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              closeAIInterpretation();
-            }}
-          />
-
-          {/* Модальний контент - НЕ закриває при кліку */}
-          <div
-            className="relative bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 rounded-lg border-2 border-purple-400 w-full max-w-4xl"
-            style={{ height: 'calc(90vh)' }}
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-            }}
-          >
-
-            {/* Заголовок - фіксований */}
-            <div className="text-center p-6 border-b border-purple-400 border-opacity-30">
-              <h3 className="text-2xl font-bold text-yellow-300 mb-2 flex items-center justify-center gap-2">
-                🔮 AI Таролог
-                {aiInterpretation?.type === 'full' && <span className="text-lg">📋</span>}
-                {aiInterpretation?.type === 'single' && <span className="text-lg">🎴</span>}
-              </h3>
-              {aiInterpretation && (
-                <div className="text-purple-300 text-sm">
-                  {aiInterpretation.type === 'full'
-                    ? `Повне тлумачення розкладу "${aiInterpretation.spreadName}"`
-                    : `Тлумачення карти "${aiInterpretation.cards[0].name}" в позиції "${aiInterpretation.cards[0].position}"`
-                  }
-                </div>
-              )}
-            </div>
-
-            {/* Контент з прокруткою - головна частина */}
-            <div
-              className="overflow-y-auto p-6"
-              style={{
-                height: 'calc(90vh - 140px - 80px)', // Загальна висота мінус заголовок мінус кнопки
-                scrollbarWidth: 'thin',
-                scrollbarColor: '#a855f7 #1e1b4b'
-              }}
-            >
-              <style dangerouslySetInnerHTML={{
-                __html: `
-                  .overflow-y-auto::-webkit-scrollbar {
-                    width: 8px;
-                  }
-                  .overflow-y-auto::-webkit-scrollbar-track {
-                    background: rgba(30, 27, 75, 0.5);
-                    border-radius: 4px;
-                  }
-                  .overflow-y-auto::-webkit-scrollbar-thumb {
-                    background: linear-gradient(180deg, #a855f7, #8b5cf6);
-                    border-radius: 4px;
-                  }
-                  .overflow-y-auto::-webkit-scrollbar-thumb:hover {
-                    background: linear-gradient(180deg, #9333ea, #7c3aed);
-                  }
-                `
-              }} />
-
-              {/* Завантаження */}
-              {isLoadingAI && (
-                <div className="text-center py-8">
-                  <div className="animate-spin text-6xl mb-4">🔮</div>
-                  <p className="text-purple-300 text-lg">AI таролог дивиться на карти...</p>
-                  <p className="text-gray-400 text-sm mt-2">Готую для тебе особливе тлумачення...</p>
-                </div>
-              )}
-
-              {/* Помилка */}
-              {aiError && (
-                <div className="text-center py-8">
-                  <div className="text-6xl mb-4">😔</div>
-                  <div className="text-red-400 mb-4 whitespace-pre-line text-left max-w-md mx-auto">
-                    {aiError}
-                  </div>
-                  <div className="flex gap-3 justify-center">
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        setAiError(null);
-                        if (drawnCards.length > 0) {
-                          getAIInterpretation(drawnCards, spreads[selectedSpread]?.name, true);
-                        }
-                      }}
-                      className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
-                    >
-                      Спробувати ще раз
-                    </button>
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        closeAIInterpretation();
-                      }}
-                      className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
-                    >
-                      Закрити
-                    </button>
-                  </div>
-                </div>
-              )}
-
-              {/* Тлумачення */}
-              {aiInterpretation && (
-                <div className="text-gray-100 leading-relaxed">
-                  <div
-                    className="whitespace-pre-wrap text-lg leading-8 select-text"
-                    style={{
-                      fontFamily: 'system-ui, -apple-system, sans-serif',
-                      lineHeight: '1.8',
-                      wordBreak: 'break-word'
-                    }}
-                  >
-                    {aiInterpretation.text}
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Кнопки внизу - фіксовані */}
-            <div className="p-6 border-t border-purple-400 border-opacity-30 text-center flex gap-3 justify-center">
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  closeAIInterpretation();
-                }}
-                className="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
-              >
-                Закрити
-              </button>
-              {aiInterpretation && (
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    navigator.clipboard.writeText(aiInterpretation.text).then(() => {
-                      setCopied(true);
-                      setTimeout(() => setCopied(false), 2000);
-                    });
-                  }}
-                  className="px-6 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors flex items-center gap-2"
-                >
-                  {copied ? <Check size={16} /> : <Copy size={16} />}
-                  {copied ? 'Скопійовано!' : 'Копіювати'}
-                </button>
-              )}
-            </div>
-
           </div>
         </div>
       )}
