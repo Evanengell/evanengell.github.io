@@ -1487,8 +1487,8 @@ ${cardsText}
           )}
         </div>
       </div>
-      </div> {/* Close max-w-4xl */}
-    </div> {/* Close min-h-screen */}
+      </div>
+    </div>
   );
 };
 
