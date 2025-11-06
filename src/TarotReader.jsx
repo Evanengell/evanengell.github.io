@@ -2,9 +2,23 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Shuffle, Eye, EyeOff, RotateCcw, Copy, Check } from 'lucide-react';
 
 // Версія додатка та changelog
-const APP_VERSION = '3.1.0';
-const BUILD_DATE = new Date('2025-11-06T16:20:00Z');
+const APP_VERSION = '3.3.3';
+const BUILD_DATE = new Date('2025-11-06T17:00:00Z');
 const CHANGELOG = [
+  {
+    version: '3.3.3',
+    date: '06.11.2025, 17:00',
+    changes: [
+      'ℹ️ МОДАЛЬНЕ ВІКНО "ЯК ЦЕ ПРАЦЮЄ?"',
+      '📚 Детальне пояснення гібридної системи випадковості',
+      '🔮 Опис 9-секундного ритуалу та збору ентропії',
+      '⭐ Пояснення індикатора якості енергії',
+      '🃏 Зв\'язок з традиційним Таро',
+      '⚙️ Технічна довідка для цікавих',
+      '🎨 Liquid Glass дизайн модального вікна',
+      '🖱️ Кнопка "ℹ️ Як це працює?" біля версії'
+    ]
+  },
   {
     version: '3.1.0',
     date: '06.11.2025, 16:20',
@@ -82,6 +96,7 @@ const TarotReader = () => {
   const [lastTapEffect, setLastTapEffect] = useState(0);
   const [selectedCard, setSelectedCard] = useState(null);
   const [showChangelog, setShowChangelog] = useState(false);
+  const [showAbout, setShowAbout] = useState(false);
 
   const mouseEntropyRef = useRef([]);
   const ritualTimerRef = useRef(null);
@@ -1510,12 +1525,180 @@ ${cardsText}
         </div>
       )}
 
+      {/* Модальне вікно "Як це працює?" */}
+      {showAbout && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4 overflow-y-auto"
+          onClick={() => setShowAbout(false)}
+        >
+          <div
+            className="backdrop-blur-2xl bg-gradient-to-br from-gray-900/95 via-purple-900/95 to-blue-900/95 border-2 border-purple-400/50 rounded-3xl shadow-2xl shadow-purple-500/50 p-6 sm:p-8 max-w-3xl w-full my-8"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Заголовок */}
+            <div className="text-center mb-6">
+              <h2 className="text-3xl font-bold bg-gradient-to-r from-cyan-300 via-purple-300 to-pink-300 bg-clip-text text-transparent mb-2">
+                🔮 Як працює Діджитал Таролог?
+              </h2>
+              <p className="text-sm text-gray-400">Наука та магія випадковості</p>
+            </div>
+
+            {/* Контент */}
+            <div className="space-y-6 text-gray-200 text-sm leading-relaxed max-h-[60vh] overflow-y-auto pr-2">
+
+              {/* Секція 1: Гібридна система */}
+              <div className="backdrop-blur-xl bg-white/5 border border-purple-400/30 rounded-2xl p-5">
+                <h3 className="text-xl font-bold text-purple-300 mb-3 flex items-center gap-2">
+                  🎲 Гібридна система випадковості
+                </h3>
+                <p className="mb-3">
+                  Наш таролог використовує унікальну комбінацію двох джерел випадковості:
+                </p>
+                <div className="space-y-2 ml-4">
+                  <div className="flex items-start gap-2">
+                    <span className="text-cyan-400 font-bold">70%</span>
+                    <span><strong className="text-cyan-300">Web Crypto API</strong> – криптографічно стійка випадковість, яка використовується в банківських системах та безпеці. Це гарантує справжню непередбачуваність.</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <span className="text-purple-400 font-bold">30%</span>
+                    <span><strong className="text-purple-300">Твоя особиста енергія</strong> – унікальна ентропія, зібрана під час ритуалу з твоїх рухів миші або тапів, часових інтервалів та ритму взаємодії.</span>
+                  </div>
+                </div>
+                <p className="mt-3 text-xs text-gray-400 italic">
+                  Кожна карта в розкладі має власний унікальний вплив твоєї енергії, що робить кожне передбачення неповторним.
+                </p>
+              </div>
+
+              {/* Секція 2: 9-секундний ритуал */}
+              <div className="backdrop-blur-xl bg-white/5 border border-pink-400/30 rounded-2xl p-5">
+                <h3 className="text-xl font-bold text-pink-300 mb-3 flex items-center gap-2">
+                  ⏱️ Навіщо 9-секундний ритуал?
+                </h3>
+                <p className="mb-3">
+                  Ритуал з кристалом — це не просто красива анімація. Він виконує важливу функцію збору <strong>унікальної ентропії</strong> від тебе як користувача:
+                </p>
+                <ul className="space-y-2 ml-4">
+                  <li className="flex items-start gap-2">
+                    <span className="text-pink-400">•</span>
+                    <span><strong>Рух миші / тапи:</strong> швидкість, траєкторія, кути руху, координати</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-pink-400">•</span>
+                    <span><strong>Часові інтервали:</strong> ритм твоїх дій, затримки між тапами</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-pink-400">•</span>
+                    <span><strong>Енергія взаємодії:</strong> інтенсивність, складність траєкторій</span>
+                  </li>
+                </ul>
+                <p className="mt-3">
+                  Ці дані формують твій <strong className="text-yellow-300">унікальний цифровий відбиток</strong> для даної сесії. Двічі отримати однаковий відбиток практично неможливо.
+                </p>
+                <div className="mt-3 backdrop-blur-xl bg-purple-500/10 border border-purple-400/20 rounded-lg p-3">
+                  <p className="text-xs text-purple-200">
+                    💡 <strong>Порада:</strong> Чим активніше ти взаємодієш з кристалом (швидкі рухи, різні траєкторії), тим вище якість енергії (⭐⭐⭐⭐⭐) і тим більший твій особистий вплив на розклад.
+                  </p>
+                </div>
+              </div>
+
+              {/* Секція 3: Індикатор енергії */}
+              <div className="backdrop-blur-xl bg-white/5 border border-yellow-400/30 rounded-2xl p-5">
+                <h3 className="text-xl font-bold text-yellow-300 mb-3 flex items-center gap-2">
+                  ⭐ Індикатор якості енергії
+                </h3>
+                <p className="mb-3">
+                  Під час ритуалу ти бачиш 5 зірок, які заповнюються залежно від того, скільки енергії ти вкладаєш:
+                </p>
+                <div className="space-y-1.5 ml-4 text-xs">
+                  <div>⭐☆☆☆☆ (0-20%) – Потрібно більше енергії...</div>
+                  <div>⭐⭐☆☆☆ (20-40%) – Непогано, продовжуй!</div>
+                  <div>⭐⭐⭐☆☆ (40-60%) – Добре! Енергія зростає</div>
+                  <div>⭐⭐⭐⭐☆ (60-80%) – Чудово! Сильна енергія</div>
+                  <div>⭐⭐⭐⭐⭐ (80-100%) – Ідеально! Максимальна сила! ✨</div>
+                </div>
+              </div>
+
+              {/* Секція 4: Чому це важливо для Таро */}
+              <div className="backdrop-blur-xl bg-white/5 border border-cyan-400/30 rounded-2xl p-5">
+                <h3 className="text-xl font-bold text-cyan-300 mb-3 flex items-center gap-2">
+                  🃏 Чому це важливо для Таро?
+                </h3>
+                <p className="mb-3">
+                  У традиційному Таро важливий <strong>зв'язок між запитувачем та картами</strong>. Коли ти тасуєш фізичні карти, твоя енергія, настрій та інтуїція впливають на результат.
+                </p>
+                <p className="mb-3">
+                  В діджитал версії ми відтворюємо цей принцип через технології:
+                </p>
+                <ul className="space-y-2 ml-4">
+                  <li className="flex items-start gap-2">
+                    <span className="text-cyan-400">•</span>
+                    <span>Твоя унікальна енергія (30%) впливає на вибір кожної карти</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-cyan-400">•</span>
+                    <span>Кожна карта в розкладі має свій власний вплив (множиться на позицію)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-cyan-400">•</span>
+                    <span>Реверс (перевернута карта) також враховує твою енергію</span>
+                  </li>
+                </ul>
+                <p className="mt-3 text-yellow-200">
+                  Це не просто випадкові числа — це <strong>персоналізований розклад</strong>, де твоя енергія грає реальну роль.
+                </p>
+              </div>
+
+              {/* Секція 5: Технічна довідка */}
+              <div className="backdrop-blur-xl bg-white/5 border border-gray-400/30 rounded-2xl p-5">
+                <h3 className="text-xl font-bold text-gray-300 mb-3 flex items-center gap-2">
+                  ⚙️ Технічна довідка (для цікавих)
+                </h3>
+                <div className="text-xs space-y-2">
+                  <p>
+                    <strong>User Fingerprint:</strong> Твій seed нормалізується до 32-бітного числа (0x00000000 - 0xFFFFFFFF)
+                  </p>
+                  <p>
+                    <strong>Формула вибору карти:</strong> <code className="bg-black/30 px-1 py-0.5 rounded">cryptoRandom × 0.7 + userInfluence × 0.3</code>
+                  </p>
+                  <p>
+                    <strong>Унікальність:</strong> Кожна позиція в розкладі множить твій fingerprint на (i+1), забезпечуючи унікальний вплив для кожної карти
+                  </p>
+                  <p>
+                    <strong>Безпека:</strong> Web Crypto API - це той самий алгоритм, що використовується для генерації паролів та криптографічних ключів
+                  </p>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Кнопка закрити */}
+            <div className="mt-6 text-center">
+              <button
+                onClick={() => setShowAbout(false)}
+                className="backdrop-blur-xl bg-gradient-to-r from-purple-600/80 to-pink-600/80 hover:from-purple-600 hover:to-pink-600 border-2 border-purple-400/50 text-white font-semibold px-8 py-3 rounded-full transition-all hover:scale-105 shadow-lg shadow-purple-500/50 hover:shadow-xl hover:shadow-purple-500/70"
+              >
+                Зрозуміло, дякую! 🌟
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="text-center text-sm text-gray-400 mt-8">
         <p>🌟 Пам'ятай: карти лише направляють, а рішення приймаєш ти 🌟</p>
       </div>
 
-      {/* Версія з changelog */}
-      <div className="text-center mt-4 mb-8">
+      {/* Версія з changelog та кнопка "Як це працює?" */}
+      <div className="text-center mt-4 mb-8 flex flex-col sm:flex-row gap-3 items-center justify-center">
+        {/* Кнопка "Як це працює?" */}
+        <button
+          onClick={() => setShowAbout(true)}
+          className="backdrop-blur-2xl bg-gradient-to-r from-cyan-500/30 via-blue-500/30 to-purple-500/30 border-2 border-white/30 rounded-full px-5 py-2 cursor-pointer hover:from-cyan-500/40 hover:via-blue-500/40 hover:to-purple-500/40 transition-all hover:scale-105 shadow-xl shadow-cyan-500/40 inline-block hover:shadow-2xl hover:shadow-cyan-500/60"
+        >
+          <span className="text-sm font-mono bg-gradient-to-r from-cyan-200 via-blue-200 to-purple-200 bg-clip-text text-transparent font-semibold">ℹ️ Як це працює?</span>
+        </button>
+
+        {/* Версія */}
         <div
           className="inline-block relative"
           onMouseEnter={() => setShowChangelog(true)}
