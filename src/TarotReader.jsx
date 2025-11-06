@@ -873,7 +873,6 @@ ${cardsText}
   };
 
   return (
-    <>
     <div className="max-w-4xl mx-auto p-6 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 min-h-screen text-white">
       <div className="text-center mb-8">
         <h1 className="text-4xl font-bold mb-2 text-yellow-300">
@@ -1411,56 +1410,57 @@ ${cardsText}
         </div>
       )}
 
-      <div className="text-center text-sm text-gray-400 mt-8 mb-8">
+      <div className="text-center text-sm text-gray-400 mt-8">
         <p>🌟 Пам'ятай: карти лише направляють, а рішення приймаєш ти 🌟</p>
       </div>
-    </div>
 
-    {/* Компактний badge з версією - fixed в правому нижньому куті */}
-    <div
-      className="fixed bottom-4 right-4 z-50"
-      onMouseEnter={() => setShowChangelog(true)}
-      onMouseLeave={() => setShowChangelog(false)}
-      onClick={() => setShowChangelog(!showChangelog)}
-    >
-      <div className="bg-purple-900 bg-opacity-90 border-2 border-purple-500 rounded-full px-3 py-1.5 cursor-pointer hover:bg-opacity-100 transition-all hover:scale-105 shadow-lg">
-        <span className="text-xs font-mono text-purple-200">v{APP_VERSION}</span>
-      </div>
+      {/* Версія з changelog */}
+      <div className="text-center mt-4 mb-8">
+        <div
+          className="inline-block relative"
+          onMouseEnter={() => setShowChangelog(true)}
+          onMouseLeave={() => setShowChangelog(false)}
+          onClick={() => setShowChangelog(!showChangelog)}
+        >
+          <div className="bg-purple-900 bg-opacity-70 border-2 border-purple-500 rounded-full px-4 py-2 cursor-pointer hover:bg-opacity-90 transition-all hover:scale-105 shadow-lg inline-block">
+            <span className="text-sm font-mono text-purple-200">v{APP_VERSION}</span>
+          </div>
 
-      {/* Changelog tooltip */}
-      {showChangelog && (
-        <div className="absolute bottom-full right-0 mb-2 w-80 max-w-[90vw] bg-gray-900 bg-opacity-95 border-2 border-purple-500 rounded-lg shadow-2xl p-4 backdrop-blur-sm">
-          <div className="text-left">
-            <h3 className="text-base font-bold text-yellow-300 mb-3 text-center">
-              📝 Історія змін
-            </h3>
-            <div className="space-y-3 max-h-80 overflow-y-auto">
-              {CHANGELOG.map((release, idx) => (
-                <div key={idx} className="border-l-2 border-purple-400 pl-3">
-                  <div className="flex items-center justify-between mb-1.5">
-                    <span className="font-bold text-purple-300 text-sm">v{release.version}</span>
-                    <span className="text-xs text-gray-400">{release.date}</span>
-                  </div>
-                  <ul className="space-y-0.5 text-xs text-gray-300">
-                    {release.changes.map((change, changeIdx) => (
-                      <li key={changeIdx} className="leading-relaxed">
-                        {change}
-                      </li>
-                    ))}
-                  </ul>
+          {/* Changelog tooltip */}
+          {showChangelog && (
+            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-80 max-w-[90vw] bg-gray-900 bg-opacity-95 border-2 border-purple-500 rounded-lg shadow-2xl p-4 backdrop-blur-sm z-50">
+              <div className="text-left">
+                <h3 className="text-base font-bold text-yellow-300 mb-3 text-center">
+                  📝 Історія змін
+                </h3>
+                <div className="space-y-3 max-h-80 overflow-y-auto">
+                  {CHANGELOG.map((release, idx) => (
+                    <div key={idx} className="border-l-2 border-purple-400 pl-3">
+                      <div className="flex items-center justify-between mb-1.5">
+                        <span className="font-bold text-purple-300 text-sm">v{release.version}</span>
+                        <span className="text-xs text-gray-400">{release.date}</span>
+                      </div>
+                      <ul className="space-y-0.5 text-xs text-gray-300">
+                        {release.changes.map((change, changeIdx) => (
+                          <li key={changeIdx} className="leading-relaxed">
+                            {change}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </div>
+              </div>
 
-          {/* Трикутник-стрілка (вказує вправо-вниз) */}
-          <div className="absolute top-full right-6 transform -translate-x-1/2 -mt-px">
-            <div className="border-8 border-transparent border-t-purple-500"></div>
-          </div>
+              {/* Трикутник-стрілка (вказує вниз) */}
+              <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-px">
+                <div className="border-8 border-transparent border-t-purple-500"></div>
+              </div>
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
-    </>
   );
 };
 
