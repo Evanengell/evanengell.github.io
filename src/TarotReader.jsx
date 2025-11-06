@@ -2,9 +2,23 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Shuffle, Eye, EyeOff, RotateCcw, Copy, Check } from 'lucide-react';
 
 // Версія додатка та changelog
-const APP_VERSION = '3.0.0';
-const BUILD_DATE = new Date('2025-11-06T15:40:00Z');
+const APP_VERSION = '3.1.0';
+const BUILD_DATE = new Date('2025-11-06T16:20:00Z');
 const CHANGELOG = [
+  {
+    version: '3.1.0',
+    date: '06.11.2025, 16:20',
+    changes: [
+      '🎲 ПОКРАЩЕНА СИСТЕМА ВИПАДКОВОСТІ!',
+      '🔐 Криптографічно стійка основа (Web Crypto API - 70%)',
+      '👤 Унікальний вплив користувача (user entropy - 30%)',
+      '⭐ Візуальний індикатор якості енергії (5 зірок)',
+      '💫 Анімовані зірки з динамічним заповненням',
+      '📊 Текстові підказки про рівень енергії',
+      '🚫 Видалено застарілий LCG генератор',
+      '✨ Кожна карта має унікальний вплив користувача'
+    ]
+  },
   {
     version: '3.0.0',
     date: '06.11.2025, 15:40',
@@ -701,8 +715,9 @@ const TarotReader = () => {
     const newCards = [];
     const currentUsedCards = [...usedCards];
 
-    // Використовуємо комбінований seed для ініціалізації
-    let randomSeed = seed;
+    // Створюємо унікальний відбиток користувача з зібраної ентропії
+    // Нормалізуємо seed до діапазону 0x00000000 - 0xFFFFFFFF
+    const userFingerprint = Math.floor(seed * 0xFFFFFFFF);
 
     for (let i = 0; i < spread.positions.length; i++) {
       const availableCards = tarotCards.filter(card => !currentUsedCards.includes(card));
@@ -711,13 +726,23 @@ const TarotReader = () => {
         return;
       }
 
-      // Генеруємо індекс з комбінованої ентропії
-      randomSeed = (randomSeed * 9301 + 49297) % 233280; // Лінійний конгруентний генератор
-      const randomIndex = Math.floor((randomSeed / 233280) * availableCards.length);
+      // Використовуємо криптографічно стійку випадковість як основу (70%)
+      const cryptoRandom = getTrueRandom();
+
+      // Додаємо вплив користувача (30%) з варіацією для кожної карти
+      // Множимо на (i+1) щоб кожна карта мала унікальний вплив
+      const userInfluence = ((userFingerprint * (i + 1)) % 10000) / 10000;
+
+      // Комбінуємо: 70% crypto API + 30% user entropy
+      const combinedRandom = (cryptoRandom * 0.7 + userInfluence * 0.3);
+
+      // Вибираємо карту
+      const randomIndex = Math.floor(combinedRandom * availableCards.length);
       const selectedCard = availableCards[randomIndex];
 
-      // Для реверсу використовуємо crypto API
-      const reversed = getTrueRandom() < 0.5;
+      // Для реверсу також використовуємо комбінований підхід
+      const reverseRandom = getTrueRandom() * 0.7 + (((userFingerprint * (i + 100)) % 10000) / 10000) * 0.3;
+      const reversed = reverseRandom < 0.5;
 
       newCards.push({ name: selectedCard, reversed, position: spread.positions[i] });
       currentUsedCards.push(selectedCard);
@@ -1392,6 +1417,54 @@ ${cardsText}
                     ✨ {isMobile ? "Швидко тапай по кристалу" : "Проведи руками над кристалом"} ✨
                   </p>
                   <p className="text-sm opacity-75">Твоя енергія посилить точність передбачення</p>
+
+                  {/* Візуальний індикатор якості ентропії */}
+                  <div className="mt-4 flex flex-col items-center">
+                    <p className="text-xs text-purple-300 mb-2">Якість твоєї енергії</p>
+                    <div className="flex gap-1 text-2xl">
+                      {[1, 2, 3, 4, 5].map((star) => {
+                        const threshold = star * 20;
+                        const isFilled = entropyLevel >= threshold;
+                        const isPartial = entropyLevel >= (threshold - 20) && entropyLevel < threshold;
+                        const fillPercentage = isPartial ? ((entropyLevel % 20) / 20) * 100 : 0;
+
+                        return (
+                          <span
+                            key={star}
+                            className="relative inline-block transition-all duration-300"
+                            style={{
+                              filter: isFilled ? `drop-shadow(0 0 4px hsl(${280 + (entropyLevel * 0.8)}, 70%, 60%))` : 'none',
+                              transform: isFilled ? 'scale(1.1)' : 'scale(1)'
+                            }}
+                          >
+                            {isFilled ? (
+                              <span style={{ color: `hsl(${280 + (entropyLevel * 0.8)}, 70%, 60%)` }}>⭐</span>
+                            ) : isPartial ? (
+                              <span className="relative">
+                                <span className="text-gray-600">⭐</span>
+                                <span
+                                  className="absolute top-0 left-0 overflow-hidden"
+                                  style={{
+                                    width: `${fillPercentage}%`,
+                                    color: `hsl(${280 + (entropyLevel * 0.8)}, 70%, 60%)`
+                                  }}
+                                >⭐</span>
+                              </span>
+                            ) : (
+                              <span className="text-gray-600">⭐</span>
+                            )}
+                          </span>
+                        );
+                      })}
+                    </div>
+                    <p className="text-xs text-gray-400 mt-1">
+                      {entropyLevel < 20 && "Потрібно більше енергії..."}
+                      {entropyLevel >= 20 && entropyLevel < 40 && "Непогано, продовжуй!"}
+                      {entropyLevel >= 40 && entropyLevel < 60 && "Добре! Енергія зростає"}
+                      {entropyLevel >= 60 && entropyLevel < 80 && "Чудово! Сильна енергія"}
+                      {entropyLevel >= 80 && "Ідеально! Максимальна сила! ✨"}
+                    </p>
+                  </div>
                 </>
               ) : (
                 <p className="text-yellow-300 font-bold">🌟 Ритуал завершено! 🌟</p>
