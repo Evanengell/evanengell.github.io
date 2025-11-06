@@ -2,9 +2,23 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Shuffle, Eye, EyeOff, RotateCcw, Copy, Check } from 'lucide-react';
 
 // Версія додатка та changelog
-const APP_VERSION = '2.1.0';
-const BUILD_DATE = new Date('2025-11-06T14:15:00Z');
+const APP_VERSION = '3.0.0';
+const BUILD_DATE = new Date('2025-11-06T15:40:00Z');
 const CHANGELOG = [
+  {
+    version: '3.0.0',
+    date: '06.11.2025, 15:40',
+    changes: [
+      '✨ MAGIC LIQUID GLASS ДИЗАЙН!',
+      '🌈 Анімовані градієнти з переливами фіолетового, рожевого та блакитного',
+      '💎 Glassmorphism (скляний ефект) на всіх елементах',
+      '🎭 Плаваючі магічні блоби на фоні',
+      '🌟 Кнопки з світінням та анімаціями hover',
+      '🃏 Карти Таро з прозорим склом та градієнтами',
+      '✨ Шиммер та glow анімації',
+      '🎨 Вдосконалений badge з версією'
+    ]
+  },
   {
     version: '2.1.0',
     date: '06.11.2025, 14:15',
@@ -873,7 +887,19 @@ ${cardsText}
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 min-h-screen text-white">
+    <div className="relative min-h-screen text-white overflow-hidden">
+      {/* Animated Magical Background */}
+      <div className="fixed inset-0 bg-gradient-to-br from-indigo-950 via-purple-950 to-pink-950 animate-gradient"></div>
+
+      {/* Animated gradient orbs for magic effect */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 -left-4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+        <div className="absolute top-0 -right-4 w-96 h-96 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+        <div className="absolute -bottom-8 left-20 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+      </div>
+
+      {/* Main content with glassmorphism */}
+      <div className="relative max-w-4xl mx-auto p-6 z-10">
       <div className="text-center mb-8">
         <h1 className="text-4xl font-bold mb-2 text-yellow-300">
           ✨ Діджитал Таролог ✨
@@ -1030,16 +1056,17 @@ ${cardsText}
         </div>
       </div>
 
-      <div className="bg-black bg-opacity-30 backdrop-blur-sm rounded-lg p-6 mb-6">
-        <h2 className="text-xl font-semibold mb-4">Обери розклад</h2>
+      {/* Liquid Glass Spread Selector */}
+      <div className="relative rounded-2xl p-6 mb-6 backdrop-blur-2xl bg-white/10 border border-white/20 shadow-2xl shadow-purple-500/20">
+        <h2 className="text-2xl font-semibold mb-4 bg-gradient-to-r from-purple-300 via-pink-300 to-cyan-300 bg-clip-text text-transparent">Обери розклад</h2>
         <select
           value={selectedSpread}
           onChange={(e) => setSelectedSpread(e.target.value)}
-          className="w-full p-3 bg-gray-800 text-white rounded-lg border border-gray-600 focus:border-purple-500 focus:outline-none mb-4"
+          className="w-full p-4 bg-white/5 text-white rounded-xl border-2 border-white/20 focus:border-purple-400 focus:outline-none mb-4 backdrop-blur-xl transition-all duration-300 hover:bg-white/10 hover:shadow-lg hover:shadow-purple-500/30"
         >
-          <option value="">-- Оберіть розклад --</option>
+          <option value="" className="bg-gray-900">-- Оберіть розклад --</option>
           {Object.entries(spreads).map(([key, spread]) => (
-            <option key={key} value={key}>
+            <option key={key} value={key} className="bg-gray-900">
               {spread.name} ({spread.positions.length} {spread.positions.length === 1 ? 'карта' : spread.positions.length < 5 ? 'карти' : 'карт'})
             </option>
           ))}
@@ -1047,11 +1074,11 @@ ${cardsText}
 
         {/* Опис обраного розкладу */}
         {selectedSpread && spreads[selectedSpread] && (
-          <div className="bg-gray-800 bg-opacity-50 rounded-lg p-4 border-l-4 border-purple-500">
-            <h3 className="text-lg font-medium text-purple-300 mb-2">
+          <div className="rounded-xl p-4 backdrop-blur-xl bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-cyan-500/10 border-l-4 border-purple-400 shadow-lg shadow-purple-500/20 animate-glow">
+            <h3 className="text-lg font-medium bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent mb-2">
               {spreads[selectedSpread].name}
             </h3>
-            <p className="text-gray-300 text-sm leading-relaxed">
+            <p className="text-gray-200 text-sm leading-relaxed">
               {spreads[selectedSpread].description}
             </p>
           </div>
@@ -1059,12 +1086,12 @@ ${cardsText}
       </div>
 
       {selectedSpread && (
-        <div className="bg-black bg-opacity-30 backdrop-blur-sm rounded-lg p-6 mb-6">
+        <div className="rounded-2xl p-6 mb-6 backdrop-blur-2xl bg-white/10 border border-white/20 shadow-2xl shadow-purple-500/20">
           <div className="flex flex-wrap gap-3 mb-4 justify-center">
             <button
               onClick={drawCards}
               disabled={!selectedSpread}
-              className="flex items-center gap-2 px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed font-medium text-sm"
+              className="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-emerald-500/80 to-green-500/80 backdrop-blur-xl text-white rounded-xl hover:from-emerald-400 hover:to-green-400 disabled:opacity-50 disabled:cursor-not-allowed font-medium text-sm border border-white/30 shadow-lg shadow-emerald-500/30 transition-all duration-300 hover:scale-105"
             >
               <Shuffle size={16} />
               Витягнути карти
@@ -1074,7 +1101,7 @@ ${cardsText}
               <>
                 <button
                   onClick={revealAll}
-                  className="flex items-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium text-sm"
+                  className="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-blue-500/80 to-cyan-500/80 backdrop-blur-xl text-white rounded-xl hover:from-blue-400 hover:to-cyan-400 font-medium text-sm border border-white/30 shadow-lg shadow-blue-500/30 transition-all duration-300 hover:scale-105"
                 >
                   <Eye size={16} />
                   <span className="hidden sm:inline">Розкрити всі</span>
@@ -1083,7 +1110,7 @@ ${cardsText}
 
                 <button
                   onClick={hideAll}
-                  className="flex items-center gap-2 px-3 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 font-medium text-sm"
+                  className="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-gray-500/80 to-slate-500/80 backdrop-blur-xl text-white rounded-xl hover:from-gray-400 hover:to-slate-400 font-medium text-sm border border-white/30 shadow-lg shadow-gray-500/30 transition-all duration-300 hover:scale-105"
                 >
                   <EyeOff size={16} />
                   <span className="hidden sm:inline">Сховати всі</span>
@@ -1092,7 +1119,7 @@ ${cardsText}
 
                 <button
                   onClick={copySpread}
-                  className="flex items-center gap-2 px-3 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 font-medium text-sm"
+                  className="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-orange-500/80 to-amber-500/80 backdrop-blur-xl text-white rounded-xl hover:from-orange-400 hover:to-amber-400 font-medium text-sm border border-white/30 shadow-lg shadow-orange-500/30 transition-all duration-300 hover:scale-105"
                 >
                   {copied ? <Check size={16} /> : <Copy size={16} />}
                   <span className="hidden sm:inline">{copied ? 'Скопійовано!' : 'Копіювати розклад'}</span>
@@ -1102,7 +1129,7 @@ ${cardsText}
                 {/* AI тлумачення - відкриває Claude.ai з промптом */}
                 <button
                   onClick={() => getAIInterpretation(drawnCards, spreads[selectedSpread]?.name, true)}
-                  className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:from-purple-700 hover:to-pink-700 font-medium text-sm"
+                  className="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-purple-500/80 via-pink-500/80 to-fuchsia-500/80 backdrop-blur-xl text-white rounded-xl hover:from-purple-400 hover:via-pink-400 hover:to-fuchsia-400 font-medium text-sm border border-white/30 shadow-lg shadow-purple-500/40 transition-all duration-300 hover:scale-105 animate-glow"
                   title="Відкриває Claude.ai і копіює промпт для AI-тлумачення"
                 >
                   <span className="text-base">🤖</span>
@@ -1114,7 +1141,7 @@ ${cardsText}
 
             <button
               onClick={resetDeck}
-              className="flex items-center gap-2 px-3 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 font-medium text-sm"
+              className="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-red-500/80 to-rose-500/80 backdrop-blur-xl text-white rounded-xl hover:from-red-400 hover:to-rose-400 font-medium text-sm border border-white/30 shadow-lg shadow-red-500/30 transition-all duration-300 hover:scale-105"
             >
               <RotateCcw size={16} />
               <span className="hidden sm:inline">Скинути колоду</span>
@@ -1123,7 +1150,7 @@ ${cardsText}
           </div>
 
           {/* Інфо про AI */}
-          <div className="text-xs text-gray-400 mt-2 text-center px-4">
+          <div className="text-xs text-gray-300 mt-3 text-center px-4 backdrop-blur-sm bg-white/5 rounded-lg py-2">
             <span className="hidden sm:inline">💡 Кнопка AI відкриває Claude.ai в новій вкладці і копіює промпт для тлумачення. Вставте його в чат (Ctrl+V / Cmd+V).</span>
             <span className="sm:hidden">💡 AI відкриває Claude.ai з промптом</span>
           </div>
@@ -1133,19 +1160,19 @@ ${cardsText}
               {drawnCards.map((card, index) => (
                 <div
                   key={index}
-                  className="relative bg-purple-800 bg-opacity-50 rounded-lg p-4 cursor-pointer hover:scale-105 transition-all duration-300 hover:bg-purple-700 hover:bg-opacity-60"
+                  className="relative rounded-2xl p-4 cursor-pointer hover:scale-105 transition-all duration-300 backdrop-blur-xl bg-gradient-to-br from-purple-500/20 via-pink-500/10 to-cyan-500/20 border border-white/30 shadow-xl shadow-purple-500/20 hover:shadow-2xl hover:shadow-purple-500/40 hover:border-white/50"
                   onClick={() => revealCard(index)}
                 >
                   <div className="text-center">
-                    <div className="text-sm font-medium text-gray-300 mb-2">
+                    <div className="text-sm font-semibold bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent mb-2">
                       {card.position}
                     </div>
 
-                    <div className="h-32 flex items-center justify-center bg-indigo-900 rounded-lg mb-2 border-2 border-yellow-400 border-opacity-30">
+                    <div className="h-32 flex items-center justify-center backdrop-blur-md bg-gradient-to-br from-indigo-500/20 to-purple-500/20 rounded-xl mb-2 border-2 border-gradient-to-r from-yellow-400/50 to-amber-400/50 shadow-inner">
                       {revealedCards.includes(index) ? (
-                        <div className="text-center">
+                        <div className="text-center px-2">
                           <div
-                            className={`text-lg font-bold cursor-pointer hover:text-yellow-200 ${card.reversed ? 'text-red-400' : 'text-yellow-400'}`}
+                            className={`text-lg font-bold cursor-pointer hover:scale-110 transition-transform ${card.reversed ? 'text-red-300' : 'text-yellow-300'}`}
                             onClick={(e) => {
                               e.stopPropagation();
                               showCardMeaning(card.name, card.reversed);
@@ -1154,13 +1181,13 @@ ${cardsText}
                             {card.name}
                           </div>
                           {card.reversed && (
-                            <div className="text-xs text-red-400 mt-1">
+                            <div className="text-xs text-red-300 mt-1 font-medium">
                               (Перевернута)
                             </div>
                           )}
-                          <div className="text-xs text-gray-400 mt-1 space-x-1 flex items-center justify-center flex-wrap gap-1">
+                          <div className="text-xs mt-2 space-x-1 flex items-center justify-center flex-wrap gap-1.5">
                             <span
-                              className="cursor-pointer hover:text-white px-2 py-1 bg-gray-700 bg-opacity-50 rounded text-center"
+                              className="cursor-pointer hover:scale-105 px-2.5 py-1 backdrop-blur-lg bg-white/10 rounded-lg text-center border border-white/20 hover:bg-white/20 transition-all text-gray-200 hover:text-white"
                               onClick={(e) => {
                                 e.stopPropagation();
                                 showCardMeaning(card.name, card.reversed);
@@ -1169,7 +1196,7 @@ ${cardsText}
                               📖 Значення
                             </span>
                             <span
-                              className="cursor-pointer hover:text-white px-2 py-1 bg-purple-700 bg-opacity-50 rounded text-center"
+                              className="cursor-pointer hover:scale-105 px-2.5 py-1 backdrop-blur-lg bg-gradient-to-r from-purple-500/30 to-pink-500/30 rounded-lg text-center border border-purple-300/30 hover:border-purple-300/50 transition-all text-purple-200 hover:text-white"
                               onClick={(e) => {
                                 e.stopPropagation();
                                 getAIInterpretation([{...card, position: card.position}], spreads[selectedSpread]?.name, false);
@@ -1181,7 +1208,7 @@ ${cardsText}
                           </div>
                         </div>
                       ) : (
-                        <div className="text-6xl opacity-50">🔮</div>
+                        <div className="text-6xl opacity-60 animate-pulse">🔮</div>
                       )}
                     </div>
 
@@ -1422,13 +1449,13 @@ ${cardsText}
           onMouseLeave={() => setShowChangelog(false)}
           onClick={() => setShowChangelog(!showChangelog)}
         >
-          <div className="bg-purple-900 bg-opacity-70 border-2 border-purple-500 rounded-full px-4 py-2 cursor-pointer hover:bg-opacity-90 transition-all hover:scale-105 shadow-lg inline-block">
-            <span className="text-sm font-mono text-purple-200">v{APP_VERSION}</span>
+          <div className="backdrop-blur-2xl bg-gradient-to-r from-purple-500/30 via-pink-500/30 to-cyan-500/30 border-2 border-white/30 rounded-full px-5 py-2 cursor-pointer hover:from-purple-500/40 hover:via-pink-500/40 hover:to-cyan-500/40 transition-all hover:scale-105 shadow-xl shadow-purple-500/40 inline-block hover:shadow-2xl hover:shadow-purple-500/60 animate-glow">
+            <span className="text-sm font-mono bg-gradient-to-r from-purple-200 via-pink-200 to-cyan-200 bg-clip-text text-transparent font-semibold">v{APP_VERSION}</span>
           </div>
 
           {/* Changelog tooltip */}
           {showChangelog && (
-            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-80 max-w-[90vw] bg-gray-900 bg-opacity-95 border-2 border-purple-500 rounded-lg shadow-2xl p-4 backdrop-blur-sm z-50">
+            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-80 max-w-[90vw] backdrop-blur-2xl bg-gradient-to-br from-gray-900/95 via-purple-900/95 to-gray-900/95 border-2 border-purple-400/50 rounded-2xl shadow-2xl shadow-purple-500/50 p-4 z-50">
               <div className="text-left">
                 <h3 className="text-base font-bold text-yellow-300 mb-3 text-center">
                   📝 Історія змін
@@ -1460,7 +1487,8 @@ ${cardsText}
           )}
         </div>
       </div>
-    </div>
+      </div> {/* Close max-w-4xl */}
+    </div> {/* Close min-h-screen */}
   );
 };
 
