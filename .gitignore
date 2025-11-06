@@ -2,7 +2,7 @@
 node_modules/
 
 # Build output
-dist/
+# dist/ - needed for GitHub Pages deployment
 dist-ssr/
 
 # Editor directories and files
