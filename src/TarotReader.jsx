@@ -1124,10 +1124,8 @@ ${cardsText}
       ? 'https://claude.ai/new'
       : 'https://claude.ai/new';
 
-    // Пробуємо скопіювати промпт
-    const copied = await copyToClipboard(prompt);
-
-    if (copied) {
+    // Пробуємо скопіювати промпт (використовуємо той самий підхід що в copySpread)
+    navigator.clipboard.writeText(prompt).then(() => {
       // Успішно скопійовано - відкриваємо Claude
       const newWindow = window.open(claudeUrl, '_blank');
 
@@ -1146,87 +1144,113 @@ ${cardsText}
           '📋 Вставте промпт (Ctrl+V або Cmd+V)'
         );
       }
-    } else {
-      // Не вдалося скопіювати - показуємо текст для ручного копіювання
-      const copyManually = confirm(
-        '⚠️ Автоматичне копіювання не спрацювало.\n\n' +
-        '📋 Натисніть "ОК" щоб побачити промпт для ручного копіювання.\n\n' +
-        '💡 Потім відкрийте https://claude.ai/new і вставте його там.'
-      );
+    }).catch(() => {
+      // Fallback для старих браузерів
+      const textArea = document.createElement('textarea');
+      textArea.value = prompt;
+      document.body.appendChild(textArea);
+      textArea.select();
 
-      if (copyManually) {
-        // Показуємо промпт у зручному вигляді
-        const promptWindow = window.open('', '_blank', 'width=600,height=400');
-        if (promptWindow) {
-          promptWindow.document.write(`
-            <!DOCTYPE html>
-            <html>
-            <head>
-              <title>Промпт для Claude.ai</title>
-              <style>
-                body {
-                  font-family: Arial, sans-serif;
-                  padding: 20px;
-                  background: #1a1a2e;
-                  color: white;
-                }
-                textarea {
-                  width: 100%;
-                  height: 300px;
-                  padding: 10px;
-                  font-size: 14px;
-                  border: 2px solid #8b5cf6;
-                  border-radius: 8px;
-                  background: #2d2d44;
-                  color: white;
-                  font-family: monospace;
-                }
-                button {
-                  margin-top: 10px;
-                  padding: 10px 20px;
-                  background: #8b5cf6;
-                  color: white;
-                  border: none;
-                  border-radius: 8px;
-                  cursor: pointer;
-                  font-size: 16px;
-                }
-                button:hover {
-                  background: #7c3aed;
-                }
-                .instructions {
-                  margin-bottom: 15px;
-                  padding: 15px;
-                  background: rgba(139, 92, 246, 0.2);
-                  border-radius: 8px;
-                  border-left: 4px solid #8b5cf6;
-                }
-              </style>
-            </head>
-            <body>
-              <div class="instructions">
-                <h2>📋 Інструкція:</h2>
-                <p>1. Виділіть текст нижче (Ctrl+A)</p>
-                <p>2. Скопіюйте (Ctrl+C)</p>
-                <p>3. Відкрийте <a href="https://claude.ai/new" target="_blank" style="color: #8b5cf6">Claude.ai</a></p>
-                <p>4. Вставте промпт (Ctrl+V)</p>
-              </div>
-              <textarea id="prompt" readonly>${prompt.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</textarea>
-              <button onclick="document.getElementById('prompt').select(); document.execCommand('copy'); alert('✅ Скопійовано!')">
-                📋 Копіювати промпт
-              </button>
-              <button onclick="window.open('https://claude.ai/new', '_blank')" style="background: #10b981; margin-left: 10px">
-                🌐 Відкрити Claude.ai
-              </button>
-            </body>
-            </html>
-          `);
+      try {
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+
+        // Успішно скопійовано fallback методом
+        const newWindow = window.open(claudeUrl, '_blank');
+        if (newWindow) {
+          alert(
+            '✅ Промпт скопійовано!\n\n' +
+            '🌐 Відкривається Claude.ai...\n\n' +
+            '📋 Вставте промпт (Ctrl+V)'
+          );
         } else {
-          // Якщо і це не вдалося - показуємо в alert
-          alert('📋 Скопіюйте промпт:\n\n' + prompt.substring(0, 500) + '...\n\n[промпт обрізано для показу]');
+          alert(
+            '✅ Промпт скопійовано!\n\n' +
+            '👉 Відкрийте https://claude.ai/new вручну\n' +
+            '📋 Вставте промпт (Ctrl+V)'
+          );
+        }
+      } catch (err) {
+        document.body.removeChild(textArea);
+
+        // Якщо і це не спрацювало - показуємо prompt window
+        const copyManually = confirm(
+          '⚠️ Автоматичне копіювання не спрацювало.\n\n' +
+          '📋 Натисніть "ОК" щоб побачити промпт для ручного копіювання.'
+        );
+
+        if (copyManually) {
+          const promptWindow = window.open('', '_blank', 'width=600,height=400');
+          if (promptWindow) {
+            promptWindow.document.write(`
+              <!DOCTYPE html>
+              <html>
+              <head>
+                <title>Промпт для Claude.ai</title>
+                <style>
+                  body {
+                    font-family: Arial, sans-serif;
+                    padding: 20px;
+                    background: #1a1a2e;
+                    color: white;
+                  }
+                  textarea {
+                    width: 100%;
+                    height: 300px;
+                    padding: 10px;
+                    font-size: 14px;
+                    border: 2px solid #8b5cf6;
+                    border-radius: 8px;
+                    background: #2d2d44;
+                    color: white;
+                    font-family: monospace;
+                  }
+                  button {
+                    margin-top: 10px;
+                    padding: 10px 20px;
+                    background: #8b5cf6;
+                    color: white;
+                    border: none;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    font-size: 16px;
+                  }
+                  button:hover {
+                    background: #7c3aed;
+                  }
+                  .instructions {
+                    margin-bottom: 15px;
+                    padding: 15px;
+                    background: rgba(139, 92, 246, 0.2);
+                    border-radius: 8px;
+                    border-left: 4px solid #8b5cf6;
+                  }
+                </style>
+              </head>
+              <body>
+                <div class="instructions">
+                  <h2>📋 Інструкція:</h2>
+                  <p>1. Виділіть текст нижче (Ctrl+A)</p>
+                  <p>2. Скопіюйте (Ctrl+C)</p>
+                  <p>3. Відкрийте <a href="https://claude.ai/new" target="_blank" style="color: #8b5cf6">Claude.ai</a></p>
+                  <p>4. Вставте промпт (Ctrl+V)</p>
+                </div>
+                <textarea id="prompt" readonly>${prompt.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</textarea>
+                <button onclick="document.getElementById('prompt').select(); document.execCommand('copy'); alert('✅ Скопійовано!')">
+                  📋 Копіювати промпт
+                </button>
+                <button onclick="window.open('https://claude.ai/new', '_blank')" style="background: #10b981; margin-left: 10px">
+                  🌐 Відкрити Claude.ai
+                </button>
+              </body>
+              </html>
+            `);
+          } else {
+            alert('📋 Скопіюйте промпт:\n\n' + prompt.substring(0, 500) + '...\n\n[промпт обрізано для показу]');
+          }
         }
       }
-    }
+    });
   };
 
   const copySpread = () => {
