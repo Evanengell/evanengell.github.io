@@ -954,11 +954,11 @@ const TarotReader = () => {
     setIsRitualComplete(false);
     mouseEntropyRef.current = [];
 
-    // 9-секундний таймер
+    // 18-секундний таймер
     const startTime = Date.now();
     ritualTimerRef.current = setInterval(() => {
       const elapsed = Date.now() - startTime;
-      const progress = Math.min(elapsed / 9000, 1) * 100;
+      const progress = Math.min(elapsed / 18000, 1) * 100;
       setRitualProgress(progress);
 
       // Додаємо базову ентропію з crypto API (сповільнено для балансу)
@@ -1867,7 +1867,7 @@ ${cardsText}
                 <div className="absolute inset-0 flex items-center justify-center flex-col text-white">
                   <div className={`${isMobile ? 'text-5xl' : 'text-6xl'} mb-2`}>🔮</div>
                   <div className={`${isMobile ? 'text-base' : 'text-lg'} font-bold`}>
-                    {Math.floor((9000 - (ritualProgress * 90)) / 1000) + 1}s
+                    {Math.floor((18000 - (ritualProgress * 180)) / 1000) + 1}s
                   </div>
                 </div>
               </div>
