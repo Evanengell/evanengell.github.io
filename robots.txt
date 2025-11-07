@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://evanengell.github.io/sitemap.xml
+Sitemap: https://tarot.net.ua/sitemap.xml
 
 # Crawl-delay для бота Google
 User-agent: Googlebot
