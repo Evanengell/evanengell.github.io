@@ -2,9 +2,23 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Shuffle, Eye, EyeOff, RotateCcw, Copy, Check } from 'lucide-react';
 
 // Версія додатка та changelog
-const APP_VERSION = '4.0';
-const BUILD_DATE = new Date('2025-11-07T12:00:00Z');
+const APP_VERSION = '4.1';
+const BUILD_DATE = new Date('2025-11-07T13:00:00Z');
 const CHANGELOG = [
+  {
+    version: '4.1',
+    date: '07.11.2025, 13:00',
+    changes: [
+      '🌐 ВЛАСНИЙ ДОМЕН: tarot.net.ua!',
+      '🔗 Canonical URL для SEO',
+      '📍 Оновлені всі посилання на новий домен',
+      '🗺️ sitemap.xml → tarot.net.ua',
+      '📱 Open Graph → tarot.net.ua',
+      '🏷️ Schema.org → tarot.net.ua',
+      '🤖 robots.txt → tarot.net.ua/sitemap.xml',
+      '✨ Готово до підключення DNS!'
+    ]
+  },
   {
     version: '4.0',
     date: '07.11.2025, 12:00',
