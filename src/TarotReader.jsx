@@ -2408,3 +2408,4 @@ ${cardsText}
 };
 
 export default TarotReader;
+/* v4.4.4 - 1762522484 */
