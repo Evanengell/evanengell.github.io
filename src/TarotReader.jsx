@@ -2,9 +2,24 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Shuffle, Eye, EyeOff, RotateCcw, Copy, Check } from 'lucide-react';
 
 // Версія додатка та changelog
-const APP_VERSION = '4.1';
-const BUILD_DATE = new Date('2025-11-07T13:00:00Z');
+const APP_VERSION = '4.2';
+const BUILD_DATE = new Date('2025-11-07T14:00:00Z');
 const CHANGELOG = [
+  {
+    version: '4.2',
+    date: '07.11.2025, 14:00',
+    changes: [
+      '🚀 SEO MEGA BOOST - ПРОФЕСІЙНА ОПТИМІЗАЦІЯ!',
+      '📄 <noscript> fallback з повним SEO контентом для Google bot',
+      '🌐 Hreflang теги для української мови',
+      '❓ FAQPage Schema.org з 4 популярними питаннями',
+      '⭐ AggregateRating у Schema.org (4.8/5)',
+      '📱 PWA meta tags (theme-color, apple-mobile-web-app)',
+      '🤖 Розширені robots meta (max-snippet, max-image-preview)',
+      '🖼️ Open Graph image dimensions',
+      '✨ Покращена індексація для пошукових систем'
+    ]
+  },
   {
     version: '4.1',
     date: '07.11.2025, 13:00',
