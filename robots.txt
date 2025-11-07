@@ -1,0 +1,18 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://evanengell.github.io/sitemap.xml
+
+# Crawl-delay для бота Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Дозволити індексацію всіх файлів
+User-agent: *
+Disallow: /node_modules/
+Disallow: /dist/
+Disallow: /src/
+Disallow: /.git/
