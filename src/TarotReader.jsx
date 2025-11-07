@@ -2,9 +2,23 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Shuffle, Eye, EyeOff, RotateCcw, Copy, Check } from 'lucide-react';
 
 // Версія додатка та changelog
-const APP_VERSION = '3.6.9.1';
-const BUILD_DATE = new Date('2025-11-06T19:00:00Z');
+const APP_VERSION = '4.0';
+const BUILD_DATE = new Date('2025-11-07T12:00:00Z');
 const CHANGELOG = [
+  {
+    version: '4.0',
+    date: '07.11.2025, 12:00',
+    changes: [
+      '🚀 SEO ОПТИМІЗАЦІЯ - ВЕРСІЯ 4.0!',
+      '🔍 Ренеймінг: "Діджитал Таролог" → "Онлайн Таро"',
+      '📱 Open Graph meta tags для соцмереж',
+      '🏷️ Schema.org structured data (WebApplication)',
+      '🤖 robots.txt + sitemap.xml для Google індексації',
+      '📊 SEO-оптимізовані заголовки H1/H2',
+      '🎯 Ключові слова: таро онлайн, гадання безкоштовно',
+      '✨ Покращена видимість у пошукових системах'
+    ]
+  },
   {
     version: '3.6.9.1',
     date: '06.11.2025, 19:00',
@@ -1092,9 +1106,9 @@ ${cardsText}
       <div className="relative max-w-4xl mx-auto p-6 z-10">
       <div className="text-center mb-8">
         <h1 className="text-4xl font-bold mb-2 text-yellow-300">
-          ✨ Діджитал Таролог ✨
+          ✨ Онлайн Таро ✨
         </h1>
-        <p className="text-lg opacity-90">Дізнайся, що готують для тебе зірки</p>
+        <p className="text-lg opacity-90">Безкоштовне гадання на картах Таро онлайн</p>
 
         {/* Постійний кристальний шар */}
         <div className="mt-6 mb-6">
@@ -1249,7 +1263,7 @@ ${cardsText}
       {/* Liquid Glass Spread Selector з категоріями */}
       <div className="relative rounded-2xl p-6 mb-6 backdrop-blur-2xl bg-white/10 border border-white/20 shadow-2xl shadow-purple-500/20">
         <h2 className="text-2xl font-semibold mb-4 bg-gradient-to-r from-purple-300 via-pink-300 to-cyan-300 bg-clip-text text-transparent">
-          Обери розклад
+          Обери розклад Таро
         </h2>
 
         {/* Фільтр категорій */}
@@ -1718,7 +1732,7 @@ ${cardsText}
             {/* Заголовок */}
             <div className="text-center mb-6">
               <h2 className="text-3xl font-bold bg-gradient-to-r from-cyan-300 via-purple-300 to-pink-300 bg-clip-text text-transparent mb-2">
-                🔮 Як працює Діджитал Таролог?
+                🔮 Як працює Онлайн Таро?
               </h2>
               <p className="text-sm text-gray-400">Наука та магія випадковості</p>
             </div>
