@@ -2,9 +2,26 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Shuffle, Eye, EyeOff, RotateCcw, Copy, Check } from 'lucide-react';
 
 // Версія додатка та changelog
-const APP_VERSION = '4.3';
-const BUILD_DATE = new Date('2025-11-07T15:00:00Z');
+const APP_VERSION = '4.4.4';
+const BUILD_DATE = new Date('2025-11-07T16:30:00Z');
 const CHANGELOG = [
+  {
+    version: '4.4.4',
+    date: '07.11.2025, 16:30',
+    changes: [
+      '🎴 Карти знову закриті після ритуалу (ручне розкриття для більшої інтриги)',
+      '⭐ ВИПРАВЛЕНО: Зірки якості тепер справді інтерактивні! (0-5 зірок залежно від енергії)',
+      '⚡ Збалансоване накопичення енергії (сповільнено на 70-85% всі джерела)',
+      '🌙 НОВА ФІЧА: Система Космічного Резонансу з 5 фазами:',
+      '  🌑 Пробудження (0-20%) - Перші відлуння космосу...',
+      '  🌘 Зв\'язок (20-40%) - Енергетичні нитки переплітаються',
+      '  🌗 Гармонія (40-60%) - Баланс між світами встановлено',
+      '  🌖 Резонанс (60-80%) - Потужний зв\'язок з космосом',
+      '  🌕 Єдність (80-100%) - Злиття з вищими силами',
+      '🎨 Кожна фаза має унікальний колір, символ місяця та поетичний опис',
+      '📝 Створено CHANGELOG.md для документації версій'
+    ]
+  },
   {
     version: '4.3',
     date: '07.11.2025, 15:00',
@@ -861,7 +878,7 @@ const TarotReader = () => {
         mouseEntropyRef.current.shift();
       }
 
-      const entropyBoost = entropy.velocity * 0.1;
+      const entropyBoost = entropy.velocity * 0.03; // Сповільнено накопичення від руху
 
       if (isRitual) {
         setEntropyLevel(prev => Math.min(prev + entropyBoost, 100));
@@ -873,14 +890,59 @@ const TarotReader = () => {
     }
   };
 
-  // Постійне оновлення кристала з crypto API
+  // Постійне оновлення кристала з crypto API (сповільнено)
   useEffect(() => {
     const interval = setInterval(() => {
-      setAccumulatedEntropy(prev => Math.min(prev + getTrueRandom() * 0.5, 100));
+      setAccumulatedEntropy(prev => Math.min(prev + getTrueRandom() * 0.08, 100));
     }, 200);
 
     return () => clearInterval(interval);
   }, []);
+
+  // Функція визначення фази космічного резонансу
+  const getResonancePhase = (entropy) => {
+    if (entropy < 20) {
+      return {
+        name: 'Пробудження',
+        description: 'Перші відлуння космосу...',
+        color: 'hsl(260, 60%, 50%)',
+        glow: 'hsl(260, 60%, 50%)',
+        symbol: '🌑'
+      };
+    } else if (entropy < 40) {
+      return {
+        name: 'Зв\'язок',
+        description: 'Енергетичні нитки переплітаються',
+        color: 'hsl(280, 65%, 55%)',
+        glow: 'hsl(280, 65%, 55%)',
+        symbol: '🌘'
+      };
+    } else if (entropy < 60) {
+      return {
+        name: 'Гармонія',
+        description: 'Баланс між світами встановлено',
+        color: 'hsl(300, 70%, 60%)',
+        glow: 'hsl(300, 70%, 60%)',
+        symbol: '🌗'
+      };
+    } else if (entropy < 80) {
+      return {
+        name: 'Резонанс',
+        description: 'Потужний зв\'язок з космосом',
+        color: 'hsl(320, 75%, 65%)',
+        glow: 'hsl(320, 75%, 65%)',
+        symbol: '🌖'
+      };
+    } else {
+      return {
+        name: 'Єдність',
+        description: 'Злиття з вищими силами',
+        color: 'hsl(340, 80%, 70%)',
+        glow: 'hsl(340, 80%, 70%)',
+        symbol: '🌕'
+      };
+    }
+  };
 
   // Початок ритуалу
   const startRitual = () => {
@@ -899,8 +961,8 @@ const TarotReader = () => {
       const progress = Math.min(elapsed / 9000, 1) * 100;
       setRitualProgress(progress);
 
-      // Додаємо базову ентропію з crypto API
-      setEntropyLevel(prev => Math.min(prev + getTrueRandom() * 2, 100));
+      // Додаємо базову ентропію з crypto API (сповільнено для балансу)
+      setEntropyLevel(prev => Math.min(prev + getTrueRandom() * 0.3, 100));
 
       if (progress >= 100) {
         completeRitual();
@@ -972,8 +1034,8 @@ const TarotReader = () => {
 
     setDrawnCards(newCards);
     setUsedCards(currentUsedCards);
-    // Автоматично розкриваємо всі карти після ритуалу
-    setRevealedCards(newCards.map((_, index) => index));
+    // Карти залишаються закритими - користувач розкриває їх вручну
+    setRevealedCards([]);
   };
 
   const drawCards = () => {
@@ -1124,10 +1186,8 @@ ${cardsText}
       ? 'https://claude.ai/new'
       : 'https://claude.ai/new';
 
-    // Пробуємо скопіювати промпт
-    const copied = await copyToClipboard(prompt);
-
-    if (copied) {
+    // Пробуємо скопіювати промпт (використовуємо той самий підхід що в copySpread)
+    navigator.clipboard.writeText(prompt).then(() => {
       // Успішно скопійовано - відкриваємо Claude
       const newWindow = window.open(claudeUrl, '_blank');
 
@@ -1146,87 +1206,113 @@ ${cardsText}
           '📋 Вставте промпт (Ctrl+V або Cmd+V)'
         );
       }
-    } else {
-      // Не вдалося скопіювати - показуємо текст для ручного копіювання
-      const copyManually = confirm(
-        '⚠️ Автоматичне копіювання не спрацювало.\n\n' +
-        '📋 Натисніть "ОК" щоб побачити промпт для ручного копіювання.\n\n' +
-        '💡 Потім відкрийте https://claude.ai/new і вставте його там.'
-      );
+    }).catch(() => {
+      // Fallback для старих браузерів
+      const textArea = document.createElement('textarea');
+      textArea.value = prompt;
+      document.body.appendChild(textArea);
+      textArea.select();
 
-      if (copyManually) {
-        // Показуємо промпт у зручному вигляді
-        const promptWindow = window.open('', '_blank', 'width=600,height=400');
-        if (promptWindow) {
-          promptWindow.document.write(`
-            <!DOCTYPE html>
-            <html>
-            <head>
-              <title>Промпт для Claude.ai</title>
-              <style>
-                body {
-                  font-family: Arial, sans-serif;
-                  padding: 20px;
-                  background: #1a1a2e;
-                  color: white;
-                }
-                textarea {
-                  width: 100%;
-                  height: 300px;
-                  padding: 10px;
-                  font-size: 14px;
-                  border: 2px solid #8b5cf6;
-                  border-radius: 8px;
-                  background: #2d2d44;
-                  color: white;
-                  font-family: monospace;
-                }
-                button {
-                  margin-top: 10px;
-                  padding: 10px 20px;
-                  background: #8b5cf6;
-                  color: white;
-                  border: none;
-                  border-radius: 8px;
-                  cursor: pointer;
-                  font-size: 16px;
-                }
-                button:hover {
-                  background: #7c3aed;
-                }
-                .instructions {
-                  margin-bottom: 15px;
-                  padding: 15px;
-                  background: rgba(139, 92, 246, 0.2);
-                  border-radius: 8px;
-                  border-left: 4px solid #8b5cf6;
-                }
-              </style>
-            </head>
-            <body>
-              <div class="instructions">
-                <h2>📋 Інструкція:</h2>
-                <p>1. Виділіть текст нижче (Ctrl+A)</p>
-                <p>2. Скопіюйте (Ctrl+C)</p>
-                <p>3. Відкрийте <a href="https://claude.ai/new" target="_blank" style="color: #8b5cf6">Claude.ai</a></p>
-                <p>4. Вставте промпт (Ctrl+V)</p>
-              </div>
-              <textarea id="prompt" readonly>${prompt.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</textarea>
-              <button onclick="document.getElementById('prompt').select(); document.execCommand('copy'); alert('✅ Скопійовано!')">
-                📋 Копіювати промпт
-              </button>
-              <button onclick="window.open('https://claude.ai/new', '_blank')" style="background: #10b981; margin-left: 10px">
-                🌐 Відкрити Claude.ai
-              </button>
-            </body>
-            </html>
-          `);
+      try {
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+
+        // Успішно скопійовано fallback методом
+        const newWindow = window.open(claudeUrl, '_blank');
+        if (newWindow) {
+          alert(
+            '✅ Промпт скопійовано!\n\n' +
+            '🌐 Відкривається Claude.ai...\n\n' +
+            '📋 Вставте промпт (Ctrl+V)'
+          );
         } else {
-          // Якщо і це не вдалося - показуємо в alert
-          alert('📋 Скопіюйте промпт:\n\n' + prompt.substring(0, 500) + '...\n\n[промпт обрізано для показу]');
+          alert(
+            '✅ Промпт скопійовано!\n\n' +
+            '👉 Відкрийте https://claude.ai/new вручну\n' +
+            '📋 Вставте промпт (Ctrl+V)'
+          );
+        }
+      } catch (err) {
+        document.body.removeChild(textArea);
+
+        // Якщо і це не спрацювало - показуємо prompt window
+        const copyManually = confirm(
+          '⚠️ Автоматичне копіювання не спрацювало.\n\n' +
+          '📋 Натисніть "ОК" щоб побачити промпт для ручного копіювання.'
+        );
+
+        if (copyManually) {
+          const promptWindow = window.open('', '_blank', 'width=600,height=400');
+          if (promptWindow) {
+            promptWindow.document.write(`
+              <!DOCTYPE html>
+              <html>
+              <head>
+                <title>Промпт для Claude.ai</title>
+                <style>
+                  body {
+                    font-family: Arial, sans-serif;
+                    padding: 20px;
+                    background: #1a1a2e;
+                    color: white;
+                  }
+                  textarea {
+                    width: 100%;
+                    height: 300px;
+                    padding: 10px;
+                    font-size: 14px;
+                    border: 2px solid #8b5cf6;
+                    border-radius: 8px;
+                    background: #2d2d44;
+                    color: white;
+                    font-family: monospace;
+                  }
+                  button {
+                    margin-top: 10px;
+                    padding: 10px 20px;
+                    background: #8b5cf6;
+                    color: white;
+                    border: none;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    font-size: 16px;
+                  }
+                  button:hover {
+                    background: #7c3aed;
+                  }
+                  .instructions {
+                    margin-bottom: 15px;
+                    padding: 15px;
+                    background: rgba(139, 92, 246, 0.2);
+                    border-radius: 8px;
+                    border-left: 4px solid #8b5cf6;
+                  }
+                </style>
+              </head>
+              <body>
+                <div class="instructions">
+                  <h2>📋 Інструкція:</h2>
+                  <p>1. Виділіть текст нижче (Ctrl+A)</p>
+                  <p>2. Скопіюйте (Ctrl+C)</p>
+                  <p>3. Відкрийте <a href="https://claude.ai/new" target="_blank" style="color: #8b5cf6">Claude.ai</a></p>
+                  <p>4. Вставте промпт (Ctrl+V)</p>
+                </div>
+                <textarea id="prompt" readonly>${prompt.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</textarea>
+                <button onclick="document.getElementById('prompt').select(); document.execCommand('copy'); alert('✅ Скопійовано!')">
+                  📋 Копіювати промпт
+                </button>
+                <button onclick="window.open('https://claude.ai/new', '_blank')" style="background: #10b981; margin-left: 10px">
+                  🌐 Відкрити Claude.ai
+                </button>
+              </body>
+              </html>
+            `);
+          } else {
+            alert('📋 Скопіюйте промпт:\n\n' + prompt.substring(0, 500) + '...\n\n[промпт обрізано для показу]');
+          }
         }
       }
-    }
+    });
   };
 
   const copySpread = () => {
@@ -1282,23 +1368,31 @@ ${cardsText}
 
             {/* Верхні індикатори на мобільних */}
             <div className="flex sm:hidden w-full justify-between px-4 text-xs">
-              <div className="flex flex-col items-center w-20">
-                <div className="text-purple-300 mb-1">Енергія</div>
-                <div className="w-full bg-purple-900 bg-opacity-50 rounded-full h-2 border border-purple-400 border-opacity-30">
-                  <div
-                    className="h-full rounded-full transition-all duration-300 ease-out"
-                    style={{
-                      width: `${Math.min(accumulatedEntropy, 100)}%`,
-                      background: `linear-gradient(90deg,
-                        hsl(${(accumulatedEntropy * 1.2) % 360}, 70%, 50%) 0%,
-                        hsl(${(accumulatedEntropy * 1.2 + 60) % 360}, 70%, 60%) 100%)`,
-                      boxShadow: `0 0 6px hsl(${(accumulatedEntropy * 1.2) % 360}, 70%, 50%)`
-                    }}
-                  />
-                </div>
-                <div className="text-purple-200 font-mono mt-1">
-                  {Math.floor(accumulatedEntropy)}%
-                </div>
+              <div className="flex flex-col items-center w-24">
+                {(() => {
+                  const phase = getResonancePhase(accumulatedEntropy);
+                  return (
+                    <>
+                      <div className="text-purple-300 mb-1 text-xs flex items-center gap-1">
+                        <span>{phase.symbol}</span>
+                        <span>{phase.name}</span>
+                      </div>
+                      <div className="w-full bg-purple-900 bg-opacity-50 rounded-full h-2 border border-purple-400 border-opacity-30">
+                        <div
+                          className="h-full rounded-full transition-all duration-500 ease-out"
+                          style={{
+                            width: `${Math.min(accumulatedEntropy, 100)}%`,
+                            background: `linear-gradient(90deg, ${phase.color} 0%, ${phase.glow} 100%)`,
+                            boxShadow: `0 0 8px ${phase.glow}`
+                          }}
+                        />
+                      </div>
+                      <div className="text-purple-200 font-mono mt-1 text-xs">
+                        {Math.floor(accumulatedEntropy)}%
+                      </div>
+                    </>
+                  );
+                })()}
               </div>
 
               <div className="flex flex-col items-center w-20">
@@ -1322,23 +1416,37 @@ ${cardsText}
             </div>
 
             {/* Лівий індикатор - тільки на десктопі */}
-            <div className="hidden sm:flex flex-col items-center w-24">
-              <div className="text-xs text-purple-300 mb-2">Загальна енергія</div>
-              <div className="w-full bg-purple-900 bg-opacity-50 rounded-full h-3 border border-purple-400 border-opacity-30 mb-1">
-                <div
-                  className="h-full rounded-full transition-all duration-300 ease-out"
-                  style={{
-                    width: `${Math.min(accumulatedEntropy, 100)}%`,
-                    background: `linear-gradient(90deg,
-                      hsl(${(accumulatedEntropy * 1.2) % 360}, 70%, 50%) 0%,
-                      hsl(${(accumulatedEntropy * 1.2 + 60) % 360}, 70%, 60%) 100%)`,
-                    boxShadow: `0 0 8px hsl(${(accumulatedEntropy * 1.2) % 360}, 70%, 50%)`
-                  }}
-                />
-              </div>
-              <div className="text-xs text-purple-200 font-mono">
-                {Math.floor(accumulatedEntropy)}%
-              </div>
+            <div className="hidden sm:flex flex-col items-center w-32">
+              {(() => {
+                const phase = getResonancePhase(accumulatedEntropy);
+                return (
+                  <>
+                    <div className="text-xs text-purple-300 mb-1 font-semibold flex items-center gap-1">
+                      <span className="text-base">{phase.symbol}</span>
+                      <span>Космічний Резонанс</span>
+                    </div>
+                    <div className="text-xs mb-2" style={{ color: phase.color }}>
+                      {phase.name}
+                    </div>
+                    <div className="w-full bg-purple-900 bg-opacity-50 rounded-full h-3 border border-purple-400 border-opacity-30 mb-2">
+                      <div
+                        className="h-full rounded-full transition-all duration-500 ease-out"
+                        style={{
+                          width: `${Math.min(accumulatedEntropy, 100)}%`,
+                          background: `linear-gradient(90deg, ${phase.color} 0%, ${phase.glow} 100%)`,
+                          boxShadow: `0 0 10px ${phase.glow}, inset 0 0 4px ${phase.glow}`
+                        }}
+                      />
+                    </div>
+                    <div className="text-xs text-purple-200 font-mono mb-1">
+                      {Math.floor(accumulatedEntropy)}%
+                    </div>
+                    <div className="text-xs text-center text-purple-300 italic opacity-80 leading-tight">
+                      {phase.description}
+                    </div>
+                  </>
+                );
+              })()}
             </div>
 
             {/* Центральний кристал */}
@@ -1700,11 +1808,11 @@ ${cardsText}
                 onMouseMove={!isMobile ? (e) => addMouseEntropy(e, true) : undefined}
                 onTouchStart={isMobile ? (e) => {
                   addTapEntropy(e);
-                  setEntropyLevel(prev => Math.min(prev + 3, 100));
+                  setEntropyLevel(prev => Math.min(prev + 0.5, 100)); // Сповільнено для балансу
                 } : undefined}
                 onTouchMove={isMobile ? (e) => {
                   addTapEntropy(e);
-                  setEntropyLevel(prev => Math.min(prev + 2, 100));
+                  setEntropyLevel(prev => Math.min(prev + 0.3, 100)); // Сповільнено для балансу
                 } : undefined}
               >
                 {/* Основний кристал */}
@@ -1797,40 +1905,51 @@ ${cardsText}
                   <div className="mt-4 flex flex-col items-center">
                     <p className="text-xs text-purple-300 mb-2">Якість твоєї енергії</p>
                     <div className="flex gap-1 text-2xl">
-                      {[1, 2, 3, 4, 5].map((star) => {
-                        const threshold = star * 20;
-                        const isFilled = entropyLevel >= threshold;
-                        const isPartial = entropyLevel >= (threshold - 20) && entropyLevel < threshold;
-                        const fillPercentage = isPartial ? ((entropyLevel % 20) / 20) * 100 : 0;
+                      {(() => {
+                        // Динамічна кількість зірок залежно від рівня енергії
+                        const fullStars = Math.floor(entropyLevel / 20);
+                        const hasPartialStar = (entropyLevel % 20) > 0;
+                        const partialFillPercentage = ((entropyLevel % 20) / 20) * 100;
 
-                        return (
-                          <span
-                            key={star}
-                            className="relative inline-block transition-all duration-300"
-                            style={{
-                              filter: isFilled ? `drop-shadow(0 0 4px hsl(${280 + (entropyLevel * 0.8)}, 70%, 60%))` : 'none',
-                              transform: isFilled ? 'scale(1.1)' : 'scale(1)'
-                            }}
-                          >
-                            {isFilled ? (
-                              <span style={{ color: `hsl(${280 + (entropyLevel * 0.8)}, 70%, 60%)` }}>⭐</span>
-                            ) : isPartial ? (
-                              <span className="relative">
-                                <span className="text-gray-600">⭐</span>
-                                <span
-                                  className="absolute top-0 left-0 overflow-hidden"
-                                  style={{
-                                    width: `${fillPercentage}%`,
-                                    color: `hsl(${280 + (entropyLevel * 0.8)}, 70%, 60%)`
-                                  }}
-                                >⭐</span>
-                              </span>
-                            ) : (
+                        const stars = [];
+
+                        // Повні зірки
+                        for (let i = 0; i < fullStars; i++) {
+                          stars.push(
+                            <span
+                              key={`full-${i}`}
+                              className="inline-block transition-all duration-300"
+                              style={{
+                                filter: `drop-shadow(0 0 4px hsl(${280 + (entropyLevel * 0.8)}, 70%, 60%))`,
+                                transform: 'scale(1.1)',
+                                color: `hsl(${280 + (entropyLevel * 0.8)}, 70%, 60%)`
+                              }}
+                            >
+                              ⭐
+                            </span>
+                          );
+                        }
+
+                        // Частково заповнена зірка
+                        if (hasPartialStar && fullStars < 5) {
+                          stars.push(
+                            <span key="partial" className="relative inline-block transition-all duration-300">
                               <span className="text-gray-600">⭐</span>
-                            )}
-                          </span>
-                        );
-                      })}
+                              <span
+                                className="absolute top-0 left-0 overflow-hidden"
+                                style={{
+                                  width: `${partialFillPercentage}%`,
+                                  color: `hsl(${280 + (entropyLevel * 0.8)}, 70%, 60%)`
+                                }}
+                              >
+                                ⭐
+                              </span>
+                            </span>
+                          );
+                        }
+
+                        return stars;
+                      })()}
                     </div>
                     <p className="text-xs text-gray-400 mt-1">
                       {entropyLevel < 20 && "Потрібно більше енергії..."}
@@ -2289,3 +2408,4 @@ ${cardsText}
 };
 
 export default TarotReader;
+/* v4.4.4 - 1762522484 */
