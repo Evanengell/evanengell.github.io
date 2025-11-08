@@ -1,18 +1,17 @@
 # https://www.robotstxt.org/robotstxt.html
-User-agent: *
-Allow: /
 
 # Sitemap
 Sitemap: https://tarot.net.ua/sitemap.xml
 
-# Crawl-delay для бота Google
-User-agent: Googlebot
-Allow: /
-Crawl-delay: 0
-
-# Дозволити індексацію всіх файлів
+# Правила для всіх ботів
 User-agent: *
+Allow: /
 Disallow: /node_modules/
 Disallow: /dist/
 Disallow: /src/
 Disallow: /.git/
+
+# Правила для Googlebot
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
