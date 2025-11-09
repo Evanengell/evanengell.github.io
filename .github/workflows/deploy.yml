@@ -38,8 +38,35 @@ jobs:
 
       - name: Prepare deployment
         run: |
+          echo "📦 Preparing deployment files..."
           mkdir -p _site
-          cp -r index.html assets rozklady favicon* apple-touch-icon.png CNAME .nojekyll site.webmanifest robots.txt sitemap.xml _site/ 2>/dev/null || true
+
+          echo "Copying index.html..."
+          cp index.html _site/
+
+          echo "Copying assets directory..."
+          cp -r assets _site/
+
+          echo "Copying rozklady directory..."
+          cp -r rozklady _site/
+
+          echo "Copying favicon files..."
+          cp favicon*.* _site/ || true
+          cp apple-touch-icon.png _site/ || true
+
+          echo "Copying other files..."
+          cp CNAME _site/ || true
+          cp .nojekyll _site/ || true
+          cp site.webmanifest _site/ || true
+          cp robots.txt _site/ || true
+          cp sitemap.xml _site/ || true
+
+          echo "✅ Files in _site:"
+          ls -lah _site/
+          echo "✅ Assets in _site:"
+          ls -lah _site/assets/
+          echo "✅ Checking index.html content:"
+          grep -E "(index-.*\.js|index-.*\.css)" _site/index.html || echo "⚠️  No assets found in index.html!"
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
