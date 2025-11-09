@@ -1462,13 +1462,32 @@ ${cardsText}
   return (
     <div className="relative min-h-screen text-white overflow-hidden">
       {/* Animated Magical Background */}
-      <div className="fixed inset-0 bg-gradient-to-br from-indigo-950 via-purple-950 to-pink-950 animate-gradient"></div>
+      <div className="fixed inset-0" style={{background: 'linear-gradient(to bottom, #0f0c29, #302b63, #24243e)'}}></div>
 
       {/* Animated gradient orbs for magic effect */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 -left-4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
         <div className="absolute top-0 -right-4 w-96 h-96 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
         <div className="absolute -bottom-8 left-20 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+      </div>
+
+      {/* Falling Stars */}
+      <div className="stars">
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
       </div>
 
       {/* Navigation Header - Cosmic Design */}
