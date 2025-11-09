@@ -1471,8 +1471,42 @@ ${cardsText}
         <div className="absolute -bottom-8 left-20 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
       </div>
 
+      {/* Cosmic Moon */}
+      <div className="fixed top-8 right-8 w-32 h-32 rounded-full pointer-events-none z-[5]"
+           style={{
+             background: 'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(200,180,255,0.6), rgba(150,130,200,0.3))',
+             boxShadow: '0 0 60px rgba(200,180,255,0.8), 0 0 120px rgba(168,85,247,0.5), inset -10px -10px 30px rgba(100,80,150,0.4)',
+             filter: 'blur(0.5px)'
+           }}>
+      </div>
+
       {/* Falling Stars */}
       <div className="stars">
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
         <div className="star"></div>
         <div className="star"></div>
         <div className="star"></div>
@@ -1552,10 +1586,10 @@ ${cardsText}
 
                   {/* Dropdown content with animation */}
                   {isDropdownOpen && (
-                    <div className="absolute top-full right-0 mt-2 min-w-[300px] backdrop-blur-xl bg-gradient-to-br from-indigo-950/98 via-purple-950/98 to-pink-950/98 border-2 border-transparent rounded-2xl overflow-hidden animate-fadeIn z-[100]"
+                    <div className="absolute top-full right-0 mt-2 min-w-[300px] bg-gradient-to-br from-indigo-950 via-purple-950 to-pink-950 border-2 border-transparent rounded-2xl overflow-hidden animate-fadeIn z-[100]"
                          style={{
-                           borderImage: 'linear-gradient(135deg, rgba(168,85,247,0.6), rgba(236,72,153,0.6)) 1',
-                           boxShadow: '0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(168,85,247,0.4), inset 0 1px 0 rgba(255,255,255,0.1)',
+                           borderImage: 'linear-gradient(135deg, rgba(168,85,247,0.8), rgba(236,72,153,0.8)) 1',
+                           boxShadow: '0 25px 80px rgba(0,0,0,0.8), 0 0 50px rgba(168,85,247,0.6), inset 0 1px 0 rgba(255,255,255,0.2)',
                            animation: 'fadeIn 0.3s ease-out'
                          }}>
                       <div className="px-5 py-4 border-b border-purple-400/30 bg-gradient-to-r from-purple-500/20 to-pink-500/20">
