@@ -170,7 +170,7 @@ const generateCategoryPages = () => {
                 ${spread.keywords.map(kw => `<span class="bg-purple-100 text-purple-700 px-2 py-1 rounded-full text-xs">${kw}</span>`).join('\n                ')}
               </div>
             </div>
-            <a href="/${spread.slug}.html" class="inline-block bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-6 py-2 rounded-full font-semibold transition-all transform hover:scale-105 shadow-md">
+            <a href="/rozklady/${spread.slug}.html" class="inline-block bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-6 py-2 rounded-full font-semibold transition-all transform hover:scale-105 shadow-md">
               Дізнатися більше →
             </a>
           </div>`;
