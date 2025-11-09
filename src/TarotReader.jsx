@@ -1451,6 +1451,42 @@ ${cardsText}
         <div className="absolute -bottom-8 left-20 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
       </div>
 
+      {/* Navigation Header */}
+      <header className="header-nav sticky top-0 z-50 backdrop-blur-md bg-indigo-950/95 border-b border-purple-400/30">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between py-4">
+            {/* Logo */}
+            <a href="/" className="flex items-center gap-2 text-white hover:text-purple-300 transition-colors">
+              <span className="text-3xl">🔮</span>
+              <span className="text-xl font-bold hidden md:inline">Онлайн Таро</span>
+            </a>
+
+            {/* Navigation */}
+            <nav className="flex items-center gap-6">
+              {/* Dropdown menu */}
+              <div className="dropdown relative group">
+                <button className="text-purple-200 hover:text-white transition-colors flex items-center gap-1">
+                  <span>Розклади</span>
+                  <span className="text-xs">▼</span>
+                </button>
+                <div className="dropdown-content hidden group-hover:block absolute top-full left-0 mt-2 min-w-[280px] backdrop-blur-md bg-indigo-950/98 border border-purple-400/30 rounded-xl shadow-2xl">
+                  <div className="px-4 py-3 border-b border-purple-500/30">
+                    <p className="text-purple-300 text-sm font-semibold">Категорії розкладів</p>
+                  </div>
+                  <a href="/#rozklady-classic" className="dropdown-item block px-5 py-3 text-purple-100 hover:bg-purple-400/20 hover:pl-7 transition-all border-b border-purple-400/10">🌟 Класичні (7)</a>
+                  <a href="/#rozklady-quick" className="dropdown-item block px-5 py-3 text-purple-100 hover:bg-purple-400/20 hover:pl-7 transition-all border-b border-purple-400/10">⚡ Швидкі (3)</a>
+                  <a href="/#rozklady-love" className="dropdown-item block px-5 py-3 text-purple-100 hover:bg-purple-400/20 hover:pl-7 transition-all border-b border-purple-400/10">❤️ Любовні (2)</a>
+                  <a href="/#rozklady-career" className="dropdown-item block px-5 py-3 text-purple-100 hover:bg-purple-400/20 hover:pl-7 transition-all border-b border-purple-400/10">💼 Кар'єра (2)</a>
+                  <a href="/#rozklady-spiritual" className="dropdown-item block px-5 py-3 text-purple-100 hover:bg-purple-400/20 hover:pl-7 transition-all border-b border-purple-400/10">🔮 Духовні (3)</a>
+                  <a href="/#rozklady-forecast" className="dropdown-item block px-5 py-3 text-purple-100 hover:bg-purple-400/20 hover:pl-7 transition-all border-b border-purple-400/10">📅 Прогнози (4)</a>
+                  <a href="/#rozklady-special" className="dropdown-item block px-5 py-3 text-purple-100 hover:bg-purple-400/20 hover:pl-7 transition-all">🎯 Спеціальні (5)</a>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </header>
+
       {/* Main content with glassmorphism */}
       <div className="relative max-w-4xl mx-auto p-6 z-10">
       <div className="text-center mb-8">
