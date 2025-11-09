@@ -2,8 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Shuffle, Eye, EyeOff, RotateCcw, Copy, Check } from 'lucide-react';
 
 // Версія додатка та changelog
-const APP_VERSION = '5.0.1';
-const BUILD_DATE = new Date('2025-11-08T18:30:00Z');
+const APP_VERSION = '5.1.1';
+const BUILD_DATE = new Date('2025-11-09T11:20:00Z');
 const CHANGELOG = [
   {
     version: '5.0.1',

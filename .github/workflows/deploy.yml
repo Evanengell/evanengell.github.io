@@ -36,13 +36,18 @@ jobs:
       - name: Build site
         run: npm run build
 
+      - name: Prepare deployment
+        run: |
+          mkdir -p _site
+          cp -r index.html assets rozklady favicon* apple-touch-icon.png CNAME .nojekyll site.webmanifest robots.txt sitemap.xml _site/ 2>/dev/null || true
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: '_site'
 
       - name: Deploy to GitHub Pages
         id: deployment
