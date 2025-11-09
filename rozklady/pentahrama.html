@@ -19,7 +19,7 @@
     <!-- Primary Meta Tags - DYNAMIC -->
     <title>Пентаграма - розклад Таро онлайн | Гностичне тлумачення</title>
     <meta name="title" content="Пентаграма - розклад Таро онлайн | Гностичне тлумачення" />
-    <meta name="description" content="Пентаграма (5 карт) - П'ять елементів - від квінтесенції до проя­ву. Пентаграма - древній символ людини як мікрокосму. П'ять променів зірки - це **п'ять принципів** що творять реальність. Дух у вершині править чотирма е..." />
+    <meta name="description" content="Пентаграма (5 карт) - П'ять елементів - від квінтесенції до проя­ву. Пентаграма – один із найдавніших і найпотужніших символів західної езотеричної традиції, чиє використання сягає піфагорійських шкіл Великої Греції та ..." />
     <meta name="keywords" content="Пентаграма таро, розклад pentahrama, п'ять принципів, мікрокосм, квінтесенція, баланс стихій, божественна геометрія, таро онлайн, гадання таро" />
     <meta name="author" content="Онлайн Таро" />
     <meta name="robots" content="index, follow" />
@@ -31,7 +31,7 @@
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://tarot.net.ua/rozklady/pentahrama.html" />
     <meta property="og:title" content="Пентаграма - розклад Таро онлайн | Гностичне тлумачення" />
-    <meta property="og:description" content="Пентаграма (5 карт) - П'ять елементів - від квінтесенції до проя­ву. Пентаграма - древній символ людини як мікрокосму. П'ять променів зірки - це **п'ять принципів** що творять реальність. Дух у вершині править чотирма е..." />
+    <meta property="og:description" content="Пентаграма (5 карт) - П'ять елементів - від квінтесенції до проя­ву. Пентаграма – один із найдавніших і найпотужніших символів західної езотеричної традиції, чиє використання сягає піфагорійських шкіл Великої Греції та ..." />
     <meta property="og:image" content="https://tarot.net.ua/og-image.png" />
     <meta property="og:locale" content="uk_UA" />
     <meta property="og:site_name" content="Онлайн Таро" />
@@ -40,7 +40,7 @@
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://tarot.net.ua/rozklady/pentahrama.html" />
     <meta property="twitter:title" content="Пентаграма - розклад Таро онлайн | Гностичне тлумачення" />
-    <meta property="twitter:description" content="Пентаграма (5 карт) - П'ять елементів - від квінтесенції до проя­ву. Пентаграма - древній символ людини як мікрокосму. П'ять променів зірки - це **п'ять принципів** що творять реальність. Дух у вершині править чотирма е..." />
+    <meta property="twitter:description" content="Пентаграма (5 карт) - П'ять елементів - від квінтесенції до проя­ву. Пентаграма – один із найдавніших і найпотужніших символів західної езотеричної традиції, чиє використання сягає піфагорійських шкіл Великої Греції та ..." />
     <meta property="twitter:image" content="https://tarot.net.ua/og-image.png" />
 
     <!-- Schema.org JSON-LD - Article - DYNAMIC -->
@@ -49,7 +49,7 @@
       "@context": "https://schema.org",
       "@type": "Article",
       "headline": "Пентаграма - розклад Таро",
-      "description": "Пентаграма (5 карт) - П'ять елементів - від квінтесенції до проя­ву. Пентаграма - древній символ людини як мікрокосму. П'ять променів зірки - це **п'ять принципів** що творять реальність. Дух у вершині править чотирма е...",
+      "description": "Пентаграма (5 карт) - П'ять елементів - від квінтесенції до проя­ву. Пентаграма – один із найдавніших і найпотужніших символів західної езотеричної традиції, чиє використання сягає піфагорійських шкіл Великої Греції та ...",
       "image": "https://tarot.net.ua/og-image.png",
       "author": {
         "@type": "Organization",
@@ -121,6 +121,63 @@
     </script>
 
     <style>
+      /* Космічний фон */
+      body {
+        background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      /* Падаючі зірки */
+      .stars {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .star {
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        background: white;
+        border-radius: 50%;
+        box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+        animation: fall linear infinite;
+      }
+
+      @keyframes fall {
+        0% {
+          transform: translateY(-100vh) translateX(0);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100vh) translateX(100px);
+          opacity: 0;
+        }
+      }
+
+      /* Генерація різних зірок */
+      .star:nth-child(1) { left: 10%; animation-duration: 8s; animation-delay: 0s; }
+      .star:nth-child(2) { left: 20%; animation-duration: 12s; animation-delay: 2s; }
+      .star:nth-child(3) { left: 30%; animation-duration: 10s; animation-delay: 4s; }
+      .star:nth-child(4) { left: 40%; animation-duration: 15s; animation-delay: 1s; }
+      .star:nth-child(5) { left: 50%; animation-duration: 9s; animation-delay: 3s; }
+      .star:nth-child(6) { left: 60%; animation-duration: 11s; animation-delay: 5s; }
+      .star:nth-child(7) { left: 70%; animation-duration: 13s; animation-delay: 2s; }
+      .star:nth-child(8) { left: 80%; animation-duration: 14s; animation-delay: 4s; }
+      .star:nth-child(9) { left: 90%; animation-duration: 10s; animation-delay: 1s; }
+      .star:nth-child(10) { left: 15%; animation-duration: 12s; animation-delay: 6s; }
+      .star:nth-child(11) { left: 25%; animation-duration: 11s; animation-delay: 3s; }
+      .star:nth-child(12) { left: 35%; animation-duration: 9s; animation-delay: 5s; }
+      .star:nth-child(13) { left: 45%; animation-duration: 13s; animation-delay: 2s; }
+      .star:nth-child(14) { left: 55%; animation-duration: 10s; animation-delay: 4s; }
+      .star:nth-child(15) { left: 65%; animation-duration: 14s; animation-delay: 1s; }
+
+      /* Анімації */
       @keyframes fadeIn {
         from { opacity: 0; transform: translateY(20px); }
         to { opacity: 1; transform: translateY(0); }
@@ -129,76 +186,196 @@
         animation: fadeIn 0.6s ease-out;
       }
       .gradient-text {
-        background: linear-gradient(135deg, #667eea 0%, #8b5cf6 100%);
+        background: linear-gradient(135deg, #a78bfa 0%, #ec4899 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
       }
+
+      /* Контент поверх зірок */
+      .content-wrapper {
+        position: relative;
+        z-index: 10;
+      }
+
+      /* Скляний ефект для карток */
+      .glass-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+
+      /* Хедер */
+      .header-nav {
+        background: rgba(15, 12, 41, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(167, 139, 250, 0.3);
+      }
+
+      /* Dropdown меню */
+      .dropdown {
+        position: relative;
+      }
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: rgba(15, 12, 41, 0.98);
+        backdrop-filter: blur(10px);
+        min-width: 280px;
+        border-radius: 12px;
+        border: 1px solid rgba(167, 139, 250, 0.3);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        margin-top: 8px;
+      }
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+      .dropdown-item {
+        padding: 12px 20px;
+        color: #e9d5ff;
+        text-decoration: none;
+        display: block;
+        transition: all 0.2s;
+        border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+      }
+      .dropdown-item:last-child {
+        border-bottom: none;
+      }
+      .dropdown-item:hover {
+        background: rgba(167, 139, 250, 0.2);
+        padding-left: 28px;
+      }
     </style>
   </head>
 
-  <body class="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 min-h-screen">
-    <!-- Breadcrumbs -->
-    <nav class="container mx-auto px-4 py-4" aria-label="Breadcrumb">
-      <ol class="flex items-center space-x-2 text-sm text-gray-600">
-        <li><a href="/" class="hover:text-purple-600 transition-colors">🏠 Головна</a></li>
-        <li class="text-gray-400">/</li>
-        <li><a href="/#rozklady" class="hover:text-purple-600 transition-colors">Розклади</a></li>
-        <li class="text-gray-400">/</li>
-        <li class="text-purple-600 font-medium">Пентаграма</li>
-      </ol>
-    </nav>
+  <body class="min-h-screen">
+    <!-- Падаючі зірки -->
+    <div class="stars">
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+    </div>
 
-    <!-- Main Content -->
-    <main class="container mx-auto px-4 py-8 max-w-4xl">
-      <!-- Header -->
-      <header class="text-center mb-12 fade-in">
-        <h1 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">
-          Пентаграма
-        </h1>
-        <p class="text-xl text-gray-700 mb-2">П'ять елементів - від квінтесенції до проя­ву</p>
-        <div class="flex items-center justify-center gap-4 text-sm text-gray-600">
-          <span class="bg-purple-100 px-3 py-1 rounded-full">Класичні</span>
-          <span>📋 5 карт</span>
+    <!-- Контент -->
+    <div class="content-wrapper">
+      <!-- Хедер з навігацією -->
+      <header class="header-nav sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+          <div class="flex items-center justify-between py-4">
+            <!-- Логотип -->
+            <a href="/" class="flex items-center gap-2 text-white hover:text-purple-300 transition-colors">
+              <span class="text-3xl">🔮</span>
+              <span class="text-xl font-bold hidden md:inline">Онлайн Таро</span>
+            </a>
+
+            <!-- Навігація -->
+            <nav class="flex items-center gap-6">
+              <!-- Dropdown меню розкладів -->
+              <div class="dropdown">
+                <button class="text-purple-200 hover:text-white transition-colors flex items-center gap-1">
+                  <span>Розклади</span>
+                  <span class="text-xs">▼</span>
+                </button>
+                <div class="dropdown-content">
+                  <div class="px-4 py-3 border-b border-purple-500/30">
+                    <p class="text-purple-300 text-sm font-semibold">Категорії розкладів</p>
+                  </div>
+                  <a href="/#rozklady-classic" class="dropdown-item">🌟 Класичні (7)</a>
+                  <a href="/#rozklady-quick" class="dropdown-item">⚡ Швидкі (3)</a>
+                  <a href="/#rozklady-love" class="dropdown-item">❤️ Любовні (2)</a>
+                  <a href="/#rozklady-career" class="dropdown-item">💼 Кар'єра (2)</a>
+                  <a href="/#rozklady-spiritual" class="dropdown-item">🔮 Духовні (3)</a>
+                  <a href="/#rozklady-forecast" class="dropdown-item">📅 Прогнози (4)</a>
+                  <a href="/#rozklady-special" class="dropdown-item">🎯 Спеціальні (5)</a>
+                </div>
+              </div>
+
+              <!-- Кнопка гадання -->
+              <a href="/?spread=pentagram"
+                 class="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-6 py-2 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg">
+                ✨ Гадати
+              </a>
+            </nav>
+          </div>
         </div>
       </header>
 
-      <!-- CTA Button - Top -->
-      <div class="text-center mb-12 fade-in">
-        <a href="/?spread=pentagram"
-           class="inline-block bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
-          ✨ Почати гадання зараз
-        </a>
-      </div>
+      <!-- Breadcrumbs -->
+      <nav class="container mx-auto px-4 py-4" aria-label="Breadcrumb">
+        <ol class="flex items-center space-x-2 text-sm text-purple-200">
+          <li><a href="/" class="hover:text-white transition-colors">🏠 Головна</a></li>
+          <li class="text-purple-400">/</li>
+          <li><a href="/#rozklady" class="hover:text-white transition-colors">Розклади</a></li>
+          <li class="text-purple-400">/</li>
+          <li class="text-white font-medium">Пентаграма</li>
+        </ol>
+      </nav>
 
-      <!-- Philosophy Introduction -->
-      <article class="prose prose-lg max-w-none">
-        <section class="bg-white rounded-2xl shadow-xl p-8 mb-8 fade-in">
-          <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-            <span class="text-3xl">🔮</span> Гностична суть
-          </h2>
-          <div class="text-gray-700 leading-relaxed">
-            Пентаграма - древній символ людини як мікрокосму. П'ять променів зірки - це **п'ять принципів** що творять реальність. Дух у вершині править чотирма елементами, як божественне керує проявленим світом.
+      <!-- Main Content -->
+      <main class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Header -->
+        <header class="text-center mb-12 fade-in">
+          <h1 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">
+            Пентаграма
+          </h1>
+          <p class="text-xl text-purple-100 mb-2">П'ять елементів - від квінтесенції до проя­ву</p>
+          <div class="flex items-center justify-center gap-4 text-sm text-purple-200">
+            <span class="bg-purple-500/30 px-3 py-1 rounded-full border border-purple-400/50">Класичні</span>
+            <span>📋 5 карт</span>
           </div>
-        </section>
+        </header>
 
-        <!-- Deeper Meaning -->
-        <section class="bg-white rounded-2xl shadow-xl p-8 mb-8 fade-in" style="animation-delay: 0.1s">
-          <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-            <span class="text-3xl">⚡</span> Глибинне значення
-          </h2>
-          <div class="text-gray-700 leading-relaxed">
-            **Дух** - твоя божественна іскра, те що передує всьому. **Повітря** - розум та слово, принцип що розділяє та з'єднує. **Вогонь** - воля та дія, що трансформує потенціал в актуальне. **Земля** - тіло та матерія, храм духу. **Вода** - емоції та інтуїція, що розчиняє межі між світами. Баланс п'яти - це **квінтесенція**, п'ятий елемент що народжується з гармонії чотирьох.
-          </div>
-        </section>
+        <!-- CTA Button - Top -->
+        <div class="text-center mb-12 fade-in">
+          <a href="/?spread=pentagram"
+             class="inline-block bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+            ✨ Почати гадання зараз
+          </a>
+        </div>
 
-        <!-- Spread Positions -->
-        <section class="bg-white rounded-2xl shadow-xl p-8 mb-8 fade-in" style="animation-delay: 0.2s">
-          <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-            <span class="text-3xl">🎴</span> Позиції розкладу
-          </h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div class="bg-gradient-to-br from-purple-50 to-indigo-50 p-4 rounded-lg">
+        <!-- Philosophy Introduction -->
+        <article class="prose prose-lg max-w-none">
+          <section class="glass-card rounded-2xl shadow-xl p-8 mb-8 fade-in">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <span class="text-3xl">🔮</span> Гностична суть
+            </h2>
+            <div class="text-gray-700 leading-relaxed">
+              Пентаграма – один із найдавніших і найпотужніших символів західної езотеричної традиції, чиє використання сягає піфагорійських шкіл Великої Греції та орфічних містерій. П'ятипроменева зірка уособлює досконалість людської форми: голова та чотири кінцівки, розпростерті у священному жесті між небом і землею. Герметичні філософи розпізнавали в пентаграмі формулу мікрокосму – людини як відображення макрокосму, живої ілюстрації принципу "що вгорі, те й внизу". П'ять променів відповідають п'яти елементам творення: Вогонь волі, Вода емоцій, Повітря інтелекту, Земля тіла, та найважливіше – Дух, quintessentia, п'ята есенція що інтегрує і трансцендує всі інші. У валентиніанському гностицизмі п'ятірка резонує з п'ятьма аспектами Логосу, що еманують від Плероми для творення та спасіння світу форм. Алхімічна традиція бачить у пентаграмі ключ до Магнум Опус: чотири стадії роботи (nigredo, albedo, citrinitas, rubedo) увінчані п'ятою – об'єднанням протилежностей у філософському камені. Каббалісти пов'язують п'ять променів з Гебурою – сфірою Марса, де божественна суворість формує характер адепта через випробування. Тому розклад пентаграми – це завжди робота з владою: владою над стихіями зовнішнього світу і владою над хаосом внутрішнього всесвіту.
+            </div>
+          </section>
+
+          <!-- Deeper Meaning -->
+          <section class="glass-card rounded-2xl shadow-xl p-8 mb-8 fade-in" style="animation-delay: 0.1s">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <span class="text-3xl">⚡</span> Глибинне значення
+            </h2>
+            <div class="text-gray-700 leading-relaxed">
+              Езотерична глибина пентаграми розкривається через розуміння її як живого організму свідомості. Верхній промінь – Дух – символізує іскру божественного, pneuma гностиків, те нетварне світло що жодна темрява не може поглинути. Це Самість у юнгіанській термінології, Атман у ведичній філософії, Христос внутрішній у християнському містицизмі. Цей промінь завжди спрямований нагору у правильній пентаграмі адепта, на відміну від перевернутої пентаграми, де материя домінує над духом. Два верхні бокові промені формують крила свідомості: правий – активний, сонячний, чоловічий принцип (алхімічна сірка, каббалістична Хохма), лівий – рецептивний, місячний, жіночий принцип (алхімічна ртуть, каббалістична Біна). Їхнє співіснування у динамічній рівновазі створює те, що герметисти називали solve – розчинення застарілих форм, відкриття до нового досвіду. Два нижні промені укорінюють енергію у матерії: правий відповідає вогню трансформації (очисній nigredo), лівий – водам емоційної глибини (albedo інтуїції). Разом вони створюють coagula – згущення духовного у конкретні форми і дії. Центр пентаграми – найсвятіша точка – це те, що алхіміки називали vas hermeticum, герметична посудина, де відбувається священний шлюб протилежностей. Тут п'ять стихій зустрічаються і взаємопроникають, народжуючи шосту – людську свідомість як таку. У валентиніанській космології це відповідає моменту, коли душа усвідомлює себе як проміжну істоту між Плеромою і Кеномою (порожнечею матерії), здатну рухатися в обох напрямках. Розклад пентаграми завжди показує цю динаміку: як п'ять сил формують ситуацію, і де знаходиться точка владарювання, центр волі, з якого можна змінити всю конфігурацію.
+            </div>
+          </section>
+
+          <!-- Spread Positions -->
+          <section class="glass-card rounded-2xl shadow-xl p-8 mb-8 fade-in" style="animation-delay: 0.2s">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <span class="text-3xl">🎴</span> Позиції розкладу
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="bg-gradient-to-br from-purple-50 to-indigo-50 p-4 rounded-lg">
               <span class="font-semibold text-purple-700">1.</span> Дух (вгорі)
             </div>
             <div class="bg-gradient-to-br from-purple-50 to-indigo-50 p-4 rounded-lg">
@@ -213,62 +390,63 @@
             <div class="bg-gradient-to-br from-purple-50 to-indigo-50 p-4 rounded-lg">
               <span class="font-semibold text-purple-700">5.</span> Вода (ліворуч вгорі)
             </div>
-          </div>
-        </section>
+            </div>
+          </section>
 
-        <!-- Practical Wisdom -->
-        <section class="bg-white rounded-2xl shadow-xl p-8 mb-8 fade-in" style="animation-delay: 0.3s">
-          <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-            <span class="text-3xl">💡</span> Практична мудрість
-          </h2>
-          <div class="text-gray-700 leading-relaxed">
-            Використовуй для діагностики дисбалансу стихій у життті. Де є надлишок енергії? Де дефіцит? Пентаграма показує шлях до цілісності через баланс.
-          </div>
-        </section>
+          <!-- Practical Wisdom -->
+          <section class="glass-card rounded-2xl shadow-xl p-8 mb-8 fade-in" style="animation-delay: 0.3s">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <span class="text-3xl">💡</span> Практична мудрість
+            </h2>
+            <div class="text-gray-700 leading-relaxed">
+              Працюючи з пентаграмою, почни з усвідомлення, що ти не просто читаєш карти – ти створюєш мандалу енергій, священний простір де стихії твого життя можуть явити себе у балансі. Перед викладанням карт накресли пентаграму у повітрі пальцем або атамом, рухаючись від духу (верх) до землі (нижній лівий), до повітря (верхній правий), до води (нижній правий), до вогню (верхній лівий) і назад до духу – це класичний invoke пентаграм, що відкриває портал для роботи зі стихіями. Формулюй запитання що стосуються інтеграції різних аспектів життя: не "що мені робити", а "як гармонізувати мої бажання (вогонь), почуття (вода), думки (повітря), дії (земля) під керівництвом вищої мудрості (дух)". Запитуй про ситуації де відчуваєш дисбаланс, де одна стихія домінує за рахунок інших: занадто багато вогню і немає заземлення, чи надлишок води емоцій без вогню волі що надав би їм форму. Викладаючи карти, починай з верхнього променя – Духу – це твоя найвища перспектива на ситуацію, погляд душі sub specie aeternitatis, з точки зору вічності. Потім рухайся за годинниковою стрілкою: повітря (інтелектуальне розуміння), вода (емоційний резонанс), земля (практичне втілення), вогонь (творча воля). Після прочитання кожної позиції зупинись і відчуй як ці п'ять сил танцюють одна з одною у центрі – там народжується справжня відповідь.
+            </div>
+          </section>
 
-        <!-- For Whom -->
-        <section class="bg-gradient-to-r from-purple-100 to-indigo-100 rounded-2xl p-8 mb-8 fade-in" style="animation-delay: 0.4s">
-          <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-            <span class="text-3xl">👁️</span> Для кого цей розклад?
-          </h2>
-          <p class="text-gray-700 text-lg italic">
-            Для магів та адептів стихійної магії, шукачів гармонії
-          </p>
-        </section>
+          <!-- For Whom -->
+          <section class="glass-card rounded-2xl p-8 mb-8 fade-in" style="animation-delay: 0.4s; background: linear-gradient(135deg, rgba(196, 181, 253, 0.95), rgba(236, 72, 153, 0.95)); backdrop-filter: blur(10px);">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <span class="text-3xl">👁️</span> Для кого цей розклад?
+            </h2>
+            <p class="text-gray-800 text-lg italic font-medium">
+              Пентаграма служить практикам середнього та високого рівня, тим хто вже розуміє базові езотеричні відповідності та готовий працювати зі стихійними енергіями свідомо. Це розклад для магів і теургів, для тих хто на шляху самомайстрування і керує своєю реальністю через баланс внутрішніх сил. Він ідеальний для ситуацій де потрібно знайти точку рівноваги між різними життєвими аспектами або відновити гармонію після періоду хаосу. Початківці можуть використовувати його для вивчення взаємодії стихій у своєму житті, але справжня глибина розкриється лише через регулярну практику та медитацію на символізм п'ятипроменевої зірки.
+            </p>
+          </section>
 
-        <!-- Keywords -->
-        <section class="bg-white rounded-2xl shadow-xl p-8 mb-8 fade-in" style="animation-delay: 0.5s">
-          <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-            <span class="text-3xl">🔑</span> Ключові концепції
-          </h2>
-          <div class="flex flex-wrap gap-2">
-            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">п'ять принципів</span>
+          <!-- Keywords -->
+          <section class="glass-card rounded-2xl shadow-xl p-8 mb-8 fade-in" style="animation-delay: 0.5s">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <span class="text-3xl">🔑</span> Ключові концепції
+            </h2>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">п'ять принципів</span>
             <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">мікрокосм</span>
             <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">квінтесенція</span>
             <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">баланс стихій</span>
             <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">божественна геометрія</span>
-          </div>
-        </section>
-      </article>
+            </div>
+          </section>
+        </article>
 
-      <!-- CTA Button - Bottom -->
-      <div class="text-center mt-12 mb-8 fade-in" style="animation-delay: 0.6s">
-        <a href="/?spread=pentagram"
-           class="inline-block bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
-          ✨ Розпочати Пентаграма
-        </a>
-        <p class="text-gray-600 mt-4">або</p>
-        <a href="/#rozklady" class="text-purple-600 hover:text-purple-800 font-medium">
-          Переглянути всі 26 розкладів →
-        </a>
-      </div>
-    </main>
+        <!-- CTA Button - Bottom -->
+        <div class="text-center mt-12 mb-8 fade-in" style="animation-delay: 0.6s">
+          <a href="/?spread=pentagram"
+             class="inline-block bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+            ✨ Розпочати Пентаграма
+          </a>
+          <p class="text-purple-200 mt-4">або</p>
+          <a href="/#rozklady" class="text-purple-300 hover:text-white font-medium transition-colors">
+            Переглянути всі 26 розкладів →
+          </a>
+        </div>
+      </main>
 
-    <!-- Footer -->
-    <footer class="container mx-auto px-4 py-8 text-center text-gray-600 text-sm border-t border-gray-200">
-      <p class="mb-2">© 2024 <a href="/" class="text-purple-600 hover:underline">Онлайн Таро</a> | Всі права захищено</p>
-      <p class="text-xs text-gray-500">Таро - це інструмент самопізнання. Використовуйте мудро.</p>
-    </footer>
+      <!-- Footer -->
+      <footer class="container mx-auto px-4 py-8 text-center text-purple-200 text-sm border-t border-purple-500/30">
+        <p class="mb-2">© 2024 <a href="/" class="text-purple-300 hover:text-white hover:underline transition-colors">Онлайн Таро</a> | Всі права захищено</p>
+        <p class="text-xs text-purple-300">Таро - це інструмент самопізнання. Використовуйте мудро.</p>
+      </footer>
+    </div>
 
     <!-- Analytics placeholder -->
     <!-- Google Analytics / Meta Pixel можна додати тут -->

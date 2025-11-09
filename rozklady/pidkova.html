@@ -19,7 +19,7 @@
     <!-- Primary Meta Tags - DYNAMIC -->
     <title>Підкова - розклад Таро онлайн | Гностичне тлумачення</title>
     <meta name="title" content="Підкова - розклад Таро онлайн | Гностичне тлумачення" />
-    <meta name="description" content="Підкова (7 карт) - Семивимірна карта шляху від причини до наслідку. Підкова - це не просто символ удачі, а **священна дуга** що з'єднує минуле з майбутнім через усвідомлену дію. Сім позицій формують повний цикл від зер..." />
+    <meta name="description" content="Підкова (7 карт) - Семивимірна карта шляху від причини до наслідку. Підкова як езотеричний символ сягає корінням у дохристиянські культи ковалів – тих таємничих майстрів вогню, що володіли секретами трансмутації металу..." />
     <meta name="keywords" content="Підкова таро, розклад pidkova, свідоме творення, точка сили, невидимі впливи, від наміру до втілення, семивимірний шлях, таро онлайн, гадання таро" />
     <meta name="author" content="Онлайн Таро" />
     <meta name="robots" content="index, follow" />
@@ -31,7 +31,7 @@
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://tarot.net.ua/rozklady/pidkova.html" />
     <meta property="og:title" content="Підкова - розклад Таро онлайн | Гностичне тлумачення" />
-    <meta property="og:description" content="Підкова (7 карт) - Семивимірна карта шляху від причини до наслідку. Підкова - це не просто символ удачі, а **священна дуга** що з'єднує минуле з майбутнім через усвідомлену дію. Сім позицій формують повний цикл від зер..." />
+    <meta property="og:description" content="Підкова (7 карт) - Семивимірна карта шляху від причини до наслідку. Підкова як езотеричний символ сягає корінням у дохристиянські культи ковалів – тих таємничих майстрів вогню, що володіли секретами трансмутації металу..." />
     <meta property="og:image" content="https://tarot.net.ua/og-image.png" />
     <meta property="og:locale" content="uk_UA" />
     <meta property="og:site_name" content="Онлайн Таро" />
@@ -40,7 +40,7 @@
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://tarot.net.ua/rozklady/pidkova.html" />
     <meta property="twitter:title" content="Підкова - розклад Таро онлайн | Гностичне тлумачення" />
-    <meta property="twitter:description" content="Підкова (7 карт) - Семивимірна карта шляху від причини до наслідку. Підкова - це не просто символ удачі, а **священна дуга** що з'єднує минуле з майбутнім через усвідомлену дію. Сім позицій формують повний цикл від зер..." />
+    <meta property="twitter:description" content="Підкова (7 карт) - Семивимірна карта шляху від причини до наслідку. Підкова як езотеричний символ сягає корінням у дохристиянські культи ковалів – тих таємничих майстрів вогню, що володіли секретами трансмутації металу..." />
     <meta property="twitter:image" content="https://tarot.net.ua/og-image.png" />
 
     <!-- Schema.org JSON-LD - Article - DYNAMIC -->
@@ -49,7 +49,7 @@
       "@context": "https://schema.org",
       "@type": "Article",
       "headline": "Підкова - розклад Таро",
-      "description": "Підкова (7 карт) - Семивимірна карта шляху від причини до наслідку. Підкова - це не просто символ удачі, а **священна дуга** що з'єднує минуле з майбутнім через усвідомлену дію. Сім позицій формують повний цикл від зер...",
+      "description": "Підкова (7 карт) - Семивимірна карта шляху від причини до наслідку. Підкова як езотеричний символ сягає корінням у дохристиянські культи ковалів – тих таємничих майстрів вогню, що володіли секретами трансмутації металу...",
       "image": "https://tarot.net.ua/og-image.png",
       "author": {
         "@type": "Organization",
@@ -121,6 +121,63 @@
     </script>
 
     <style>
+      /* Космічний фон */
+      body {
+        background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      /* Падаючі зірки */
+      .stars {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .star {
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        background: white;
+        border-radius: 50%;
+        box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+        animation: fall linear infinite;
+      }
+
+      @keyframes fall {
+        0% {
+          transform: translateY(-100vh) translateX(0);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100vh) translateX(100px);
+          opacity: 0;
+        }
+      }
+
+      /* Генерація різних зірок */
+      .star:nth-child(1) { left: 10%; animation-duration: 8s; animation-delay: 0s; }
+      .star:nth-child(2) { left: 20%; animation-duration: 12s; animation-delay: 2s; }
+      .star:nth-child(3) { left: 30%; animation-duration: 10s; animation-delay: 4s; }
+      .star:nth-child(4) { left: 40%; animation-duration: 15s; animation-delay: 1s; }
+      .star:nth-child(5) { left: 50%; animation-duration: 9s; animation-delay: 3s; }
+      .star:nth-child(6) { left: 60%; animation-duration: 11s; animation-delay: 5s; }
+      .star:nth-child(7) { left: 70%; animation-duration: 13s; animation-delay: 2s; }
+      .star:nth-child(8) { left: 80%; animation-duration: 14s; animation-delay: 4s; }
+      .star:nth-child(9) { left: 90%; animation-duration: 10s; animation-delay: 1s; }
+      .star:nth-child(10) { left: 15%; animation-duration: 12s; animation-delay: 6s; }
+      .star:nth-child(11) { left: 25%; animation-duration: 11s; animation-delay: 3s; }
+      .star:nth-child(12) { left: 35%; animation-duration: 9s; animation-delay: 5s; }
+      .star:nth-child(13) { left: 45%; animation-duration: 13s; animation-delay: 2s; }
+      .star:nth-child(14) { left: 55%; animation-duration: 10s; animation-delay: 4s; }
+      .star:nth-child(15) { left: 65%; animation-duration: 14s; animation-delay: 1s; }
+
+      /* Анімації */
       @keyframes fadeIn {
         from { opacity: 0; transform: translateY(20px); }
         to { opacity: 1; transform: translateY(0); }
@@ -129,76 +186,196 @@
         animation: fadeIn 0.6s ease-out;
       }
       .gradient-text {
-        background: linear-gradient(135deg, #667eea 0%, #8b5cf6 100%);
+        background: linear-gradient(135deg, #a78bfa 0%, #ec4899 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
       }
+
+      /* Контент поверх зірок */
+      .content-wrapper {
+        position: relative;
+        z-index: 10;
+      }
+
+      /* Скляний ефект для карток */
+      .glass-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+
+      /* Хедер */
+      .header-nav {
+        background: rgba(15, 12, 41, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(167, 139, 250, 0.3);
+      }
+
+      /* Dropdown меню */
+      .dropdown {
+        position: relative;
+      }
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: rgba(15, 12, 41, 0.98);
+        backdrop-filter: blur(10px);
+        min-width: 280px;
+        border-radius: 12px;
+        border: 1px solid rgba(167, 139, 250, 0.3);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        margin-top: 8px;
+      }
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+      .dropdown-item {
+        padding: 12px 20px;
+        color: #e9d5ff;
+        text-decoration: none;
+        display: block;
+        transition: all 0.2s;
+        border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+      }
+      .dropdown-item:last-child {
+        border-bottom: none;
+      }
+      .dropdown-item:hover {
+        background: rgba(167, 139, 250, 0.2);
+        padding-left: 28px;
+      }
     </style>
   </head>
 
-  <body class="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 min-h-screen">
-    <!-- Breadcrumbs -->
-    <nav class="container mx-auto px-4 py-4" aria-label="Breadcrumb">
-      <ol class="flex items-center space-x-2 text-sm text-gray-600">
-        <li><a href="/" class="hover:text-purple-600 transition-colors">🏠 Головна</a></li>
-        <li class="text-gray-400">/</li>
-        <li><a href="/#rozklady" class="hover:text-purple-600 transition-colors">Розклади</a></li>
-        <li class="text-gray-400">/</li>
-        <li class="text-purple-600 font-medium">Підкова</li>
-      </ol>
-    </nav>
+  <body class="min-h-screen">
+    <!-- Падаючі зірки -->
+    <div class="stars">
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+    </div>
 
-    <!-- Main Content -->
-    <main class="container mx-auto px-4 py-8 max-w-4xl">
-      <!-- Header -->
-      <header class="text-center mb-12 fade-in">
-        <h1 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">
-          Підкова
-        </h1>
-        <p class="text-xl text-gray-700 mb-2">Семивимірна карта шляху від причини до наслідку</p>
-        <div class="flex items-center justify-center gap-4 text-sm text-gray-600">
-          <span class="bg-purple-100 px-3 py-1 rounded-full">Класичні</span>
-          <span>📋 7 карт</span>
+    <!-- Контент -->
+    <div class="content-wrapper">
+      <!-- Хедер з навігацією -->
+      <header class="header-nav sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+          <div class="flex items-center justify-between py-4">
+            <!-- Логотип -->
+            <a href="/" class="flex items-center gap-2 text-white hover:text-purple-300 transition-colors">
+              <span class="text-3xl">🔮</span>
+              <span class="text-xl font-bold hidden md:inline">Онлайн Таро</span>
+            </a>
+
+            <!-- Навігація -->
+            <nav class="flex items-center gap-6">
+              <!-- Dropdown меню розкладів -->
+              <div class="dropdown">
+                <button class="text-purple-200 hover:text-white transition-colors flex items-center gap-1">
+                  <span>Розклади</span>
+                  <span class="text-xs">▼</span>
+                </button>
+                <div class="dropdown-content">
+                  <div class="px-4 py-3 border-b border-purple-500/30">
+                    <p class="text-purple-300 text-sm font-semibold">Категорії розкладів</p>
+                  </div>
+                  <a href="/#rozklady-classic" class="dropdown-item">🌟 Класичні (7)</a>
+                  <a href="/#rozklady-quick" class="dropdown-item">⚡ Швидкі (3)</a>
+                  <a href="/#rozklady-love" class="dropdown-item">❤️ Любовні (2)</a>
+                  <a href="/#rozklady-career" class="dropdown-item">💼 Кар'єра (2)</a>
+                  <a href="/#rozklady-spiritual" class="dropdown-item">🔮 Духовні (3)</a>
+                  <a href="/#rozklady-forecast" class="dropdown-item">📅 Прогнози (4)</a>
+                  <a href="/#rozklady-special" class="dropdown-item">🎯 Спеціальні (5)</a>
+                </div>
+              </div>
+
+              <!-- Кнопка гадання -->
+              <a href="/?spread=horseshoe"
+                 class="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-6 py-2 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg">
+                ✨ Гадати
+              </a>
+            </nav>
+          </div>
         </div>
       </header>
 
-      <!-- CTA Button - Top -->
-      <div class="text-center mb-12 fade-in">
-        <a href="/?spread=horseshoe"
-           class="inline-block bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
-          ✨ Почати гадання зараз
-        </a>
-      </div>
+      <!-- Breadcrumbs -->
+      <nav class="container mx-auto px-4 py-4" aria-label="Breadcrumb">
+        <ol class="flex items-center space-x-2 text-sm text-purple-200">
+          <li><a href="/" class="hover:text-white transition-colors">🏠 Головна</a></li>
+          <li class="text-purple-400">/</li>
+          <li><a href="/#rozklady" class="hover:text-white transition-colors">Розклади</a></li>
+          <li class="text-purple-400">/</li>
+          <li class="text-white font-medium">Підкова</li>
+        </ol>
+      </nav>
 
-      <!-- Philosophy Introduction -->
-      <article class="prose prose-lg max-w-none">
-        <section class="bg-white rounded-2xl shadow-xl p-8 mb-8 fade-in">
-          <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-            <span class="text-3xl">🔮</span> Гностична суть
-          </h2>
-          <div class="text-gray-700 leading-relaxed">
-            Підкова - це не просто символ удачі, а **священна дуга** що з'єднує минуле з майбутнім через усвідомлену дію. Сім позицій формують повний цикл від зерна до врожаю, від наміру до втілення.
+      <!-- Main Content -->
+      <main class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Header -->
+        <header class="text-center mb-12 fade-in">
+          <h1 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">
+            Підкова
+          </h1>
+          <p class="text-xl text-purple-100 mb-2">Семивимірна карта шляху від причини до наслідку</p>
+          <div class="flex items-center justify-center gap-4 text-sm text-purple-200">
+            <span class="bg-purple-500/30 px-3 py-1 rounded-full border border-purple-400/50">Класичні</span>
+            <span>📋 7 карт</span>
           </div>
-        </section>
+        </header>
 
-        <!-- Deeper Meaning -->
-        <section class="bg-white rounded-2xl shadow-xl p-8 mb-8 fade-in" style="animation-delay: 0.1s">
-          <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-            <span class="text-3xl">⚡</span> Глибинне значення
-          </h2>
-          <div class="text-gray-700 leading-relaxed">
-            Приховані впливи розкривають **невидимі нитки долі** - ті сили що працюють за завісою свідомості. Перешкоди - це не покарання, а **вчителі в масках**, що змушують душу розкрити приховані сили. Позиція "Дії" показує **точку сили** - де твоя воля може змінити хід подій. Це розклад **свідомого творення реальності**.
-          </div>
-        </section>
+        <!-- CTA Button - Top -->
+        <div class="text-center mb-12 fade-in">
+          <a href="/?spread=horseshoe"
+             class="inline-block bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+            ✨ Почати гадання зараз
+          </a>
+        </div>
 
-        <!-- Spread Positions -->
-        <section class="bg-white rounded-2xl shadow-xl p-8 mb-8 fade-in" style="animation-delay: 0.2s">
-          <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-            <span class="text-3xl">🎴</span> Позиції розкладу
-          </h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div class="bg-gradient-to-br from-purple-50 to-indigo-50 p-4 rounded-lg">
+        <!-- Philosophy Introduction -->
+        <article class="prose prose-lg max-w-none">
+          <section class="glass-card rounded-2xl shadow-xl p-8 mb-8 fade-in">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <span class="text-3xl">🔮</span> Гностична суть
+            </h2>
+            <div class="text-gray-700 leading-relaxed">
+              Підкова як езотеричний символ сягає корінням у дохристиянські культи ковалів – тих таємничих майстрів вогню, що володіли секретами трансмутації металу та вважалися посередниками між світами. Сімка – найсвятіше число античності – пронизує всю структуру космосу: сім планет класичної астрології (Сатурн, Юпітер, Марс, Сонце, Венера, Меркурій, Місяць), сім нот музичної гами, сім кольорів веселки, сім днів творення. Герметичні філософи розпізнавали у сімці завершеність циклу: шість напрямків простору (північ-південь, схід-захід, верх-низ) плюс центральна точка свідомості, що обіймає всі інші. У валентиніанській космології сімка відповідає семи архонтам – планетарним силам, що управляють долею душі у її сходженні через сфери до Плероми. Каббалісти бачать у ній сім нижніх сфірот Дерева Життя: від Хесед до Малкут, від милосердя до царства. Алхімічна традиція знає сім священних металів та сім планетарних операцій Великого Делання. Форма підкови, відкрита догори, символізує рецептивність до небесних впливів – вона збирає і концентрує силу удачі, благодаті, божественного провидіння. Тому розклад підкови – це завжди питання про циклічність долі та про те, як душа проходить повний коло досвіду від початку через кульмінацію до завершення.
+            </div>
+          </section>
+
+          <!-- Deeper Meaning -->
+          <section class="glass-card rounded-2xl shadow-xl p-8 mb-8 fade-in" style="animation-delay: 0.1s">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <span class="text-3xl">⚡</span> Глибинне значення
+            </h2>
+            <div class="text-gray-700 leading-relaxed">
+              Езотерична архітектура підкови розкривається через розуміння її як порталу між світами. Сім карт формують дугу – частину кола вічності, що торкається землі у двох точках (минуле і майбутнє) і піднімається до зеніту у центрі (теперішній момент як точка найбільшої напруги і потенціалу). Перша та остання карти створюють вертикальні стовпи храму Соломона: Боаз (сила) та Яхін (встановлення), між якими відчиняється завіса таємниць. У гностичній перспективі це врата вгору – від кенотичного існування у матерії до плероматичної повноти буття. Сім позицій відповідають семи планетарним архетипам та їхнім металам: перша (минуле, корені) – Сатурн і свинець, важкість долі та кармічних обмежень; друга (виклики) – Юпітер і олово, розширення та етичний вибір; третя (ресурси) – Марс і залізо, воля до дії та мужність протистояння; четверта (центр, точка трансформації) – Сонце та золото, серце ситуації де відбувається алхімічне перетворення; п'ята (допомога) – Венера і мідь, любов, краса, ті сили що підтримують; шоста (перешкоди) – Меркурій і ртуть, мінливість, обман чи мудрість посередництва; сьома (результат) – Місяць і срібло, відображення божественного світла у формах матеріального світу. Ця послідовність описує класичну планетарну ієрархію халдейських магів – descensus від найповільнішої планети (Сатурн) до найшвидшої (Місяць), від вічності до плинності часу. Але форма підкови перетворює цей спуск на підйом: проходячи через всі сім сфер свідомо, душа не падає у матерію, а навпаки – трансформує матерію у дух, здійснює те що алхіміки називали sublimatio, возгонку, підняття важкого свинцю сатурнічних обмежень до легкого срібла місячної мудрості.
+            </div>
+          </section>
+
+          <!-- Spread Positions -->
+          <section class="glass-card rounded-2xl shadow-xl p-8 mb-8 fade-in" style="animation-delay: 0.2s">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <span class="text-3xl">🎴</span> Позиції розкладу
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="bg-gradient-to-br from-purple-50 to-indigo-50 p-4 rounded-lg">
               <span class="font-semibold text-purple-700">1.</span> Минуле
             </div>
             <div class="bg-gradient-to-br from-purple-50 to-indigo-50 p-4 rounded-lg">
@@ -219,62 +396,63 @@
             <div class="bg-gradient-to-br from-purple-50 to-indigo-50 p-4 rounded-lg">
               <span class="font-semibold text-purple-700">7.</span> Результат
             </div>
-          </div>
-        </section>
+            </div>
+          </section>
 
-        <!-- Practical Wisdom -->
-        <section class="bg-white rounded-2xl shadow-xl p-8 mb-8 fade-in" style="animation-delay: 0.3s">
-          <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-            <span class="text-3xl">💡</span> Практична мудрість
-          </h2>
-          <div class="text-gray-700 leading-relaxed">
-            Використовуй коли потрібна ясність щодо дій. Підкова не просто передбачає, а показує ЯК твоя воля може змінити хід подій. Це інструмент практичного гнозису.
-          </div>
-        </section>
+          <!-- Practical Wisdom -->
+          <section class="glass-card rounded-2xl shadow-xl p-8 mb-8 fade-in" style="animation-delay: 0.3s">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <span class="text-3xl">💡</span> Практична мудрість
+            </h2>
+            <div class="text-gray-700 leading-relaxed">
+              Підкова найкраще працює для питань про процеси, що мають чітку часову дугу: проекти від початку до завершення, стосунки від зародження до результату, будь-які ситуації де важливо побачити повний цикл розгортання подій. Перед викладанням карт візуалізуй справжню підкову, що висить над дверима – вона захищає, оберігає, притягує удачу. Можеш навіть фізично викласти карти у формі підкови, відкритої вгору, створюючи сакральну чашу що приймає небесні енергії. Формулюй запитання у термінах шляху та розгортання: "Як розвиватиметься ця ситуація від початку до кінця?", "Який повний цикл я маю пройти у цих обставинах?", "Що очікує мене на кожному етапі цієї подорожі?". Уникай питань що потребують простої бінарної відповіді – підкова показує процес, динаміку, еволюцію у часі. Читаючи карти, рухайся послідовно від першої до сьомої, але постійно тримай у свідомості цілість дуги. Перші три карти (минуле, виклики, ресурси) формують основу – те на чому стоїш. Четверта карта у центрі зеніту – найважливіша, це серце всієї ситуації, момент найбільшої трансформації чи кризи. Останні три (допомога, перешкоди, результат) показують як енергія спускається з вершини назад у прояв. Зверни особливу увагу на симетрію: перша та сьома, друга та шоста, третя та п'ята – ці пари часто резонують одна з одною, створюючи додаткові рівні значення.
+            </div>
+          </section>
 
-        <!-- For Whom -->
-        <section class="bg-gradient-to-r from-purple-100 to-indigo-100 rounded-2xl p-8 mb-8 fade-in" style="animation-delay: 0.4s">
-          <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-            <span class="text-3xl">👁️</span> Для кого цей розклад?
-          </h2>
-          <p class="text-gray-700 text-lg italic">
-            Для практиків що прагнуть не просто знати майбутнє, а свідомо його творити
-          </p>
-        </section>
+          <!-- For Whom -->
+          <section class="glass-card rounded-2xl p-8 mb-8 fade-in" style="animation-delay: 0.4s; background: linear-gradient(135deg, rgba(196, 181, 253, 0.95), rgba(236, 72, 153, 0.95)); backdrop-filter: blur(10px);">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <span class="text-3xl">👁️</span> Для кого цей розклад?
+            </h2>
+            <p class="text-gray-800 text-lg italic font-medium">
+              Розклад підкови ідеально підходить для тих, хто потребує чіткого бачення всього циклу подій від початку до завершення. Він служить і початківцям завдяки простій логічній структурі, і досвідченим практикам через глибокі планетарні та каббалістичні відповідності. Це розклад для конкретних проектів, життєвих ситуацій з визначеним початком і кінцем, для моментів коли потрібно зрозуміти не тільки що станеться, а й через які етапи доведеться пройти. Особливо цінний для тих, хто працює з магією удачі та залучення сприятливих обставин.
+            </p>
+          </section>
 
-        <!-- Keywords -->
-        <section class="bg-white rounded-2xl shadow-xl p-8 mb-8 fade-in" style="animation-delay: 0.5s">
-          <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-            <span class="text-3xl">🔑</span> Ключові концепції
-          </h2>
-          <div class="flex flex-wrap gap-2">
-            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">свідоме творення</span>
+          <!-- Keywords -->
+          <section class="glass-card rounded-2xl shadow-xl p-8 mb-8 fade-in" style="animation-delay: 0.5s">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <span class="text-3xl">🔑</span> Ключові концепції
+            </h2>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">свідоме творення</span>
             <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">точка сили</span>
             <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">невидимі впливи</span>
             <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">від наміру до втілення</span>
             <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">семивимірний шлях</span>
-          </div>
-        </section>
-      </article>
+            </div>
+          </section>
+        </article>
 
-      <!-- CTA Button - Bottom -->
-      <div class="text-center mt-12 mb-8 fade-in" style="animation-delay: 0.6s">
-        <a href="/?spread=horseshoe"
-           class="inline-block bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
-          ✨ Розпочати Підкова
-        </a>
-        <p class="text-gray-600 mt-4">або</p>
-        <a href="/#rozklady" class="text-purple-600 hover:text-purple-800 font-medium">
-          Переглянути всі 26 розкладів →
-        </a>
-      </div>
-    </main>
+        <!-- CTA Button - Bottom -->
+        <div class="text-center mt-12 mb-8 fade-in" style="animation-delay: 0.6s">
+          <a href="/?spread=horseshoe"
+             class="inline-block bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+            ✨ Розпочати Підкова
+          </a>
+          <p class="text-purple-200 mt-4">або</p>
+          <a href="/#rozklady" class="text-purple-300 hover:text-white font-medium transition-colors">
+            Переглянути всі 26 розкладів →
+          </a>
+        </div>
+      </main>
 
-    <!-- Footer -->
-    <footer class="container mx-auto px-4 py-8 text-center text-gray-600 text-sm border-t border-gray-200">
-      <p class="mb-2">© 2024 <a href="/" class="text-purple-600 hover:underline">Онлайн Таро</a> | Всі права захищено</p>
-      <p class="text-xs text-gray-500">Таро - це інструмент самопізнання. Використовуйте мудро.</p>
-    </footer>
+      <!-- Footer -->
+      <footer class="container mx-auto px-4 py-8 text-center text-purple-200 text-sm border-t border-purple-500/30">
+        <p class="mb-2">© 2024 <a href="/" class="text-purple-300 hover:text-white hover:underline transition-colors">Онлайн Таро</a> | Всі права захищено</p>
+        <p class="text-xs text-purple-300">Таро - це інструмент самопізнання. Використовуйте мудро.</p>
+      </footer>
+    </div>
 
     <!-- Analytics placeholder -->
     <!-- Google Analytics / Meta Pixel можна додати тут -->
