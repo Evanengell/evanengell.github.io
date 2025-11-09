@@ -1472,7 +1472,7 @@ ${cardsText}
       </div>
 
       {/* Navigation Header - Cosmic Design */}
-      <header className="sticky top-0 z-50 overflow-hidden">
+      <header className="sticky top-0 z-50">
         {/* Starfield background */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div
@@ -1533,7 +1533,7 @@ ${cardsText}
 
                   {/* Dropdown content with animation */}
                   {isDropdownOpen && (
-                    <div className="absolute top-full right-0 mt-2 min-w-[300px] backdrop-blur-xl bg-gradient-to-br from-indigo-950/98 via-purple-950/98 to-pink-950/98 border-2 border-transparent rounded-2xl overflow-hidden animate-fadeIn"
+                    <div className="absolute top-full right-0 mt-2 min-w-[300px] backdrop-blur-xl bg-gradient-to-br from-indigo-950/98 via-purple-950/98 to-pink-950/98 border-2 border-transparent rounded-2xl overflow-hidden animate-fadeIn z-[100]"
                          style={{
                            borderImage: 'linear-gradient(135deg, rgba(168,85,247,0.6), rgba(236,72,153,0.6)) 1',
                            boxShadow: '0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(168,85,247,0.4), inset 0 1px 0 rgba(255,255,255,0.1)',
