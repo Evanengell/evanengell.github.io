@@ -1560,10 +1560,12 @@ ${cardsText}
             <div className="flex items-center justify-between py-4">
               {/* Logo with glow */}
               <a href="/" className="flex items-center gap-2 text-white hover:text-purple-300 transition-all duration-300 group">
-                <span className="text-3xl filter drop-shadow-lg transition-all duration-300 group-hover:scale-110"
-                      style={{
-                        filter: 'drop-shadow(0 0 8px rgba(168,85,247,0.8)) drop-shadow(0 0 12px rgba(236,72,153,0.4))'
-                      }}>🔮</span>
+                <img src="/favicon.svg"
+                     alt="Таро лого"
+                     className="w-8 h-8 transition-all duration-300 group-hover:scale-110"
+                     style={{
+                       filter: 'drop-shadow(0 0 8px rgba(168,85,247,0.8)) drop-shadow(0 0 12px rgba(236,72,153,0.4))'
+                     }} />
                 <span className="text-xl font-bold hidden md:inline bg-gradient-to-r from-purple-200 via-pink-200 to-cyan-200 bg-clip-text text-transparent">
                   Онлайн Таро
                 </span>
