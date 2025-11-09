@@ -128,6 +128,81 @@ const generateSpreadPages = () => {
   console.log(`✅ Generated ${generatedCount} spread pages in /rozklady/`);
 };
 
+// Generate category pages
+const generateCategoryPages = () => {
+  console.log('📁 Generating category pages...');
+
+  const categoryTemplate = readFileSync(join(__dirname, 'category-template.html'), 'utf-8');
+
+  const categoryInfo = {
+    classic: { name: 'Класичні', icon: '🌟', slug: 'classic' },
+    quick: { name: 'Швидкі', icon: '⚡', slug: 'quick' },
+    love: { name: 'Любовні', icon: '❤️', slug: 'love' },
+    career: { name: 'Кар\'єра', icon: '💼', slug: 'career' },
+    spiritual: { name: 'Духовні', icon: '🔮', slug: 'spiritual' },
+    forecast: { name: 'Прогнози', icon: '📅', slug: 'forecast' },
+    special: { name: 'Спеціальні', icon: '🎯', slug: 'special' }
+  };
+
+  let generatedCount = 0;
+
+  Object.keys(categoryInfo).forEach(categoryKey => {
+    const category = categoryInfo[categoryKey];
+    const categoryData = categoriesPhilosophy[categoryKey];
+
+    // Find all spreads in this category
+    const spreadsInCategory = Object.keys(spreadsData).filter(
+      spreadId => spreadsData[spreadId].category === categoryKey
+    );
+
+    // Generate spread cards HTML
+    const spreadCardsHtml = spreadsInCategory.map(spreadId => {
+      const spread = spreadsData[spreadId];
+      return `
+          <div class="spread-card rounded-2xl p-6 fade-in">
+            <div class="mb-4">
+              <h3 class="text-2xl font-bold text-purple-700 mb-2">${spread.name}</h3>
+              <p class="text-sm text-gray-600">${spread.cards} карт</p>
+            </div>
+            <p class="text-gray-700 mb-4 italic">"${spread.gnosticEssence}"</p>
+            <div class="mb-4">
+              <div class="flex flex-wrap gap-2">
+                ${spread.keywords.map(kw => `<span class="bg-purple-100 text-purple-700 px-2 py-1 rounded-full text-xs">${kw}</span>`).join('\n                ')}
+              </div>
+            </div>
+            <a href="/${spread.slug}.html" class="inline-block bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-6 py-2 rounded-full font-semibold transition-all transform hover:scale-105 shadow-md">
+              Дізнатися більше →
+            </a>
+          </div>`;
+    }).join('\n        ');
+
+    // Prepare SEO data
+    const title = `${category.name} розклади Таро онлайн | Гностичне тлумачення`;
+    const description = categoryData ? categoryData.description : `${spreadsInCategory.length} ${category.name.toLowerCase()} розкладів Таро для онлайн гадання`;
+    const keywords = `${category.name.toLowerCase()} таро, розклади таро ${category.name.toLowerCase()}, гадання таро онлайн`;
+
+    // Replace placeholders
+    let html = categoryTemplate
+      .replace(/\{\{TITLE\}\}/g, title)
+      .replace(/\{\{DESCRIPTION\}\}/g, description)
+      .replace(/\{\{KEYWORDS\}\}/g, keywords)
+      .replace(/\{\{CATEGORY_NAME\}\}/g, category.name)
+      .replace(/\{\{CATEGORY_ICON\}\}/g, category.icon)
+      .replace(/\{\{CATEGORY_SLUG\}\}/g, category.slug)
+      .replace(/\{\{CATEGORY_DESCRIPTION\}\}/g, categoryData ? categoryData.description : description)
+      .replace(/\{\{SPREADS_COUNT\}\}/g, spreadsInCategory.length)
+      .replace(/\{\{SPREADS_CARDS\}\}/g, spreadCardsHtml);
+
+    // Write file
+    const filename = `${category.slug}.html`;
+    const filepath = join(__dirname, 'rozklady', filename);
+    writeFileSync(filepath, html);
+    generatedCount++;
+  });
+
+  console.log(`✅ Generated ${generatedCount} category pages in /rozklady/`);
+};
+
 // Build the application
 const build = async () => {
   console.log('🚀 Building with esbuild...');
@@ -215,6 +290,9 @@ const build = async () => {
 
     // Generate spread pages
     generateSpreadPages();
+
+    // Generate category pages
+    generateCategoryPages();
 
     console.log('\n🎉 Build completed successfully!');
     console.log(`📦 Bundle size: ${((jsOutput.contents.length + cssOutput.contents.length) / 1024).toFixed(2)} KB`);

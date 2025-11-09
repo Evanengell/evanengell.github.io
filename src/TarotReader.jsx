@@ -1545,26 +1545,26 @@ ${cardsText}
                           <span>Категорії розкладів</span>
                         </p>
                       </div>
-                      <div className="py-2">
-                        <a href="/#rozklady-classic" className="block px-5 py-3 text-purple-100 hover:bg-purple-400/30 hover:pl-8 transition-all duration-200 border-b border-purple-400/10 hover:border-purple-400/20">
+                      <div className="py-2" onClick={() => setIsDropdownOpen(false)}>
+                        <a href="/rozklady/classic.html" className="block px-5 py-3 text-purple-100 hover:bg-purple-400/30 hover:pl-8 transition-all duration-200 border-b border-purple-400/10 hover:border-purple-400/20">
                           🌟 Класичні (7)
                         </a>
-                        <a href="/#rozklady-quick" className="block px-5 py-3 text-purple-100 hover:bg-purple-400/30 hover:pl-8 transition-all duration-200 border-b border-purple-400/10 hover:border-purple-400/20">
+                        <a href="/rozklady/quick.html" className="block px-5 py-3 text-purple-100 hover:bg-purple-400/30 hover:pl-8 transition-all duration-200 border-b border-purple-400/10 hover:border-purple-400/20">
                           ⚡ Швидкі (3)
                         </a>
-                        <a href="/#rozklady-love" className="block px-5 py-3 text-purple-100 hover:bg-purple-400/30 hover:pl-8 transition-all duration-200 border-b border-purple-400/10 hover:border-purple-400/20">
+                        <a href="/rozklady/love.html" className="block px-5 py-3 text-purple-100 hover:bg-purple-400/30 hover:pl-8 transition-all duration-200 border-b border-purple-400/10 hover:border-purple-400/20">
                           ❤️ Любовні (2)
                         </a>
-                        <a href="/#rozklady-career" className="block px-5 py-3 text-purple-100 hover:bg-purple-400/30 hover:pl-8 transition-all duration-200 border-b border-purple-400/10 hover:border-purple-400/20">
+                        <a href="/rozklady/career.html" className="block px-5 py-3 text-purple-100 hover:bg-purple-400/30 hover:pl-8 transition-all duration-200 border-b border-purple-400/10 hover:border-purple-400/20">
                           💼 Кар'єра (2)
                         </a>
-                        <a href="/#rozklady-spiritual" className="block px-5 py-3 text-purple-100 hover:bg-purple-400/30 hover:pl-8 transition-all duration-200 border-b border-purple-400/10 hover:border-purple-400/20">
+                        <a href="/rozklady/spiritual.html" className="block px-5 py-3 text-purple-100 hover:bg-purple-400/30 hover:pl-8 transition-all duration-200 border-b border-purple-400/10 hover:border-purple-400/20">
                           🔮 Духовні (3)
                         </a>
-                        <a href="/#rozklady-forecast" className="block px-5 py-3 text-purple-100 hover:bg-purple-400/30 hover:pl-8 transition-all duration-200 border-b border-purple-400/10 hover:border-purple-400/20">
+                        <a href="/rozklady/forecast.html" className="block px-5 py-3 text-purple-100 hover:bg-purple-400/30 hover:pl-8 transition-all duration-200 border-b border-purple-400/10 hover:border-purple-400/20">
                           📅 Прогнози (4)
                         </a>
-                        <a href="/#rozklady-special" className="block px-5 py-3 text-purple-100 hover:bg-purple-400/30 hover:pl-8 transition-all duration-200">
+                        <a href="/rozklady/special.html" className="block px-5 py-3 text-purple-100 hover:bg-purple-400/30 hover:pl-8 transition-all duration-200">
                           🎯 Спеціальні (5)
                         </a>
                       </div>
