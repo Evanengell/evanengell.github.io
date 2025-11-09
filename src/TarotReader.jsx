@@ -2,9 +2,28 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Shuffle, Eye, EyeOff, RotateCcw, Copy, Check } from 'lucide-react';
 
 // Версія додатка та changelog
-const APP_VERSION = '5.1.1';
-const BUILD_DATE = new Date('2025-11-09T11:20:00Z');
+const APP_VERSION = '5.1.2';
+const BUILD_DATE = new Date('2025-11-09T14:00:00Z');
 const CHANGELOG = [
+  {
+    version: '5.1.2',
+    date: '09.11.2025, 14:00',
+    changes: [
+      '✨ КОСМІЧНИЙ ХЕДЕР - максимальний glassmorphism ефект!',
+      '  🌌 Анімовані зірки на фоні хедера (box-shadow техніка)',
+      '  💎 Потужний glassmorphism з яскравим градієнтом',
+      '  🌈 Фіолетово-рожево-синє свічення (box-shadow)',
+      '  ⭐ Мерехтлива анімація зірок (pulse effect)',
+      '  🎨 Градієнтний border з кольоровим переливом',
+      '📋 ВИПРАВЛЕНО DROPDOWN МЕНЮ:',
+      '  👆 Працює на клік замість hover (toggle)',
+      '  ⏱️ Smooth анімація відкриття/закриття',
+      '  🎯 Тепер можна спокійно обрати категорію',
+      '  💫 Плавна поява з fade-in ефектом',
+      '🔮 Оновлено логотип з анімованим свіченням',
+      '🎭 Покращена UX взаємодія з навігацією'
+    ]
+  },
   {
     version: '5.1.1',
     date: '09.11.2025, 11:30',
@@ -298,6 +317,7 @@ const TarotReader = () => {
   const [showChangelog, setShowChangelog] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const mouseEntropyRef = useRef([]);
   const ritualTimerRef = useRef(null);
@@ -1451,38 +1471,108 @@ ${cardsText}
         <div className="absolute -bottom-8 left-20 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
       </div>
 
-      {/* Navigation Header */}
-      <header className="header-nav sticky top-0 z-50 backdrop-blur-md bg-indigo-950/95 border-b border-purple-400/30">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between py-4">
-            {/* Logo */}
-            <a href="/" className="flex items-center gap-2 text-white hover:text-purple-300 transition-colors">
-              <span className="text-3xl">🔮</span>
-              <span className="text-xl font-bold hidden md:inline">Онлайн Таро</span>
-            </a>
+      {/* Navigation Header - Cosmic Design */}
+      <header className="sticky top-0 z-50 overflow-hidden">
+        {/* Starfield background */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div
+            className="absolute w-1 h-1 rounded-full animate-pulse"
+            style={{
+              boxShadow: `
+                10vw 5vh 1px 0px rgba(255,255,255,0.8),
+                25vw 15vh 0px 1px rgba(255,255,255,0.6),
+                40vw 8vh 1px 0px rgba(200,180,255,0.9),
+                55vw 20vh 0px 1px rgba(255,200,255,0.7),
+                70vw 12vh 1px 0px rgba(255,255,255,0.8),
+                85vw 18vh 0px 1px rgba(180,200,255,0.6),
+                15vw 25vh 1px 0px rgba(255,255,255,0.9),
+                30vw 30vh 0px 1px rgba(255,180,255,0.7),
+                60vw 28vh 1px 0px rgba(200,200,255,0.8),
+                90vw 35vh 0px 1px rgba(255,255,255,0.6),
+                5vw 40vh 1px 0px rgba(255,200,255,0.9),
+                50vw 38vh 0px 1px rgba(180,180,255,0.7)
+              `,
+              animation: 'pulse 3s ease-in-out infinite'
+            }}
+          />
+        </div>
 
-            {/* Navigation */}
-            <nav className="flex items-center gap-6">
-              {/* Dropdown menu */}
-              <div className="dropdown relative group">
-                <button className="text-purple-200 hover:text-white transition-colors flex items-center gap-1">
-                  <span>Розклади</span>
-                  <span className="text-xs">▼</span>
-                </button>
-                <div className="dropdown-content hidden group-hover:block absolute top-full left-0 mt-2 min-w-[280px] backdrop-blur-md bg-indigo-950/98 border border-purple-400/30 rounded-xl shadow-2xl">
-                  <div className="px-4 py-3 border-b border-purple-500/30">
-                    <p className="text-purple-300 text-sm font-semibold">Категорії розкладів</p>
-                  </div>
-                  <a href="/#rozklady-classic" className="dropdown-item block px-5 py-3 text-purple-100 hover:bg-purple-400/20 hover:pl-7 transition-all border-b border-purple-400/10">🌟 Класичні (7)</a>
-                  <a href="/#rozklady-quick" className="dropdown-item block px-5 py-3 text-purple-100 hover:bg-purple-400/20 hover:pl-7 transition-all border-b border-purple-400/10">⚡ Швидкі (3)</a>
-                  <a href="/#rozklady-love" className="dropdown-item block px-5 py-3 text-purple-100 hover:bg-purple-400/20 hover:pl-7 transition-all border-b border-purple-400/10">❤️ Любовні (2)</a>
-                  <a href="/#rozklady-career" className="dropdown-item block px-5 py-3 text-purple-100 hover:bg-purple-400/20 hover:pl-7 transition-all border-b border-purple-400/10">💼 Кар'єра (2)</a>
-                  <a href="/#rozklady-spiritual" className="dropdown-item block px-5 py-3 text-purple-100 hover:bg-purple-400/20 hover:pl-7 transition-all border-b border-purple-400/10">🔮 Духовні (3)</a>
-                  <a href="/#rozklady-forecast" className="dropdown-item block px-5 py-3 text-purple-100 hover:bg-purple-400/20 hover:pl-7 transition-all border-b border-purple-400/10">📅 Прогнози (4)</a>
-                  <a href="/#rozklady-special" className="dropdown-item block px-5 py-3 text-purple-100 hover:bg-purple-400/20 hover:pl-7 transition-all">🎯 Спеціальні (5)</a>
+        {/* Glassmorphism header with gradient */}
+        <div className="relative backdrop-blur-xl bg-gradient-to-r from-purple-900/40 via-indigo-900/40 to-pink-900/40 border-b-2 border-transparent"
+             style={{
+               borderImage: 'linear-gradient(90deg, rgba(168,85,247,0.5), rgba(236,72,153,0.5), rgba(59,130,246,0.5)) 1',
+               boxShadow: '0 8px 32px 0 rgba(168,85,247,0.3), inset 0 1px 0 0 rgba(255,255,255,0.1)'
+             }}>
+          <div className="container mx-auto px-4">
+            <div className="flex items-center justify-between py-4">
+              {/* Logo with glow */}
+              <a href="/" className="flex items-center gap-2 text-white hover:text-purple-300 transition-all duration-300 group">
+                <span className="text-3xl filter drop-shadow-lg transition-all duration-300 group-hover:scale-110"
+                      style={{
+                        filter: 'drop-shadow(0 0 8px rgba(168,85,247,0.8)) drop-shadow(0 0 12px rgba(236,72,153,0.4))'
+                      }}>🔮</span>
+                <span className="text-xl font-bold hidden md:inline bg-gradient-to-r from-purple-200 via-pink-200 to-cyan-200 bg-clip-text text-transparent">
+                  Онлайн Таро
+                </span>
+              </a>
+
+              {/* Navigation */}
+              <nav className="flex items-center gap-6">
+                {/* Dropdown menu with toggle */}
+                <div className="relative">
+                  <button
+                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                    className="px-4 py-2 rounded-lg text-purple-100 hover:text-white transition-all duration-300 flex items-center gap-2 backdrop-blur-sm bg-white/5 hover:bg-white/10 border border-purple-400/30 hover:border-purple-400/60"
+                    style={{
+                      boxShadow: isDropdownOpen ? '0 0 20px rgba(168,85,247,0.6)' : '0 0 10px rgba(168,85,247,0.3)'
+                    }}
+                  >
+                    <span className="font-semibold">Розклади</span>
+                    <span className={`text-xs transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`}>▼</span>
+                  </button>
+
+                  {/* Dropdown content with animation */}
+                  {isDropdownOpen && (
+                    <div className="absolute top-full right-0 mt-2 min-w-[300px] backdrop-blur-xl bg-gradient-to-br from-indigo-950/98 via-purple-950/98 to-pink-950/98 border-2 border-transparent rounded-2xl overflow-hidden animate-fadeIn"
+                         style={{
+                           borderImage: 'linear-gradient(135deg, rgba(168,85,247,0.6), rgba(236,72,153,0.6)) 1',
+                           boxShadow: '0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(168,85,247,0.4), inset 0 1px 0 rgba(255,255,255,0.1)',
+                           animation: 'fadeIn 0.3s ease-out'
+                         }}>
+                      <div className="px-5 py-4 border-b border-purple-400/30 bg-gradient-to-r from-purple-500/20 to-pink-500/20">
+                        <p className="text-purple-200 text-sm font-bold flex items-center gap-2">
+                          <span>✨</span>
+                          <span>Категорії розкладів</span>
+                        </p>
+                      </div>
+                      <div className="py-2">
+                        <a href="/#rozklady-classic" className="block px-5 py-3 text-purple-100 hover:bg-purple-400/30 hover:pl-8 transition-all duration-200 border-b border-purple-400/10 hover:border-purple-400/20">
+                          🌟 Класичні (7)
+                        </a>
+                        <a href="/#rozklady-quick" className="block px-5 py-3 text-purple-100 hover:bg-purple-400/30 hover:pl-8 transition-all duration-200 border-b border-purple-400/10 hover:border-purple-400/20">
+                          ⚡ Швидкі (3)
+                        </a>
+                        <a href="/#rozklady-love" className="block px-5 py-3 text-purple-100 hover:bg-purple-400/30 hover:pl-8 transition-all duration-200 border-b border-purple-400/10 hover:border-purple-400/20">
+                          ❤️ Любовні (2)
+                        </a>
+                        <a href="/#rozklady-career" className="block px-5 py-3 text-purple-100 hover:bg-purple-400/30 hover:pl-8 transition-all duration-200 border-b border-purple-400/10 hover:border-purple-400/20">
+                          💼 Кар'єра (2)
+                        </a>
+                        <a href="/#rozklady-spiritual" className="block px-5 py-3 text-purple-100 hover:bg-purple-400/30 hover:pl-8 transition-all duration-200 border-b border-purple-400/10 hover:border-purple-400/20">
+                          🔮 Духовні (3)
+                        </a>
+                        <a href="/#rozklady-forecast" className="block px-5 py-3 text-purple-100 hover:bg-purple-400/30 hover:pl-8 transition-all duration-200 border-b border-purple-400/10 hover:border-purple-400/20">
+                          📅 Прогнози (4)
+                        </a>
+                        <a href="/#rozklady-special" className="block px-5 py-3 text-purple-100 hover:bg-purple-400/30 hover:pl-8 transition-all duration-200">
+                          🎯 Спеціальні (5)
+                        </a>
+                      </div>
+                    </div>
+                  )}
                 </div>
-              </div>
-            </nav>
+              </nav>
+            </div>
           </div>
         </div>
       </header>
