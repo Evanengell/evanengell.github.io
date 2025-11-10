@@ -27,14 +27,19 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build site
+      - name: Build and validate
         run: |
           echo "🔨 Building and validating..."
           npm run build
 
-          # Validate build output
+          # Validate that build works (but we won't commit the artifacts)
+          if [ ! -f "dist/index.html" ]; then
+            echo "❌ ERROR: Build failed - dist/index.html not found!"
+            exit 1
+          fi
+
           if [ ! -f "index.html" ]; then
-            echo "❌ ERROR: Build failed - index.html not found!"
+            echo "❌ ERROR: Build failed - root index.html not found!"
             exit 1
           fi
 
@@ -43,9 +48,13 @@ jobs:
             exit 1
           fi
 
-          echo "✅ Build and validation successful"
+          echo "✅ Build validation successful"
           echo "📊 Built files:"
-          ls -lh assets/index-*.js assets/index-*.css 2>/dev/null || echo "Assets not found in expected location"
+          ls -lh dist/assets/index-*.js dist/assets/index-*.css 2>/dev/null || true
+          ls -lh assets/index-*.js assets/index-*.css 2>/dev/null || true
+          echo ""
+          echo "ℹ️  Note: Build artifacts are NOT committed to master"
+          echo "ℹ️  deploy.yml will rebuild from source on master"
 
       - name: Auto-merge to master
         if: success()
