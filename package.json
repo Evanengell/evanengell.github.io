@@ -1,6 +1,6 @@
 {
   "name": "digital-tarot",
-  "version": "5.2.0",
+  "version": "5.2.1",
   "type": "module",
   "scripts": {
     "dev": "node build.js && python3 -m http.server 8080 --directory .",
