@@ -28,20 +28,73 @@ jobs:
         run: npm ci
 
       - name: Build site
-        run: npm run build
+        run: |
+          echo "🔨 Building and validating..."
+          npm run build
+
+          # Validate build output
+          if [ ! -f "index.html" ]; then
+            echo "❌ ERROR: Build failed - index.html not found!"
+            exit 1
+          fi
+
+          if ! grep -q "index-.*\.js" index.html; then
+            echo "❌ ERROR: Build failed - no hashed assets in index.html!"
+            exit 1
+          fi
+
+          echo "✅ Build and validation successful"
+          echo "📊 Built files:"
+          ls -lh assets/index-*.js assets/index-*.css 2>/dev/null || echo "Assets not found in expected location"
 
       - name: Auto-merge to master
         if: success()
         run: |
+          echo "🚀 Starting auto-merge to master..."
+          echo "📅 Merge time: $(date '+%Y-%m-%d %H:%M:%S UTC')"
+          echo "🌿 Source branch: ${{ github.ref_name }}"
+
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
           # Fetch latest master
+          echo "📥 Fetching latest master..."
           git fetch origin master
 
-          # Try to merge current branch into master
+          # Check if merge is possible
+          echo "🔍 Checking merge feasibility..."
           git checkout master
-          git merge ${{ github.ref_name }} --no-edit -m "🚀 Auto-deploy: Merge ${{ github.ref_name }}"
 
-          # Push to master
-          git push origin master
+          if git merge --no-commit --no-ff ${{ github.ref_name }} 2>&1; then
+            echo "✅ Merge check passed, proceeding with actual merge..."
+            git merge --abort 2>/dev/null || true
+            git merge ${{ github.ref_name }} --no-edit -m "🚀 Auto-deploy: Merge ${{ github.ref_name }}"
+          else
+            echo "❌ ERROR: Merge conflict detected!"
+            echo "Please resolve conflicts manually and merge to master."
+            exit 1
+          fi
+
+          # Push to master with retry logic
+          echo "📤 Pushing to master..."
+          max_retries=4
+          retry_count=0
+          retry_delay=2
+
+          while [ $retry_count -lt $max_retries ]; do
+            if git push origin master; then
+              echo "✅ Successfully pushed to master!"
+              echo "🎉 Deploy pipeline will start automatically"
+              exit 0
+            else
+              retry_count=$((retry_count + 1))
+              if [ $retry_count -lt $max_retries ]; then
+                echo "⚠️  Push failed, retrying in ${retry_delay}s... (attempt $retry_count/$max_retries)"
+                sleep $retry_delay
+                retry_delay=$((retry_delay * 2))
+              fi
+            fi
+          done
+
+          echo "❌ ERROR: Failed to push after $max_retries attempts"
+          exit 1

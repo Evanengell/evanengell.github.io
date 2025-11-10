@@ -34,11 +34,38 @@ jobs:
         run: npm ci
 
       - name: Build site
-        run: npm run build
+        run: |
+          echo "🔨 Building application..."
+          npm run build
+
+          echo "✅ Build completed. Checking output..."
+          if [ ! -f "dist/index.html" ]; then
+            echo "❌ ERROR: dist/index.html not found!"
+            exit 1
+          fi
+
+          if [ ! -f "index.html" ]; then
+            echo "❌ ERROR: index.html not found in root!"
+            exit 1
+          fi
+
+          # Validate that index.html has hashed assets
+          if ! grep -q "index-.*\.js" index.html; then
+            echo "❌ ERROR: index.html doesn't contain hashed JS assets!"
+            echo "Content of index.html:"
+            grep "script" index.html | head -5
+            exit 1
+          fi
+
+          echo "✅ Build validation passed"
+          echo "📊 Build info:"
+          ls -lh dist/assets/index-*.js dist/assets/index-*.css
+          ls -lh assets/index-*.js assets/index-*.css
 
       - name: Prepare deployment
         run: |
           echo "📦 Preparing deployment files..."
+          echo "🕐 Deploy time: $(date '+%Y-%m-%d %H:%M:%S UTC')"
           mkdir -p _site
 
           echo "Copying index.html..."
@@ -64,12 +91,21 @@ jobs:
           cp robots.txt _site/ || true
           cp sitemap.xml _site/ || true
 
-          echo "✅ Files in _site:"
+          echo ""
+          echo "✅ Deployment package ready!"
+          echo "📊 Package contents:"
           ls -lah _site/
-          echo "✅ Assets in _site:"
+          echo ""
+          echo "📦 Assets:"
           ls -lah _site/assets/
-          echo "✅ Checking index.html content:"
-          grep -E "(index-.*\.js|index-.*\.css)" _site/index.html || echo "⚠️  No assets found in index.html!"
+          echo ""
+          echo "✅ Verifying index.html has correct assets..."
+          if grep -E "(index-.*\.js|index-.*\.css)" _site/index.html; then
+            echo "✅ SUCCESS: Hashed assets found in index.html"
+          else
+            echo "❌ ERROR: No hashed assets in index.html!"
+            exit 1
+          fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
