@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - 'claude/**'  # 🚀 Автодеплой з усіх Claude гілок!
   workflow_dispatch:
 
 permissions:
