@@ -3,7 +3,8 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - master  # ✅ Деплой ТІЛЬКИ з master (auto-merge.yml мерджить claude/* автоматично)
+      - master        # ✅ Деплой з master (production)
+      - 'claude/**'   # ✅ Деплой з claude/* (розробка) - останній пуш виграє
   workflow_dispatch:
 
 permissions:
@@ -12,8 +13,8 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
-  cancel-in-progress: false
+  group: "pages"  # Одна група для всіх гілок - тільки один деплой одночасно
+  cancel-in-progress: true  # Скасувати старі деплої, якщо прийшов новий
 
 jobs:
   deploy:
