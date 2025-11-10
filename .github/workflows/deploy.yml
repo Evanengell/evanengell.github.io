@@ -3,8 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - master
-      - 'claude/**'  # 🚀 Автодеплой з усіх Claude гілок!
+      - master  # ✅ Деплой ТІЛЬКИ з master (auto-merge.yml мерджить claude/* автоматично)
   workflow_dispatch:
 
 permissions:
