@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f0c29;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#302b63;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#24243e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#a78bfa;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="eyeGlow" cx="50%" cy="50%">
+      <stop offset="0%" style="stop-color:#fde047;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#fbbf24;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:1" />
+    </radialGradient>
+    <radialGradient id="spotlight" cx="30%" cy="40%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#302b63;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#mainGradient)"/>
+
+  <!-- Spotlight effect -->
+  <ellipse cx="400" cy="250" rx="500" ry="400" fill="url(#spotlight)"/>
+
+  <!-- Decorative stars -->
+  <g opacity="0.6" fill="#fbbf24">
+    <circle cx="100" cy="80" r="3"/>
+    <circle cx="1100" cy="100" r="4"/>
+    <circle cx="950" cy="550" r="3"/>
+    <circle cx="200" cy="500" r="2"/>
+    <circle cx="150" cy="200" r="2"/>
+    <circle cx="1050" cy="300" r="3"/>
+    <circle cx="80" cy="350" r="2"/>
+    <circle cx="1120" cy="450" r="2"/>
+  </g>
+
+  <!-- Sparkle effects -->
+  <g fill="#ffffff" opacity="0.5">
+    <path d="M 100 80 l 2 -8 l 2 8 l 8 2 l -8 2 l -2 8 l -2 -8 l -8 -2 z"/>
+    <path d="M 1100 100 l 2 -8 l 2 8 l 8 2 l -8 2 l -2 8 l -2 -8 l -8 -2 z"/>
+    <path d="M 950 550 l 2 -6 l 2 6 l 6 2 l -6 2 l -2 6 l -2 -6 l -6 -2 z"/>
+    <path d="M 150 200 l 1.5 -5 l 1.5 5 l 5 1.5 l -5 1.5 l -1.5 5 l -1.5 -5 l -5 -1.5 z"/>
+  </g>
+
+  <!-- Left: Mystical crystal with eye -->
+  <g transform="translate(200, 315)">
+    <!-- Crystal -->
+    <path d="M 0 -150 L 80 -30 L 0 120 L -80 -30 Z"
+          fill="url(#accentGradient)"
+          opacity="0.4"
+          stroke="#ddd6fe"
+          stroke-width="3"/>
+
+    <!-- Eye -->
+    <ellipse cx="0" cy="-20" rx="60" ry="40" fill="#ffffff" opacity="0.95"/>
+    <ellipse cx="0" cy="-20" rx="28" ry="38" fill="url(#eyeGlow)"/>
+    <circle cx="0" cy="-20" r="15" fill="#1f2937"/>
+    <circle cx="4" cy="-24" r="5" fill="#ffffff" opacity="0.9"/>
+
+    <!-- Mystical arcs -->
+    <path d="M -40 -35 Q -48 -20 -40 -5" stroke="#a78bfa" stroke-width="2.5" fill="none" opacity="0.6"/>
+    <path d="M 40 -35 Q 48 -20 40 -5" stroke="#a78bfa" stroke-width="2.5" fill="none" opacity="0.6"/>
+  </g>
+
+  <!-- Main text area -->
+  <g>
+    <!-- Title with glow -->
+    <text x="600" y="200"
+          font-family="Arial, sans-serif"
+          font-size="72"
+          font-weight="bold"
+          fill="#fbbf24"
+          text-anchor="middle"
+          stroke="#fde047"
+          stroke-width="1">
+      ✨ Онлайн Таро ✨
+    </text>
+
+    <!-- Subtitle 1 -->
+    <text x="600" y="280"
+          font-family="Arial, sans-serif"
+          font-size="42"
+          font-weight="600"
+          fill="#ffffff"
+          text-anchor="middle">
+      🔮 26 розкладів Таро
+    </text>
+
+    <!-- Subtitle 2 -->
+    <text x="600" y="340"
+          font-family="Arial, sans-serif"
+          font-size="36"
+          font-weight="500"
+          fill="#c4b5fd"
+          text-anchor="middle">
+      Безкоштовно • Без реєстрації
+    </text>
+
+    <!-- Features -->
+    <g font-family="Arial, sans-serif" font-size="28" fill="#e9d5ff">
+      <text x="600" y="410" text-anchor="middle">🎴 78 карт з описами</text>
+      <text x="600" y="455" text-anchor="middle">⚡ Професійна система випадковості</text>
+    </g>
+
+    <!-- Domain -->
+    <text x="600" y="560"
+          font-family="Arial, sans-serif"
+          font-size="32"
+          font-weight="600"
+          fill="#8b5cf6"
+          text-anchor="middle"
+          opacity="0.9">
+      tarot.net.ua
+    </text>
+  </g>
+
+  <!-- Right decorative element: Small cards -->
+  <g transform="translate(950, 315)" opacity="0.6">
+    <!-- Card 1 -->
+    <rect x="-25" y="-80" width="50" height="80" rx="4"
+          fill="url(#accentGradient)"
+          stroke="#ddd6fe"
+          stroke-width="2"/>
+    <text x="0" y="-30"
+          font-family="serif"
+          font-size="32"
+          fill="#fbbf24"
+          text-anchor="middle">★</text>
+
+    <!-- Card 2 (rotated) -->
+    <g transform="rotate(15)">
+      <rect x="-25" y="10" width="50" height="80" rx="4"
+            fill="url(#accentGradient)"
+            stroke="#ddd6fe"
+            stroke-width="2"/>
+      <text x="0" y="60"
+            font-family="serif"
+            font-size="32"
+            fill="#fbbf24"
+            text-anchor="middle">☽</text>
+    </g>
+  </g>
+
+  <!-- Bottom decorative line -->
+  <line x1="300" y1="590" x2="900" y2="590"
+        stroke="#8b5cf6"
+        stroke-width="2"
+        opacity="0.4"
+        stroke-dasharray="5,5"/>
+</svg>

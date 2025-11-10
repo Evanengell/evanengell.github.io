@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#a78bfa;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="eyeCenter" cx="50%" cy="50%">
+      <stop offset="0%" style="stop-color:#fde047;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#fbbf24;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:1" />
+    </radialGradient>
+    <linearGradient id="crystalShine" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff;stop-opacity:0.4" />
+      <stop offset="50%" style="stop-color:#fff;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#fff;stop-opacity:0.3" />
+    </linearGradient>
+    <radialGradient id="glowEffect" cx="50%" cy="50%">
+      <stop offset="0%" style="stop-color:#a78bfa;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#667eea;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="512" height="512" fill="url(#bgGradient)" rx="20"/>
+
+  <!-- Outer glow -->
+  <circle cx="256" cy="256" r="200" fill="url(#glowEffect)" opacity="0.5"/>
+
+  <!-- Main crystal/diamond shape -->
+  <path d="M 256 80 L 370 220 L 256 400 L 142 220 Z"
+        fill="url(#crystalShine)"
+        stroke="#ddd6fe"
+        stroke-width="4"
+        opacity="0.6"/>
+  <path d="M 256 80 L 370 220 L 256 400 L 142 220 Z"
+        fill="none"
+        stroke="#e9d5ff"
+        stroke-width="3"/>
+
+  <!-- Inner crystal facets -->
+  <path d="M 256 80 L 256 240" stroke="#f3e8ff" stroke-width="2" opacity="0.4"/>
+  <path d="M 142 220 L 256 240 L 370 220" stroke="#f3e8ff" stroke-width="2" opacity="0.4"/>
+  <path d="M 256 240 L 256 400" stroke="#ddd6fe" stroke-width="2" opacity="0.3"/>
+
+  <!-- Mystical eye -->
+  <ellipse cx="256" cy="240" rx="90" ry="60" fill="#ffffff" opacity="0.98"/>
+  <ellipse cx="256" cy="240" rx="90" ry="60" fill="none" stroke="#c4b5fd" stroke-width="2"/>
+
+  <!-- Eye iris -->
+  <ellipse cx="256" cy="240" rx="40" ry="55" fill="url(#eyeCenter)"/>
+
+  <!-- Eye pupil -->
+  <circle cx="256" cy="240" r="20" fill="#1f2937"/>
+
+  <!-- Eye reflection -->
+  <circle cx="264" cy="230" r="8" fill="#ffffff" opacity="0.9"/>
+  <circle cx="250" cy="235" r="4" fill="#ffffff" opacity="0.7"/>
+
+  <!-- Decorative stars around -->
+  <g opacity="0.9">
+    <circle cx="140" cy="140" r="8" fill="#fbbf24"/>
+    <circle cx="372" cy="140" r="8" fill="#fbbf24"/>
+    <circle cx="420" cy="256" r="6" fill="#fde047"/>
+    <circle cx="92" cy="256" r="6" fill="#fde047"/>
+    <circle cx="140" cy="372" r="6" fill="#fcd34d"/>
+    <circle cx="372" cy="372" r="6" fill="#fcd34d"/>
+  </g>
+
+  <!-- Sparkles -->
+  <g fill="#ffffff" opacity="0.8">
+    <path d="M 140 140 l 3 -10 l 3 10 l 10 3 l -10 3 l -3 10 l -3 -10 l -10 -3 z"/>
+    <path d="M 372 140 l 3 -10 l 3 10 l 10 3 l -10 3 l -3 10 l -3 -10 l -10 -3 z"/>
+    <path d="M 420 256 l 2 -7 l 2 7 l 7 2 l -7 2 l -2 7 l -2 -7 l -7 -2 z"/>
+    <path d="M 92 256 l 2 -7 l 2 7 l 7 2 l -7 2 l -2 7 l -2 -7 l -7 -2 z"/>
+  </g>
+
+  <!-- Mystical arcs around eye -->
+  <path d="M 190 215 Q 180 230 190 245"
+        stroke="#8b5cf6"
+        stroke-width="3"
+        fill="none"
+        opacity="0.7"
+        stroke-linecap="round"/>
+  <path d="M 322 215 Q 332 230 322 245"
+        stroke="#8b5cf6"
+        stroke-width="3"
+        fill="none"
+        opacity="0.7"
+        stroke-linecap="round"/>
+
+  <!-- Bottom mystical symbol -->
+  <circle cx="256" cy="360" r="12" fill="#fbbf24" opacity="0.9"/>
+  <circle cx="256" cy="360" r="18" fill="none" stroke="#fbbf24" stroke-width="2" opacity="0.6"/>
+  <circle cx="256" cy="360" r="24" fill="none" stroke="#fcd34d" stroke-width="1.5" opacity="0.4"/>
+
+  <!-- Subtle corner decorations -->
+  <g opacity="0.3" fill="#ddd6fe">
+    <circle cx="50" cy="50" r="3"/>
+    <circle cx="462" cy="50" r="3"/>
+    <circle cx="50" cy="462" r="3"/>
+    <circle cx="462" cy="462" r="3"/>
+  </g>
+</svg>
