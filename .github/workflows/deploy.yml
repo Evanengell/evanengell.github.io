@@ -50,9 +50,12 @@ jobs:
           echo "Copying rozklady directory..."
           cp -r rozklady _site/
 
-          echo "Copying favicon files..."
+          echo "Copying favicon and logo files..."
           cp favicon*.* _site/ || true
+          cp logo.svg _site/ || true
+          cp og-image.svg _site/ || true
           cp apple-touch-icon.png _site/ || true
+          cp web-app-manifest-*.png _site/ || true
 
           echo "Copying other files..."
           cp CNAME _site/ || true
