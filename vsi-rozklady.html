@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Primary Meta Tags -->
+    <title>Всі 26 розкладів Таро | Гностична Бібліотека Знань</title>
+    <meta name="title" content="Всі 26 розкладів Таро | Гностична Бібліотека Знань" />
+    <meta name="description" content="Повний архів 26 розкладів Таро з гностичними тлумаченнями. Від простої карти до складних систем пізнання. Кожен розклад - ключ до таємного знання." />
+    <meta name="keywords" content="всі розклади таро, бібліотека таро, гностичне таро, архів розкладів, таро онлайн" />
+    <link rel="canonical" href="https://tarot.net.ua/vsi-rozklady.html" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://tarot.net.ua/vsi-rozklady.html" />
+    <meta property="og:title" content="Всі 26 розкладів Таро | Гностична Бібліотека Знань" />
+    <meta property="og:description" content="Повний архів 26 розкладів Таро з гностичними тлумаченнями" />
+    <meta property="og:image" content="https://tarot.net.ua/og-image.svg" />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+        background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%);
+        min-height: 100vh;
+        color: #e0e7ff;
+        overflow-x: hidden;
+        position: relative;
+      }
+
+      /* Космічний фон зі зірками */
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image:
+          radial-gradient(2px 2px at 20% 30%, white, transparent),
+          radial-gradient(2px 2px at 60% 70%, white, transparent),
+          radial-gradient(1px 1px at 50% 50%, white, transparent),
+          radial-gradient(1px 1px at 80% 10%, white, transparent),
+          radial-gradient(2px 2px at 90% 60%, white, transparent),
+          radial-gradient(1px 1px at 33% 80%, white, transparent),
+          radial-gradient(1px 1px at 70% 20%, white, transparent);
+        background-size: 200% 200%;
+        background-position: 0% 0%;
+        animation: sparkle 8s ease-in-out infinite;
+        pointer-events: none;
+        opacity: 0.6;
+        z-index: 0;
+      }
+
+      @keyframes sparkle {
+        0%, 100% { opacity: 0.6; transform: scale(1); }
+        50% { opacity: 0.9; transform: scale(1.1); }
+      }
+
+      .container {
+        position: relative;
+        z-index: 1;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 40px 20px;
+      }
+
+      /* Header з гностичною символікою */
+      header {
+        text-align: center;
+        margin-bottom: 60px;
+        position: relative;
+      }
+
+      .header-symbol {
+        font-size: 4rem;
+        margin-bottom: 20px;
+        filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.6));
+        animation: pulse 3s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.6)); }
+        50% { transform: scale(1.05); filter: drop-shadow(0 0 30px rgba(236, 72, 153, 0.8)); }
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #c084fc, #ec4899, #8b5cf6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 15px;
+        letter-spacing: -0.5px;
+      }
+
+      .subtitle {
+        font-size: 1.1rem;
+        color: #a78bfa;
+        font-style: italic;
+        margin-bottom: 10px;
+      }
+
+      .description {
+        max-width: 700px;
+        margin: 0 auto;
+        color: #c4b5fd;
+        line-height: 1.8;
+        font-size: 1.05rem;
+      }
+
+      /* Grid розкладів */
+      .spreads-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 25px;
+        margin-bottom: 60px;
+      }
+
+      /* Картка розкладу з glassmorphism */
+      .spread-card {
+        background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.1));
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(139, 92, 246, 0.3);
+        border-radius: 16px;
+        padding: 25px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        text-decoration: none;
+        display: block;
+        box-shadow: 0 8px 32px 0 rgba(139, 92, 246, 0.1);
+      }
+
+      .spread-card::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          45deg,
+          transparent,
+          rgba(236, 72, 153, 0.1),
+          transparent
+        );
+        transform: rotate(45deg);
+        transition: 0.6s;
+      }
+
+      .spread-card:hover::before {
+        left: 100%;
+      }
+
+      .spread-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(236, 72, 153, 0.6);
+        box-shadow: 0 12px 48px 0 rgba(236, 72, 153, 0.3);
+      }
+
+      .spread-icon {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+        display: block;
+        filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.5));
+      }
+
+      .spread-name {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: #e0e7ff;
+        margin-bottom: 8px;
+      }
+
+      .spread-hint {
+        font-size: 0.9rem;
+        color: #a78bfa;
+        font-style: italic;
+      }
+
+      /* Back button */
+      .back-button {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.15));
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(139, 92, 246, 0.4);
+        border-radius: 12px;
+        padding: 12px 24px;
+        color: #e0e7ff;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 4px 16px rgba(139, 92, 246, 0.2);
+      }
+
+      .back-button:hover {
+        background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(236, 72, 153, 0.25));
+        transform: translateX(-3px);
+        box-shadow: 0 6px 24px rgba(236, 72, 153, 0.3);
+      }
+
+      /* Гностичний футер */
+      footer {
+        text-align: center;
+        padding: 40px 20px;
+        border-top: 1px solid rgba(139, 92, 246, 0.3);
+        margin-top: 60px;
+      }
+
+      .footer-quote {
+        font-size: 1.1rem;
+        font-style: italic;
+        color: #c4b5fd;
+        max-width: 600px;
+        margin: 0 auto 20px;
+        line-height: 1.8;
+      }
+
+      .footer-text {
+        color: #a78bfa;
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 2rem;
+        }
+
+        .spreads-grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .back-button {
+          position: relative;
+          top: 0;
+          left: 0;
+          margin-bottom: 20px;
+          display: inline-flex;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a href="/" class="back-button">
+      <span>←</span>
+      <span>На головну</span>
+    </a>
+
+    <div class="container">
+      <header>
+        <div class="header-symbol">🔮</div>
+        <h1>Гностична Бібліотека Розкладів</h1>
+        <p class="subtitle">Архів Таємного Знання</p>
+        <p class="description">
+          26 ключів до пізнання прихованого. Кожен розклад — це врата між світами,
+          інструмент діалогу з архетипами колективного несвідомого. Оберіть свій шлях у лабіринті символів.
+        </p>
+      </header>
+
+      <div class="spreads-grid">
+        <!-- Одна карта -->
+        <a href="/rozklady/odna-karta.html" class="spread-card">
+          <span class="spread-icon">🌟</span>
+          <div class="spread-name">Одна карта</div>
+          <div class="spread-hint">Найпростіший ключ до відповіді</div>
+        </a>
+
+        <!-- Три карти -->
+        <a href="/rozklady/try-karty.html" class="spread-card">
+          <span class="spread-icon">🔱</span>
+          <div class="spread-name">Три карти</div>
+          <div class="spread-hint">Минуле • Теперішнє • Майбутнє</div>
+        </a>
+
+        <!-- Так чи Ні -->
+        <a href="/rozklady/tak-chy-ni.html" class="spread-card">
+          <span class="spread-icon">⚖️</span>
+          <div class="spread-name">Так чи Ні</div>
+          <div class="spread-hint">Бінарна відповідь Всесвіту</div>
+        </a>
+
+        <!-- Кельтський хрест -->
+        <a href="/rozklady/keltskyi-khrest.html" class="spread-card">
+          <span class="spread-icon">✞</span>
+          <div class="spread-name">Кельтський хрест</div>
+          <div class="spread-hint">Класичний архетипний патерн</div>
+        </a>
+
+        <!-- Простий хрест -->
+        <a href="/rozklady/prostyi-khrest.html" class="spread-card">
+          <span class="spread-icon">✚</span>
+          <div class="spread-name">Простий хрест</div>
+          <div class="spread-hint">Чотири сторони світу</div>
+        </a>
+
+        <!-- Підкова -->
+        <a href="/rozklady/pidkova.html" class="spread-card">
+          <span class="spread-icon">🧲</span>
+          <div class="spread-name">Підкова</div>
+          <div class="spread-hint">Магніт долі й удачі</div>
+        </a>
+
+        <!-- Любовний трикутник -->
+        <a href="/rozklady/lyubovnyi-trykutnyk.html" class="spread-card">
+          <span class="spread-icon">💕</span>
+          <div class="spread-name">Любовний трикутник</div>
+          <div class="spread-hint">Геометрія почуттів</div>
+        </a>
+
+        <!-- Стосунки -->
+        <a href="/rozklady/stosunky.html" class="spread-card">
+          <span class="spread-icon">💞</span>
+          <div class="spread-name">Стосунки</div>
+          <div class="spread-hint">Діалог двох душ</div>
+        </a>
+
+        <!-- Робота та кар'єра -->
+        <a href="/rozklady/robota-ta-karyera.html" class="spread-card">
+          <span class="spread-icon">💼</span>
+          <div class="spread-name">Робота та кар'єра</div>
+          <div class="spread-hint">Шлях професійного покликання</div>
+        </a>
+
+        <!-- Фінанси та гроші -->
+        <a href="/rozklady/finansy-ta-hroshi.html" class="spread-card">
+          <span class="spread-icon">💰</span>
+          <div class="spread-name">Фінанси та гроші</div>
+          <div class="spread-hint">Потік матеріального благополуччя</div>
+        </a>
+
+        <!-- Здоров'я -->
+        <a href="/rozklady/zdorovya.html" class="spread-card">
+          <span class="spread-icon">🌿</span>
+          <div class="spread-name">Здоров'я</div>
+          <div class="spread-hint">Баланс тіла й духу</div>
+        </a>
+
+        <!-- Розум-Тіло-Дух -->
+        <a href="/rozklady/rozum-tilo-dukh.html" class="spread-card">
+          <span class="spread-icon">🜛</span>
+          <div class="spread-name">Розум • Тіло • Дух</div>
+          <div class="spread-hint">Трикутник цілісності</div>
+        </a>
+
+        <!-- Духовний розвиток -->
+        <a href="/rozklady/dukhovnyi-rozvytok.html" class="spread-card">
+          <span class="spread-icon">🕉️</span>
+          <div class="spread-name">Духовний розвиток</div>
+          <div class="spread-hint">Вертикаль еволюції свідомості</div>
+        </a>
+
+        <!-- Сім чакр -->
+        <a href="/rozklady/sim-chakr.html" class="spread-card">
+          <span class="spread-icon">🌈</span>
+          <div class="spread-name">Сім чакр</div>
+          <div class="spread-hint">Енергетична анатомія буття</div>
+        </a>
+
+        <!-- Прийняття рішення -->
+        <a href="/rozklady/pryiniattia-rishennia.html" class="spread-card">
+          <span class="spread-icon">🎯</span>
+          <div class="spread-name">Прийняття рішення</div>
+          <div class="spread-hint">Перехрестя вибору</div>
+        </a>
+
+        <!-- Детектив -->
+        <a href="/rozklady/detektyv.html" class="spread-card">
+          <span class="spread-icon">🔍</span>
+          <div class="spread-name">Детектив</div>
+          <div class="spread-hint">Розслідування невідомого</div>
+        </a>
+
+        <!-- Розкриття таємниці -->
+        <a href="/rozklady/rozkryttia-taiemnytsi.html" class="spread-card">
+          <span class="spread-icon">🗝️</span>
+          <div class="spread-name">Розкриття таємниці</div>
+          <div class="spread-hint">Ключ до прихованого</div>
+        </a>
+
+        <!-- Тиждень попереду -->
+        <a href="/rozklady/tyzhden-poperedu.html" class="spread-card">
+          <span class="spread-icon">📅</span>
+          <div class="spread-name">Тиждень попереду</div>
+          <div class="spread-hint">Сім днів майбутнього</div>
+        </a>
+
+        <!-- Рік попереду -->
+        <a href="/rozklady/rik-poperedu.html" class="spread-card">
+          <span class="spread-icon">🎆</span>
+          <div class="spread-name">Рік попереду</div>
+          <div class="spread-hint">12 місяців пророцтва</div>
+        </a>
+
+        <!-- День народження -->
+        <a href="/rozklady/den-narodzhennya.html" class="spread-card">
+          <span class="spread-icon">🎂</span>
+          <div class="spread-name">День народження</div>
+          <div class="spread-hint">Особистий сонячний цикл</div>
+        </a>
+
+        <!-- Астрологічне коло -->
+        <a href="/rozklady/astrolohichne-kolo.html" class="spread-card">
+          <span class="spread-icon">♈</span>
+          <div class="spread-name">Астрологічне коло</div>
+          <div class="spread-hint">12 домів космічної матриці</div>
+        </a>
+
+        <!-- Дерево життя -->
+        <a href="/rozklady/derevo-zhyttya.html" class="spread-card">
+          <span class="spread-icon">🌳</span>
+          <div class="spread-name">Дерево життя</div>
+          <div class="spread-hint">Каббалістичний патерн буття</div>
+        </a>
+
+        <!-- Пентаграма -->
+        <a href="/rozklady/pentahrama.html" class="spread-card">
+          <span class="spread-icon">⛤</span>
+          <div class="spread-name">Пентаграма</div>
+          <div class="spread-hint">П'ять елементів творіння</div>
+        </a>
+
+        <!-- Тетрактіс -->
+        <a href="/rozklady/tetraktys.html" class="spread-card">
+          <span class="spread-icon">◬</span>
+          <div class="spread-name">Тетрактіс</div>
+          <div class="spread-hint">Піфагорейська піраміда знання</div>
+        </a>
+
+        <!-- Golden Dawn -->
+        <a href="/rozklady/golden-dawn.html" class="spread-card">
+          <span class="spread-icon">🌅</span>
+          <div class="spread-name">Golden Dawn</div>
+          <div class="spread-hint">Орден Золотого Світанку</div>
+        </a>
+
+        <!-- Циганський -->
+        <a href="/rozklady/tsyhanskyi.html" class="spread-card">
+          <span class="spread-icon">🔮</span>
+          <div class="spread-name">Romany</div>
+          <div class="spread-hint">Таємниця кочівників</div>
+        </a>
+      </div>
+
+      <footer>
+        <p class="footer-quote">
+          "Той, хто знає символи, володіє ключами від усіх дверей."
+        </p>
+        <p class="footer-text">
+          26 розкладів • Гностичне тлумачення • Безкоштовно
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>

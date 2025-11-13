@@ -454,5 +454,65 @@
 
     <!-- Build-generated JavaScript - loaded after DOM -->
     <script type="module" crossorigin src="./assets/index-ec91b143.js"></script>
+
+    <!-- Додати посилання "більше" в dropdown меню -->
+    <script>
+      // Чекаємо поки React відрендерить меню
+      setTimeout(() => {
+        const observer = new MutationObserver(() => {
+          // Знаходимо всі dropdown меню категорій
+          const dropdowns = document.querySelectorAll('[class*="dropdown"], [class*="menu"]');
+
+          dropdowns.forEach(dropdown => {
+            // Якщо вже додано посилання, пропускаємо
+            if (dropdown.querySelector('.more-link')) return;
+
+            // Перевіряємо чи це категорія розкладів (має посилання на розклади)
+            const hasSpreadLinks = dropdown.querySelector('a[href*="/rozklady/"]');
+            if (!hasSpreadLinks) return;
+
+            // Створюємо посилання "більше"
+            const moreLink = document.createElement('a');
+            moreLink.href = '/vsi-rozklady.html';
+            moreLink.className = 'more-link';
+            moreLink.textContent = 'більше →';
+            moreLink.style.cssText = `
+              display: block;
+              margin-top: 12px;
+              padding-top: 12px;
+              border-top: 1px solid rgba(139, 92, 246, 0.2);
+              color: #a78bfa;
+              text-align: center;
+              font-size: 0.9em;
+              font-style: italic;
+              opacity: 0.7;
+              transition: opacity 0.2s ease;
+              text-decoration: none;
+            `;
+
+            moreLink.addEventListener('mouseover', () => {
+              moreLink.style.opacity = '1';
+              moreLink.style.color = '#c084fc';
+            });
+
+            moreLink.addEventListener('mouseout', () => {
+              moreLink.style.opacity = '0.7';
+              moreLink.style.color = '#a78bfa';
+            });
+
+            dropdown.appendChild(moreLink);
+          });
+        });
+
+        // Спостерігаємо за змінами в DOM
+        observer.observe(document.body, {
+          childList: true,
+          subtree: true
+        });
+
+        // Також спробуємо додати одразу
+        setTimeout(() => observer.disconnect(), 5000);
+      }, 1000);
+    </script>
   </body>
 </html>
