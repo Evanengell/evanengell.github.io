@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - master  # Деплой з master (готовий статичний сайт без білду)
+      - master  # Деплой з master (готовий сайт без білду)
   workflow_dispatch:
 
 permissions:
@@ -42,17 +42,6 @@ jobs:
           echo "✅ Deployment package ready!"
           echo "📊 Package contents:"
           ls -lah _site/ | head -20
-          echo ""
-          echo "📄 Checking index.html..."
-          if [ -f "_site/index.html" ]; then
-            echo "✅ index.html present"
-          else
-            echo "❌ ERROR: index.html not found!"
-            exit 1
-          fi
-          echo ""
-          echo "📁 Checking assets..."
-          ls -lah _site/assets/ | head -10
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
