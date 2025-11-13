@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - v5.2.1  # Деплой з готового бранчу (без білду)
+      - master  # Деплой з master (готовий сайт без білду)
   workflow_dispatch:
 
 permissions:
