@@ -455,69 +455,11 @@
     <!-- Build-generated JavaScript - loaded after DOM -->
     <script type="module" crossorigin src="./assets/index-47e1e67a.js"></script>
 
-    <!-- Додати посилання "більше" в dropdown меню -->
+    <!-- Dropdown "більше" - ВИМКНЕНО через баги -->
+    <!--
     <script>
-      function addMoreLinks() {
-        // Знаходимо всі div з посиланнями на розклади
-        const allDivs = document.querySelectorAll('div');
-
-        allDivs.forEach(div => {
-          // Пропускаємо якщо вже додали посилання
-          if (div.querySelector('.more-link-added')) return;
-
-          // Шукаємо посилання на розклади всередині
-          const spreadLinks = div.querySelectorAll('a[href*="/rozklady/"]');
-
-          // Якщо знайшли 3+ посилань на розклади, це dropdown категорії
-          if (spreadLinks.length >= 3) {
-            // Створюємо посилання "більше"
-            const moreLink = document.createElement('a');
-            moreLink.href = '/vsi-rozklady.html';
-            moreLink.className = 'more-link-added';
-            moreLink.textContent = '✨ більше (26 розкладів) →';
-            moreLink.style.cssText = `
-              display: block;
-              margin-top: 12px;
-              padding: 10px;
-              padding-top: 12px;
-              border-top: 1px solid rgba(139, 92, 246, 0.3);
-              color: #c084fc;
-              text-align: center;
-              font-size: 0.9em;
-              font-weight: 500;
-              opacity: 0.85;
-              transition: all 0.2s ease;
-              text-decoration: none;
-              background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.05));
-              border-radius: 8px;
-            `;
-
-            moreLink.addEventListener('mouseover', () => {
-              moreLink.style.opacity = '1';
-              moreLink.style.background = 'linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.1))';
-              moreLink.style.transform = 'translateX(3px)';
-            });
-
-            moreLink.addEventListener('mouseout', () => {
-              moreLink.style.opacity = '0.85';
-              moreLink.style.background = 'linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.05))';
-              moreLink.style.transform = 'translateX(0)';
-            });
-
-            // Додаємо в кінець div
-            div.appendChild(moreLink);
-          }
-        });
-      }
-
-      // Спробувати додати через 1 секунду (після React render)
-      setTimeout(addMoreLinks, 1000);
-
-      // Також спробувати через 2 секунди
-      setTimeout(addMoreLinks, 2000);
-
-      // І ще раз через 3 секунди для впевненості
-      setTimeout(addMoreLinks, 3000);
+      // Тимчасово вимкнено - треба знайти точніший селектор для dropdown
     </script>
+    -->
   </body>
 </html>
