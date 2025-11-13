@@ -455,25 +455,27 @@
     <!-- Build-generated JavaScript - loaded after DOM -->
     <script type="module" crossorigin src="./assets/index-47e1e67a.js"></script>
 
-    <!-- Додати посилання "більше" в dropdown меню -->
+    <!-- Додати посилання "більше" в dropdown меню (виправлено) -->
     <script>
-      function addMoreLinks() {
+      function addMoreLink() {
         // Знаходимо всі div з посиланнями на розклади
         const allDivs = document.querySelectorAll('div');
 
         allDivs.forEach(div => {
-          // Пропускаємо якщо вже додали посилання
-          if (div.querySelector('.more-link-added')) return;
+          // Пропускаємо якщо вже додали посилання (перевіряємо data-атрибут на самому div)
+          if (div.dataset.moreLinkAdded === 'true') return;
 
           // Шукаємо посилання на розклади всередині
           const spreadLinks = div.querySelectorAll('a[href*="/rozklady/"]');
 
           // Якщо знайшли 3+ посилань на розклади, це dropdown категорії
           if (spreadLinks.length >= 3) {
+            // Позначаємо div як оброблений
+            div.dataset.moreLinkAdded = 'true';
+
             // Створюємо посилання "більше"
             const moreLink = document.createElement('a');
             moreLink.href = '/vsi-rozklady.html';
-            moreLink.className = 'more-link-added';
             moreLink.textContent = '✨ більше (26 розкладів) →';
             moreLink.style.cssText = `
               display: block;
@@ -510,14 +512,8 @@
         });
       }
 
-      // Спробувати додати через 1 секунду (після React render)
-      setTimeout(addMoreLinks, 1000);
-
-      // Також спробувати через 2 секунди
-      setTimeout(addMoreLinks, 2000);
-
-      // І ще раз через 3 секунди для впевненості
-      setTimeout(addMoreLinks, 3000);
+      // Запускаємо один раз після завантаження React
+      setTimeout(addMoreLink, 1500);
     </script>
   </body>
 </html>
