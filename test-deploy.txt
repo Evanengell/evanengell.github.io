@@ -1,3 +1,0 @@
-Deploy Test - 2025-11-10 14:55 UTC
-This file was created to test if GitHub Pages deployment is working.
-If you see this file on tarot.net.ua/test-deploy.txt, then deployment works.
