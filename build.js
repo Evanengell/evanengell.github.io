@@ -211,7 +211,7 @@ const build = async () => {
   cleanDirs();
 
   try {
-    // Build JavaScript bundle
+    // Build JavaScript bundle with Preact
     const result = await esbuild.build({
       entryPoints: ['src/main.jsx'],
       bundle: true,
@@ -228,7 +228,12 @@ const build = async () => {
       splitting: false,
       write: false, // We'll write manually with hash
       jsx: 'automatic',
-      jsxImportSource: 'react',
+      jsxImportSource: 'preact',
+      alias: {
+        'react': 'preact/compat',
+        'react-dom': 'preact/compat',
+        'react/jsx-runtime': 'preact/jsx-runtime'
+      },
       define: {
         'process.env.NODE_ENV': '"production"'
       }
