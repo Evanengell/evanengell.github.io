@@ -29,6 +29,7 @@ jobs:
         run: |
           echo "📦 Preparing deployment files..."
           echo "🕐 Deploy time: $(date '+%Y-%m-%d %H:%M:%S UTC')"
+          echo "✨ Version: 5.2.1 - Static site with gnostic quotes"
           mkdir -p _site
 
           echo "📋 Copying all site files to _site/..."
